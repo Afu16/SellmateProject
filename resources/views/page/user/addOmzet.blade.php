@@ -39,14 +39,14 @@
                 <input type="text" name="target_omset" class="w-full mb-6 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
 
                 <!-- Action Buttons -->
-            </div>
-            <div class="flex gap-4 mt-10">
-                <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-3 shadow-black border-2 border-black rounded-xl bg-white text-black font-inter font-inter-bold text-base hover:bg-gray-50">
-                    Batal
-                </button>
-                <button type="submit" class=" shadow-black flex-1 py-3 rounded-xl bg-tertiary text-black font-inter font-inter-bold text-base hover:bg-secondary">
-                    Simpan
-                </button>
+                <div class="flex gap-4">
+                    <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-3 shadow-black border-2 border-black rounded-xl bg-white text-black font-inter font-inter-bold text-base hover:bg-gray-50">
+                        Batal
+                    </button>
+                    <button type="submit" class=" shadow-black flex-1 py-3 rounded-xl bg-tertiary text-black font-inter font-inter-bold text-base hover:bg-secondary">
+                        Simpan
+                    </button>
+                </div>
             </div>
         </form>
     </div>
