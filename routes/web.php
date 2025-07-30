@@ -1,0 +1,60 @@
+<?php
+
+use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
+
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
+});
+
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return Inertia::render('Dashboard');
+    })->name('dashboard');
+});
+
+Route::get('/user', function () {
+    return view('page.user.dashboard');
+});
+
+Route::get('/font-example', function () {
+    return view('font-example');
+})->name('font.example');
+
+Route::get('/font-inter-example', function () {
+    return view('font-inter-example');
+})->name('font.inter.example');
+
+Route::get('/products', function () {
+    return view('page.user.product');
+})->name('products');
+
+Route::get('/note', function () {
+    return view('page.user.note');
+})->name('note');
+
+Route::get('/add/omzet', function () {
+    return view('page.user.addOmzet');
+})->name('addOmzet');
+
+Route::get('/target', function () {
+    return view('page.user.targetOmzet');
+})->name('targetOmzet');
+
+Route::get('/top', function () {
+    return view('page.user.topRating');
+})->name('topRating');
+
+Route::get('/articles', function () {
+    return view('page.user.articles');
+})->name('articles');

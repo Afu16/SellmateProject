@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Dashboard Siska</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+    @vite('resources/js/app.js', 'resources/css/app.css')
+</head>
+<body class="bg-[#f5f7fa]">
+    <div class="">
+        <!-- Header with greeting -->
+        <div class="bg-primary border-b-10 border-black rounded-b-2xl p-5 shadow-sm mb-2 flex flex-row gap-10 min-h-[118px]">
+            <div class="mt-3">
+                <h1 class="text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello Siska,</h1>  
+                <p class="text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
+            </div>
+            <div class="mt-3 flex gap-3 items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-14">
+                <h3 class="text-l font-pilcrow font-pilcrow-semibold text-black mr-4">Siska</h3>
+                <img class="w-10 h-10 rounded-full object-cover border-2 border-black" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo of Siska">
+            </div>
+        </div>
+
+        <!-- Target Omset Card -->
+        <div class=" p-5">
+            <div class="bg-white shadow-black border-2 border-black rounded-2xl">
+                <div class="bg-white border-2 rounded-t-2xl p-5 shadow-sm">
+                    <div class="flex justify-between items-center mb-3">
+                        <div class="">
+                            <h2 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Target Omzet</h2>
+                            <p class="text-2xl font-quicksand font-quicksand-medium text-black mb-4">Rp 10.000.000</p>
+                        </div>
+                        <div class="-mt-2 w-14 h-14 shadow-black bg-primary rounded-xl flex items-center justify-center">
+                            <img width="50" height="50" src="{{ asset('assets/svg/plus-icon.svg') }}" alt="Target Icon">
+                </div>
+            </div>
+            
+            <!-- Progress section -->
+            <div>
+                <div class="flex justify-between font-quicksand font-quicksand-regular text-xs text-gray-600 mb-2">
+                    <span>On Progress</span>
+                    <span>80%</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full border-2 border-black h-4 mb-3">
+                    <div class="bg-[#DD661D] h-3 rounded-full" style="width: 80%"></div>
+                </div>
+                <div class="flex justify-between text-sm">
+                    <span class="font-pilcrow font-pilcrow-medium text-black">Rp 8.480.000</span>
+                    <span class="font-pilcrow font-pilcrow-medium text-black">Rp 10.000.000</span>
+                </div>
+            </div>
+            <!-- Rata-Rata Omset Card -->
+        </div>
+        <div class="bg-white rounded-b-2xl">
+
+                <div class="bg-[#DD661D] border-2 border-black rounded-2xl p-5 shadow-sm">
+                    <h2 class="text-sm font-quicksand font-quicksand-regular text-white mb-1">Rata - Rata Omset</h2>
+                    <p class="text-2xl font-pilcrow font-pilcrow-bold text-white">Rp 1.600.000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <!-- Navigation Icons Grid -->
+        <div class="grid grid-cols-3 gap-6 p-7">
+            <!-- Tambah Target -->
+            <div class="flex flex-col items-center">
+                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/targetAdd-icon.svg') }}" alt="Tambah Target Icon">
+                </div>
+                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Tambah Target</p>
+            </div>
+            
+            <!-- Total Omzet -->
+            <div class="flex flex-col items-center">
+                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/totalOmzet-icon.svg') }}" alt="Total Omzet Icon">
+                </div>
+                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Total Omzet</p>
+            </div>
+            
+            <!-- Total Komisi -->
+            <div class="flex flex-col items-center">
+                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/totalKomisi-icon.svg') }}" alt="Total Komisi Icon">
+                </div>
+                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Total Komisi</p>
+            </div>
+            
+            <!-- Artikel -->
+            <div class="flex flex-col items-center">
+                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/article-icon.svg') }}" alt="Artikel Icon">
+                </div>
+                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Artikel</p>
+            </div>
+            
+            <!-- Video -->
+            <div class="flex flex-col items-center">
+                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/video-icon.svg') }}" alt="Video Icon">
+                </div>
+                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Video</p>
+            </div>
+            
+            <!-- Ebook -->
+            <div class="flex flex-col items-center">
+                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/ebook-icon.svg') }}" alt="Ebook Icon">
+                </div>
+                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Ebook</p>
+            </div>
+        </div>
+
+        <!-- Top Omset Card -->
+        <div class="p-5">
+
+            <div class="bg-white border-2 border-black shadow-black rounded-2xl p-5 shadow-sm">
+                <div class="flex justify-between items-center mb-4">
+                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black">Top Omset</h2>
+                    <button class="bg-secondary shadow-black border-2 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
+                        Bulan Ini
+                        <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+            </div>
+            
+            <!-- Top Performer 1 -->
+            <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
+                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
+                <div class="flex-1">
+                    <p class="font-pilcrow font-pilcrow-bold text-black">Siska</p>
+                    <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
+                </div>
+                <div>
+                    <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                </div>
+            </div>
+            
+            <!-- Top Performer 2 -->
+            <div class="flex items-center">
+                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
+                <div class="flex-1">
+                    <p class="font-pilcrow font-pilcrow-bold text-black">Siska</p>
+                    <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
+                </div>
+                <div>
+                    <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
