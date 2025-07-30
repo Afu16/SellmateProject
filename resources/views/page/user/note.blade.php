@@ -63,8 +63,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-
                 <!-- Action Buttons -->
                 <div class="p-5 flex gap-3">
                     <button class="shadow-black flex-1 py-4 px-4 border border-black rounded-xl bg-white text-black font-inter font-inter-bold text-sm hover:bg-gray-50">
@@ -74,6 +72,8 @@
                         Simpan
                     </button>
                 </div>
+            </div>
+
             </div>
             </div>
 

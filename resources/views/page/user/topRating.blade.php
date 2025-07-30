@@ -60,7 +60,7 @@
                 </div>
             </div>
             <!-- 2 -->
-            <div class="flex items-center bg-[#4B0CA6] rounded-xl px-3 py-2 shadow-md">
+            <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
                 <img src="{{ asset('assets/img/profile/aurel.jpg') }}" alt="Aurel" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
                 <div class="flex-1">
                     <p class="text-white font-inter font-inter-semibold leading-4">Aurel</p>
@@ -74,7 +74,7 @@
                 </div>
             </div>
             <!-- 3 -->
-            <div class="flex items-center bg-[#4B0CA6] rounded-xl px-3 py-2 shadow-md">
+            <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
                 <img src="{{ asset('assets/img/profile/jesica.jpg') }}" alt="Jesica" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
                 <div class="flex-1">
                     <p class="text-white font-inter font-inter-semibold leading-4">Jesica</p>
@@ -88,7 +88,7 @@
                 </div>
             </div>
             <!-- 4 -->
-            <div class="flex items-center bg-[#4B0CA6] rounded-xl px-3 py-2 shadow-md">
+            <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
                 <img src="{{ asset('assets/img/profile/elsa.jpg') }}" alt="Elsa" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
                 <div class="flex-1">
                     <p class="text-white font-inter font-inter-semibold leading-4">Elsa</p>
