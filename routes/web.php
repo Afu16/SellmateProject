@@ -58,3 +58,6 @@ Route::get('/top', function () {
 Route::get('/articles', function () {
     return view('page.user.articles');
 })->name('articles');
+
+
+Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
