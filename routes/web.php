@@ -55,9 +55,25 @@ Route::get('/top', function () {
     return view('page.user.topRating');
 })->name('topRating');
 
-Route::get('/articles', function () {
-    return view('page.user.articles');
-})->name('articles');
 
+Route::get('/article-in', function () {
+    return view('page.user.article-in');
+})->name('article-in');
+
+Route::get('/ebook', function () {
+    return view('page.user.ebook');
+})->name('ebook');
+
+Route::get('/video', function () {
+    return view('page.user.video');
+})->name('video');
+
+Route::get('/comission', function () {
+    return view('page.user.comission');
+})->name('comission');
+
+Route::get('/setting', function () {
+    return view('page.user.setting');
+})->name('setting');
 
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');

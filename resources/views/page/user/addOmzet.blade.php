@@ -13,11 +13,11 @@
             <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
         </a>
 
-        <h1 class="text-2xl mt-5 font-inter font-inter-bold text-black mb-5">Sesuaikan Target Omzetmu</h1>
+        <h1 class="text-2xl mt-5 font-pilcrow font-pilcrow-semibold text-black mb-5">Sesuaikan Target Omzetmu</h1>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
             <form action="" method="post">
-                <label class="block text-black font-inter font-inter-bold text-sm mb-2">Nama Jasa/Produk</label>
+                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Jasa/Produk</label>
                 <input type="text" value="Rp 250.000" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
                 <!-- Timeline Target -->
                 <label class="block text-black font-inter font-inter-bold text-sm mb-2 mt-4">Timeline Target</label>
@@ -35,15 +35,15 @@
                 <input type="hidden" name="timeline" id="timeline" value="3">
 
                 <!-- Jumlah Target Omset -->
-                <label class="block text-black font-inter font-inter-bold text-sm mb-2 mt-4">Jumlah Target Omset</label>
+                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>
                 <input type="text" name="target_omset" class="w-full mb-6 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
-                    <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-3 shadow-black border-2 border-black rounded-xl bg-white text-black font-inter font-inter-bold text-base hover:bg-gray-50">
+                    <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-3 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
                         Batal
                     </button>
-                    <button type="submit" class=" shadow-black flex-1 py-3 rounded-xl bg-tertiary text-black font-inter font-inter-bold text-base hover:bg-secondary">
+                    <button type="submit" class=" shadow-black flex-1 py-3 rounded-xl bg-secondary text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-tertiary">
                         Simpan
                     </button>
                 </div>
@@ -54,21 +54,21 @@
                     function selectTimeline(val) {
                         document.getElementById('timeline').value = val;
                         // Reset semua button
-                        document.getElementById('btn-3bulan').classList.remove('bg-tertiary', 'font-inter-bold');
+                        document.getElementById('btn-3bulan').classList.remove('bg-secondary font-pilcrow-semibold');
                         document.getElementById('btn-3bulan').classList.add('bg-white');
-                        document.getElementById('btn-6bulan').classList.remove('bg-tertiary', 'font-inter-bold');
+                        document.getElementById('btn-6bulan').classList.remove('bg-secondary font-pilcrow-semibold');
                         document.getElementById('btn-6bulan').classList.add('bg-white');
-                        document.getElementById('btn-12bulan').classList.remove('bg-tertiary', 'font-inter-bold');
+                        document.getElementById('btn-12bulan').classList.remove('bg-secondary font-pilcrow-semibold');
                         document.getElementById('btn-12bulan').classList.add('bg-white');
                         // Aktifkan button terpilih
                         if(val === '3') {
-                            document.getElementById('btn-3bulan').classList.add('bg-tertiary', 'font-inter-bold');
+                            document.getElementById('btn-3bulan').classList.add('bg-secondary font-pilcrow-semibold');
                             document.getElementById('btn-3bulan').classList.remove('bg-white');
                         } else if(val === '6') {
-                            document.getElementById('btn-6bulan').classList.add('bg-tertiary', 'font-inter-bold');
+                            document.getElementById('btn-6bulan').classList.add('bg-secondary font-pilcrow-semibold');
                             document.getElementById('btn-6bulan').classList.remove('bg-white');
                         } else if(val === '12') {
-                            document.getElementById('btn-12bulan').classList.add('bg-tertiary', 'font-inter-bold');
+                            document.getElementById('btn-12bulan').classList.add('bg-secondary font-pilcrow-semibold');
                             document.getElementById('btn-12bulan').classList.remove('bg-white');
                         }
                     }

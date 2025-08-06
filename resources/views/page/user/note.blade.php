@@ -14,27 +14,27 @@
             <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
         </a>
 
-        <h1 class="text-2xl font-inter font-inter-bold text-black">Simpan dan Catat Omzetmu </h1>
+        <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">Simpan dan Catat Omzetmu </h1>
         <img src="{{ asset('assets/img/note-img.png') }}" alt="note" class="mt-5 mx-auto w-80">
 
         <form action="" method="post" class="mt-5">
             <div class="p-5 rounded-xl mb-5 border-2 border-black shadow-black">
                 <div class="flex flex-row">
                     <div class="w-1/2 mb-4">
-                <label class="block text-black font-inter font-inter-bold text-sm mb-2">Nama Jasa/Produk</label>
+                <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Nama Jasa/Produk</label>
                 <input type="text" value="Rp 250.000" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
                 <!-- Jumlah Produk -->
                 <div class="">
-                    <label class="block text-black font-inter font-inter-bold text-sm mb-2">Jumlah Produk</label>
+                    <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Jumlah Produk</label>
                     <div class="flex items-center">
                         <button onclick="decrementQuantity()" class="w-10 h-10 border border-black rounded-l-lg flex items-center justify-center bg-white hover:bg-gray-50">
-                            <span class="text-black font-inter font-inter-bold">-</span>
+                            <span class="text-black font-pilcrow font-pilcrow-bold">-</span>
                         </button>
                         <div class="w-16 h-10 border-t border-b border-black flex items-center justify-center bg-white">
-                            <span id="quantity" class="text-black font-inter font-inter-bold text-sm">1</span>
+                            <span id="quantity" class="text-black font-pilcrow font-pilcrow-bold text-sm">1</span>
                         </div>
                         <button onclick="incrementQuantity()" class="w-10 h-10 border border-black rounded-r-lg flex items-center justify-center bg-white hover:bg-gray-50">
-                            <span class="text-black font-inter font-inter-bold">+</span>
+                            <span class="text-black font-pilcrow font-pilcrow-bold">+</span>
                         </button>
                     </div>
                 </div>
@@ -47,13 +47,13 @@
 
                 <!-- Total Omset -->
                 <div class="mb-4">
-                    <label class="block text-black font-inter font-inter-bold text-sm mb-2">Total Omset</label>
+                    <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Total Omset</label>
                     <input type="text" value="Rp 250.000" class="w-full px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
                 </div>
                 
                 <!-- Hari / Tanggal -->
                 <div class="mb-6">
-                    <label class="block text-black font-inter font-inter-bold text-sm mb-2">Hari / Tanggal</label>
+                    <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Hari / Tanggal</label>
                     <div class="relative">
                         <input type="text" value="27 Feb 2025" class="w-full px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white pr-10">
                         <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
@@ -65,10 +65,10 @@
                 </div>
                 <!-- Action Buttons -->
                 <div class="p-5 flex gap-3">
-                    <button class="shadow-black flex-1 py-4 px-4 border border-black rounded-xl bg-white text-black font-inter font-inter-bold text-sm hover:bg-gray-50">
+                    <button class="shadow-black flex-1 py-4 px-4 border border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-bold text-sm hover:bg-gray-50">
                         Batal
                     </button>
-                    <button class="shadow-black flex-1 py-4 px-4 bg-tertiary rounded-xl text-black font-inter font-inter-bold text-sm hover:bg-secondary">
+                    <button class="shadow-black flex-1 py-4 px-4 bg-tertiary rounded-xl text-black font-pilcrow font-pilcrow-bold text-sm hover:bg-secondary">
                         Simpan
                     </button>
                 </div>

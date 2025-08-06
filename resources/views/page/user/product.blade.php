@@ -30,9 +30,9 @@
                 </div>
                 <div class="p-4 mt-3">
                     <h3 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Cake</h3>
-                    <p class="text-sm font-quicksand font-quicksand-regular text-white mb-2">Rp 250.000</p>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-white mb-3">Produk</p>
-                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-quicksand font-quicksand-medium text-sm">
+                    <p class="text-sm font-pilcrow font-pilcrow-regular text-white mb-2">Rp 250.000</p>
+                    <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-3">Produk</p>
+                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-pilcrow font-pilcrow-bold text-sm">
                         Tambah
                     </button>
                 </div>
@@ -47,9 +47,9 @@
                 </div>
                 <div class="p-4 mt-3">
                     <h3 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">SkinCare</h3>
-                    <p class="text-sm font-quicksand font-quicksand-regular text-white mb-2">Rp 650.000</p>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-white mb-3">Produk</p>
-                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-quicksand font-quicksand-medium text-sm">
+                    <p class="text-sm font-pilcrow font-pilcrow-regular text-white mb-2">Rp 650.000</p>
+                    <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-3">Produk</p>
+                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-pilcrow font-pilcrow-bold text-sm">
                         Tambah
                     </button>
                 </div>
@@ -64,9 +64,9 @@
                 </div>
                 <div class="p-4 mt-3">
                     <h3 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Kaos Crop</h3>
-                    <p class="text-sm font-quicksand font-quicksand-regular text-white mb-2">Rp 150.000</p>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-white mb-3">Produk</p>
-                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-quicksand font-quicksand-medium text-sm">
+                    <p class="text-sm font-pilcrow font-pilcrow-regular text-white mb-2">Rp 150.000</p>
+                    <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-3">Produk</p>
+                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-pilcrow font-pilcrow-bold text-sm">
                         Tambah
                     </button>
                 </div>
@@ -81,9 +81,9 @@
                 </div>
                 <div class="p-4 mt-3">
                     <h3 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Jasa Video</h3>
-                    <p class="text-sm font-quicksand font-quicksand-regular text-white mb-2">Rp 350.000</p>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-white mb-3">Produk</p>
-                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-quicksand font-quicksand-medium text-sm">
+                    <p class="text-sm font-pilcrow font-pilcrow-regular text-white mb-2">Rp 350.000</p>
+                    <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-3">Produk</p>
+                    <button class="w-full bg-[#DD661D] text-white py-2 px-4 rounded-lg font-pilcrow font-pilcrow-bold text-sm">
                         Tambah
                     </button>
                 </div>
