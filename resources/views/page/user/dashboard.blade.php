@@ -36,10 +36,12 @@
                             <h2 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Target Omzet</h2>
                             <p class="text-2xl font-quicksand font-quicksand-medium text-black mb-4">Rp 10.000.000</p>
                         </div>
+                        <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
                         <div class="-mt-2 w-14 h-14 shadow-black bg-primary rounded-xl flex items-center justify-center">
                             <img width="50" height="50" src="{{ asset('assets/svg/plus-icon.svg') }}" alt="Target Icon">
                 </div>
-            </div>
+            </a>
+        </div>
             
             <!-- Progress section -->
             <div>
@@ -70,13 +72,14 @@
         <!-- Navigation Icons Grid -->
         <div class="grid grid-cols-3 gap-6 p-7">
             <!-- Tambah Target -->
+            <a href="{{ route('addOmzet') }}" class="flex flex-col items-center focus:outline-none">
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/targetAdd-icon.svg') }}" alt="Tambah Target Icon">
                 </div>
                 <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Tambah Target</p>
             </div>
-            
+        </a>
             <!-- Total Omzet -->
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
@@ -94,12 +97,12 @@
             </div>
             
             <!-- Artikel -->
-            <div class="flex flex-col items-center">
-                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
-                    <img class="w-8 h-8" src="{{ asset('assets/svg/article-icon.svg') }}" alt="Artikel Icon">
-                </div>
-                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Artikel</p>
-            </div>
+            <a href="{{ route('articles') }}" class="flex flex-col items-center focus:outline-none">
+              <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2 hover:opacity-90 transition">
+              <img class="w-8 h-8" src="{{ asset('assets/svg/article-icon.svg') }}" alt="Artikel Icon">
+               </div>
+              <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Artikel</p>
+            </a>
             
             <!-- Video -->
             <div class="flex flex-col items-center">
@@ -108,7 +111,7 @@
                 </div>
                 <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Video</p>
             </div>
-            
+
             <!-- Ebook -->
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
