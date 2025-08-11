@@ -22,7 +22,7 @@
                 <!-- Timeline Target -->
                 <label class="block text-black font-inter font-inter-bold text-sm mb-2 mt-4">Timeline Target</label>
                 <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
-                    <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-3 font-inter font-inter-regular text-black focus:outline-none bg-tertiary border-r border-black" style="border-bottom-left-radius: 12px; border-top-left-radius: 12px;">
+                    <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-3 font-inter font-inter-regular text-black focus:outline-none bg-secondary border-r border-black" style="border-bottom-left-radius: 12px; border-top-left-radius: 12px;">
                         3 Bulan
                     </button>
                     <button type="button" id="btn-6bulan" onclick="selectTimeline('6')" class="flex-1 py-3 font-inter font-inter-regular text-black focus:outline-none bg-white border-r border-black">

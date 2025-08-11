@@ -3,6 +3,9 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\NoteController;
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -35,13 +38,12 @@ Route::get('/font-inter-example', function () {
     return view('font-inter-example');
 })->name('font.inter.example');
 
-Route::get('/products', function () {
-    return view('page.user.product');
-})->name('products');
 
-Route::get('/note', function () {
-    return view('page.user.note');
-})->name('note');
+Route::get('/products', [ProductController::class, 'index'])->name('products');
+
+Route::get('/note/{product}', [NoteController::class, 'create'])->name('note');
+Route::post('/note', [NoteController::class, 'store'])->name('note.store');
+
 
 Route::get('/add/omzet', function () {
     return view('page.user.addOmzet');
