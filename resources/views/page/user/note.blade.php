@@ -3,96 +3,106 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Note</title>
     @vite('resources/js/app.js', 'resources/css/app.css')
 </head>
 <body>
-    <div class="p-6">
+<div class="p-6">
 
-        <a class="mr-4 mb-10" href="{{ url('/user') }}">
-            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
-        </a>
+    <!-- Tombol kembali -->
+    <a class="mr-4 mb-10" href="{{ url('/products') }}">
+        <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
+    </a>
 
-        <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">Simpan dan Catat Omzetmu </h1>
-        <img src="{{ asset('assets/img/note-img.png') }}" alt="note" class="mt-5 mx-auto w-80">
+    <!-- Judul -->
+    <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">Simpan dan Catat Omzetmu</h1>
+    <img src="{{ asset('assets/img/note-img.png') }}" alt="note" class="mt-5 mx-auto w-80">
 
-        <form action="" method="post" class="mt-5">
-            <div class="p-5 rounded-xl mb-5 border-2 border-black shadow-black">
-                <div class="flex flex-row">
-                    <div class="w-1/2 mb-4">
-                <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Nama Jasa/Produk</label>
-                <input type="text" value="Rp 250.000" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
-                <!-- Jumlah Produk -->
-                <div class="">
+    <!-- Form -->
+    <form action="{{ route('note.store') }}" method="post" class="mt-5">
+        @csrf
+        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+        <div class="p-5 rounded-xl mb-5 border-2 border-black shadow-black">
+            <div class="flex flex-row">
+                <!-- Input Nama Produk -->
+                <div class="w-1/2 mb-4">
+                    <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Nama Jasa/Produk</label>
+                    <input type="text" value="{{ $product->name }}" readonly
+                           class="w-full mb-2 px-3 py-2 border border-black rounded-lg bg-gray-100">
+
+                    <!-- Jumlah Produk -->
                     <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Jumlah Produk</label>
                     <div class="flex items-center">
-                        <button onclick="decrementQuantity()" class="w-10 h-10 border border-black rounded-l-lg flex items-center justify-center bg-white hover:bg-gray-50">
-                            <span class="text-black font-pilcrow font-pilcrow-bold">-</span>
-                        </button>
+                        <button type="button" onclick="decrementQuantity()" 
+                                class="w-10 h-10 border border-black rounded-l-lg flex items-center justify-center bg-white hover:bg-gray-50">-</button>
                         <div class="w-16 h-10 border-t border-b border-black flex items-center justify-center bg-white">
                             <span id="quantity" class="text-black font-pilcrow font-pilcrow-bold text-sm">1</span>
                         </div>
-                        <button onclick="incrementQuantity()" class="w-10 h-10 border border-black rounded-r-lg flex items-center justify-center bg-white hover:bg-gray-50">
-                            <span class="text-black font-pilcrow font-pilcrow-bold">+</span>
-                        </button>
+                        <button type="button" onclick="incrementQuantity()" 
+                                class="w-10 h-10 border border-black rounded-r-lg flex items-center justify-center bg-white hover:bg-gray-50">+</button>
                     </div>
                 </div>
+
+                <!-- Gambar Produk -->
+                <div class="mx-auto">
+                    <img width="123" class="border-2 border-black rounded-xl" 
+                         src="{{ asset('assets/img/' . $product->product_photo) }}" 
+                         alt="{{ $product->name }}">
+                </div>
             </div>
-            <div class="mx-auto">
-                <img width="123" class="border-2 border-black rounded-xl" src="{{ asset('assets/img/example-img.jpg') }}" alt="owl">
+
+            <!-- Total Omzet -->
+            <div class="mb-4">
+                <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Total Omzet</label>
+                <input type="text" id="totalOmzet" readonly
+                    class="w-full px-3 py-2 border border-black rounded-lg bg-gray-100">
+            </div>
+
+            <!-- Hari / Tanggal -->
+            <div class="mb-6">
+                <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Hari / Tanggal</label>
+                <input type="text" value="{{ now()->format('d M Y') }}" readonly
+                       class="w-full px-3 py-2 border border-black rounded-lg bg-gray-100">
+            </div>
+
+            <!-- Tombol Aksi -->
+            <div class="p-5 flex gap-3">
+                <a href="{{ url('/products') }}" 
+                   class="flex-1 py-4 px-4 border border-black rounded-xl bg-white text-black text-center">Batal</a>
+                <button type="submit" 
+                        class="flex-1 py-4 px-4 bg-tertiary rounded-xl text-black">Simpan</button>
             </div>
         </div>
+    </form>
+</div>
 
+<script>
+    let quantity = 1;
+    let price = {{ $product->price }}; // harga asli dari Laravel
 
-                <!-- Total Omset -->
-                <div class="mb-4">
-                    <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Total Omset</label>
-                    <input type="text" value="Rp 250.000" class="w-full px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
-                </div>
-                
-                <!-- Hari / Tanggal -->
-                <div class="mb-6">
-                    <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Hari / Tanggal</label>
-                    <div class="relative">
-                        <input type="text" value="27 Feb 2025" class="w-full px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white pr-10">
-                        <div class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                            <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-                <!-- Action Buttons -->
-                <div class="p-5 flex gap-3">
-                    <button class="shadow-black flex-1 py-4 px-4 border border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-bold text-sm hover:bg-gray-50">
-                        Batal
-                    </button>
-                    <button class="shadow-black flex-1 py-4 px-4 bg-tertiary rounded-xl text-black font-pilcrow font-pilcrow-bold text-sm hover:bg-secondary">
-                        Simpan
-                    </button>
-                </div>
-            </div>
+    function updateTotal() {
+        let total = price * quantity;
+        document.getElementById('totalOmzet').value = 
+            "Rp " + total.toLocaleString('id-ID');
+    }
 
-            </div>
-            </div>
+    function incrementQuantity() {
+        quantity++;
+        document.getElementById('quantity').textContent = quantity;
+        updateTotal();
+    }
 
-</form>
-
-    <script>
-        let quantity = 1;
-
-        function incrementQuantity() {
-            quantity++;
+    function decrementQuantity() {
+        if (quantity > 1) {
+            quantity--;
             document.getElementById('quantity').textContent = quantity;
+            updateTotal();
         }
+    }
 
-        function decrementQuantity() {
-            if (quantity > 1) {
-                quantity--;
-                document.getElementById('quantity').textContent = quantity;
-            }
-        }
-    </script>
+    // Hitung total saat pertama kali load
+    document.addEventListener('DOMContentLoaded', updateTotal);
+</script>
 </body>
 </html>
