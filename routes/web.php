@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\OmzetController;
 
 
 Route::get('/', function () {
@@ -44,6 +45,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::get('/note/{product}', [NoteController::class, 'create'])->name('note');
 Route::post('/note', [NoteController::class, 'store'])->name('note.store');
 
+Route::post('/omzet/store', [OmzetController::class, 'store'])->name('omzet.store');
 
 Route::get('/add/omzet', function () {
     return view('page.user.addOmzet');

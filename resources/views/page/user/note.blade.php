@@ -23,6 +23,9 @@
         @csrf
         <input type="hidden" name="product_id" value="{{ $product->id }}">
 
+        <input type="hidden" name="quantity" id="quantityInput" value="1">
+        <input type="hidden" name="total_omzets" id="totalOmzetInput" value="{{ $product->price }}">
+
         <div class="p-5 rounded-xl mb-5 border-2 border-black shadow-black">
             <div class="flex flex-row">
                 <!-- Input Nama Produk -->
@@ -62,7 +65,7 @@
             <!-- Hari / Tanggal -->
             <div class="mb-6">
                 <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Hari / Tanggal</label>
-                <input type="text" value="{{ now()->format('d M Y') }}" readonly
+                <input type="text" value="{{ now()->format('d M Y') }}"
                        class="w-full px-3 py-2 border border-black rounded-lg bg-gray-100">
             </div>
 
@@ -71,7 +74,7 @@
                 <a href="{{ url('/products') }}" 
                    class="flex-1 py-4 px-4 border border-black rounded-xl bg-white text-black text-center">Batal</a>
                 <button type="submit" 
-                        class="flex-1 py-4 px-4 bg-tertiary rounded-xl text-black">Simpan</button>
+                        class="flex-1 py-4 px-4 bg-secondary rounded-xl text-black">Simpan</button>
             </div>
         </div>
     </form>
@@ -85,6 +88,9 @@
         let total = price * quantity;
         document.getElementById('totalOmzet').value = 
             "Rp " + total.toLocaleString('id-ID');
+
+    document.getElementById('quantityInput').value = quantity;
+    document.getElementById('totalOmzetInput').value = total;
     }
 
     function incrementQuantity() {
