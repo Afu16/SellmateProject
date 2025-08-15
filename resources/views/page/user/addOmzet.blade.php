@@ -16,9 +16,10 @@
         <h1 class="text-2xl mt-5 font-pilcrow font-pilcrow-semibold text-black mb-5">Sesuaikan Target Omzetmu</h1>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
-            <form action="" method="post">
+            <form action="{{ route('target.store') }}" method="post">
+                @csrf
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Jasa/Produk</label>
-                <input type="text" value="Rp 250.000" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
+                <input type="text" name="title" required class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white">
                 <!-- Timeline Target -->
                 <label class="block text-black font-inter font-inter-bold text-sm mb-2 mt-4">Timeline Target</label>
                 <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
@@ -36,7 +37,7 @@
 
                 <!-- Jumlah Target Omset -->
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>
-                <input type="text" name="target_omset" class="w-full mb-6 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
+                <input type="number" name="target" required class="w-full mb-6 px-3 py-2 border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
@@ -53,24 +54,19 @@
                 <script>
                     function selectTimeline(val) {
                         document.getElementById('timeline').value = val;
-                        // Reset semua button
-                        document.getElementById('btn-3bulan').classList.remove('bg-secondary font-pilcrow-semibold');
-                        document.getElementById('btn-3bulan').classList.add('bg-white');
-                        document.getElementById('btn-6bulan').classList.remove('bg-secondary font-pilcrow-semibold');
-                        document.getElementById('btn-6bulan').classList.add('bg-white');
-                        document.getElementById('btn-12bulan').classList.remove('bg-secondary font-pilcrow-semibold');
-                        document.getElementById('btn-12bulan').classList.add('bg-white');
-                        // Aktifkan button terpilih
-                        if(val === '3') {
-                            document.getElementById('btn-3bulan').classList.add('bg-secondary font-pilcrow-semibold');
-                            document.getElementById('btn-3bulan').classList.remove('bg-white');
-                        } else if(val === '6') {
-                            document.getElementById('btn-6bulan').classList.add('bg-secondary font-pilcrow-semibold');
-                            document.getElementById('btn-6bulan').classList.remove('bg-white');
-                        } else if(val === '12') {
-                            document.getElementById('btn-12bulan').classList.add('bg-secondary font-pilcrow-semibold');
-                            document.getElementById('btn-12bulan').classList.remove('bg-white');
-                        }
+
+                    // Reset semua tombol
+                    const buttons = ['btn-3bulan', 'btn-6bulan', 'btn-12bulan'];
+                    buttons.forEach(id => {
+                        document.getElementById(id).classList.remove('bg-secondary', 'text-white');
+                        document.getElementById(id).classList.add('bg-white', 'text-black');
+                    });
+
+                    // Tambah warna untuk tombol yang dipilih
+                    const selectedBtn = document.getElementById(`btn-${val}bulan`);
+                    selectedBtn.classList.add('bg-secondary', 'text-white');
+                    selectedBtn.classList.remove('bg-white', 'text-black');
+
                     }
                     // Set default ke 3 bulan
                     window.onload = function() {

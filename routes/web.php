@@ -6,6 +6,8 @@ use Inertia\Inertia;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OmzetController;
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\TargetController;
 
 
 Route::get('/', function () {
@@ -50,6 +52,8 @@ Route::post('/omzet/store', [OmzetController::class, 'store'])->name('omzet.stor
 Route::get('/add/omzet', function () {
     return view('page.user.addOmzet');
 })->name('addOmzet');
+Route::post('/add/omzet', [TargetController::class, 'store'])->name('target.store');
+
 
 Route::get('/target', function () {
     return view('page.user.targetOmzet');
@@ -81,3 +85,5 @@ Route::get('/setting', function () {
 })->name('setting');
 
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
+Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+

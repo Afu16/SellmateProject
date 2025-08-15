@@ -33,7 +33,7 @@
                 <div class="bg-white border-2 rounded-t-2xl p-5 shadow-sm">
                     <div class="flex justify-between items-center mb-3">
                         <div class="">
-                            <h2 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Target Omzet</h2>
+                            <h2 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Total Omzet</h2>
                             <p class="text-2xl font-quicksand font-quicksand-medium text-black mb-4">Rp 10.000.000</p>
                         </div>
                         <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
@@ -113,6 +113,7 @@
             </div>
 
             <!-- Ebook -->
+            <a href="{{ route('ebook') }}" class="flex flex-col items-center focus:outline-none">
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/ebook-icon.svg') }}" alt="Ebook Icon">
@@ -120,6 +121,7 @@
                 <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Ebook</p>
             </div>
         </div>
+        <a>
 
         <!-- Top Omset Card -->
         <div class="p-5">
