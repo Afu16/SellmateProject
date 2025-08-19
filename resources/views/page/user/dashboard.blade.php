@@ -80,7 +80,7 @@
             </a>
 
             <!-- Tambah Target -->
-            <a href="{{ route('targetOmzet') }}" class="flex flex-col items-center focus:outline-none">
+            <a href="{{ route('addOmzet') }}" class="flex flex-col items-center focus:outline-none">
                 <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/targetAdd-icon.svg') }}" alt="Tambah Target Icon">
                 </div>
