@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Riwayat Komisi</title>
+    <title>Riwayat Omzet</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="bg-white p-6">
@@ -13,19 +13,19 @@
         <a href="{{ url('/user') }}" class="mr-4">
             <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
         </a>
-        <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black">Riwayat Komisi</h1>
+        <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black">Riwayat Omzet</h1>
     </div>
 
-    <!-- Total Komisi Section -->
+    <!-- Total Omzet Section -->
     <div class="bg-primary rounded-lg p-6 shadow-black border-2 border-black mb-6">
         <div class="text-white">
-            <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2">Total Komisi</p>
+            <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2">Total Omzet</p>
             <p class="text-3xl font-quicksand font-quicksand-regular">Rp 1.400.000</p>
         </div>
     </div>
 
-    <!-- Record Komisi Section -->
-    <h2 class="text-xl font-pilcrow font-pilcrow-heavy text-black mb-2">Record Komisi</h2>
+    <!-- Record Omzet Section -->
+    <h2 class="text-xl font-pilcrow font-pilcrow-heavy text-black mb-2">Record Omzet</h2>
     <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-black shadow-black">
 
         <!-- Omzet Bulan ini -->

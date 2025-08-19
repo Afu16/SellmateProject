@@ -4,44 +4,122 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Target Omzet</title>
+    <title>History</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
     @vite('resources/js/app.js', 'resources/css/app.css')
 </head>
-<body>
+<body class="bg-white">
     <div class="p-6">
-          <!-- Header -->
-          <div class="flex items-center mb-6">
+        <!-- Header -->
+        <div class="flex items-center mb-6">
             <a href="{{ url('/user') }}" class="mr-4">
-           <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
+                <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class="text-2xl font-inter font-inter-bold text-black">Detail Target Omzet</h1>
+            <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">History</h1>
         </div>
 
-        {{-- Omzet Card --}}
-        <div class="bg-primary p-5 rounded-xl border-2 border-black shadow-black">
-            <div class="flex flex-row gap-10">
-                <div class="mt-3">
-                    <p class="text-md text-white font-inter-semibold">Omzet Periode 1</p>
-                    <p class="text-sm text-white font-inter-medium">Timeline 3 bulan</p>
+        <!-- Current Target Card -->
+        <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black mb-6">
+            <div class="flex justify-between items-start mb-4">
+                <div>
+                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Omzet Periode 3</h2>
+                    <p class="text-sm font-quicksand font-quicksand-regular text-white">Timeline 3 Bulan</p>
                 </div>
-                <div class="bg-quaternary rounded-full ml-20 h-16 w-16">
-                    <img class="mx-auto mt-1.5 w-12 h-12" src="{{ asset('assets/svg/targetArrow-icon.svg') }}" alt="Target Arrow">
+                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
+                    <img class="w-6 h-6" src="{{ asset('assets/svg/targetArrow-icon.svg') }}" alt="Target Icon">
                 </div>
             </div>
-            <h3 class="text-md font-inter font-inter-semibold text-white mt-5">Target Omzet</h3>
-            <h1 class="text-lg font-inter font-inter-bold text-white">Rp. 10.000.000</h1>
-
+            
+            <div class="mb-4">
+                <h3 class="text-sm font-pilcrow font-pilcrow-bold text-white mb-1">Target Omzet</h3>
+                <p class="text-xl font-quicksand font-quicksand-regular text-white">Rp 10.000.000</p>
+            </div>
+            
             <div>
-                <div class="flex justify-between font-quicksand font-quicksand-regular text-xs text-white mt-2 mb-2">
-                    <span>On Progress</span>
-                    <span>80%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full h-3 mb-3">
-                    <div class="bg-secondary h-3 rounded-full" style="width: 80%"></div>
+                <p class="text-sm font-pilcrow font-pilcrow-heavy text-white mb-2">On Progress</p>
+                <div class="flex items-center gap-3 mb-2">
+                    <div class="flex-1">
+                        <div class="w-full bg-white rounded-full h-3">
+                            <div class="bg-[#DD661D] h-3 rounded-full" style="width: 50%"></div>
+                        </div>
+                    </div>
+                    <span class="text-sm font-quicksand font-quicksand-regular text-white">0%</span>
                 </div>
                 <div class="flex justify-between text-sm">
-                    <span class="font-inter font-inter-semibold text-white">Rp 0,-</span>
-                    <span class="font-inter font-inter-semibold text-white">Rp 10.000.000</span>
+                    <span class="font-quicksand font-quicksand-regular text-white">Rp 5.000.000,-</span>
+                    <span class="font-quicksand font-quicksand-regular text-white">Rp 10.000.000</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Action Icons -->
+        <div class="flex justify-end gap-4 mb-6">
+            <button class="w-6 h-6">
+                <img class="w-full h-full" src="{{ asset('assets/svg/trash-icon.svg') }}" alt="Delete">
+            </button>
+            <button class="w-6 h-6">
+                <img class="w-full h-full" src="{{ asset('assets/svg/edit-icon.svg') }}" alt="Edit">
+            </button>
+        </div>
+
+        <!-- Section Title -->
+        <h2 class="text-xl font-pilcrow font-pilcrow-bold text-black mb-4">Riwayat Target Omzetmu</h2>
+
+        <!-- Target History Cards -->
+        <div class="space-y-4">
+            <!-- Omzet Periode 3 Card -->
+            <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black">
+                <div class="mb-4">
+                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Omzet Periode 3</h2>
+                    <p class="text-xs font-quicksand font-quicksand-regular text-white opacity-80">Jan 01/01/2025 - Mar 30/03/2025</p>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="text-xl font-quicksand font-quicksand-regular text-white mb-3">
+                            5.000.000/10.000.000
+                        </div>
+                        
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1">
+                                <div class="w-full bg-white rounded-full h-3">
+                                    <div class="bg-[#DD661D] h-3 rounded-full" style="width: 50%"></div>
+                                </div>
+                            </div>
+                            <span class="text-sm font-quicksand font-quicksand-regular text-white">50%</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Omzet Periode 2 Card -->
+            <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black">
+                <div class="mb-4">
+                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Omzet Periode 2</h2>
+                    <p class="text-xs font-quicksand font-quicksand-regular text-white opacity-80">Nov 01/11/2024 - Dec 31/12/2024</p>
+                </div>
+                
+                <div class="flex items-center justify-between">
+                    <div class="flex-1">
+                        <div class="text-xl font-quicksand font-quicksand-regular text-white mb-3">
+                            250.000/1.000.000
+                        </div>
+                        
+                        <div class="flex items-center gap-3">
+                            <div class="flex-1">
+                                <div class="w-full bg-white rounded-full h-3">
+                                    <div class="bg-[#DD661D] h-3 rounded-full" style="width: 20%"></div>
+                                </div>
+                            </div>
+                            <span class="text-sm font-quicksand font-quicksand-regular text-white">20%</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
