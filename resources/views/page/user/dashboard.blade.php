@@ -34,13 +34,13 @@
                     <div class="flex justify-between items-center mb-3">
                         <div class="">
                             <h2 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Total Omzet</h2>
-                            <p class="text-2xl font-quicksand font-quicksand-medium text-black mb-4">Rp 10.000.000</p>
+                            <p class="text-3xl font-quicksand font-quicksand-regular text-black mb-4">Rp 10.000.000</p>
                         </div>
-                        <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
+                        {{-- <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
                         <div class="-mt-2 w-14 h-14 shadow-black bg-primary rounded-xl flex items-center justify-center">
                             <img width="50" height="50" src="{{ asset('assets/svg/plus-icon.svg') }}" alt="Target Icon">
                 </div>
-            </a>
+            </a> --}}
         </div>
             
             <!-- Progress section -->
@@ -69,63 +69,75 @@
         </div>
     </div>
 
-        <!-- Navigation Icons Grid -->
-        <div class="grid grid-cols-3 gap-6 p-7">
+        <!-- Navigation Icons Grid - 2 rows x 4 columns -->
+        <div class="grid grid-cols-4 gap-4 p-7">
+            <!-- Catat Omzet -->
+            <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/plus-icon.svg') }}" alt="Catat Omzet Icon">
+                </div>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Catat Omzet</p>
+            </a>
+
             <!-- Tambah Target -->
-            <a href="{{ route('addOmzet') }}" class="flex flex-col items-center focus:outline-none">
-            <div class="flex flex-col items-center">
-                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+            <a href="{{ route('targetOmzet') }}" class="flex flex-col items-center focus:outline-none">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/targetAdd-icon.svg') }}" alt="Tambah Target Icon">
                 </div>
-                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Tambah Target</p>
-            </div>
-        </a>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Tambah Target</p>
+            </a>
+            
             <!-- Total Omzet -->
             <div class="flex flex-col items-center">
-                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/totalOmzet-icon.svg') }}" alt="Total Omzet Icon">
                 </div>
-                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Total Omzet</p>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Total Omzet</p>
             </div>
             
             <!-- Total Komisi -->
             <div class="flex flex-col items-center">
-                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
-                    <img class="w-8 h-8" src="{{ asset('assets/svg/totalKomisi-icon.svg') }}" alt="Total Komisi Icon">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/newTotalKomisi-icon.svg') }}" alt="Total Komisi Icon">
                 </div>
-                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Total Komisi</p>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Total Komisi</p>
             </div>
+            
+            <!-- Riwayat Target -->
+            <a href="{{ route('targetOmzet') }}" class="flex flex-col items-center focus:outline-none">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/history-icon.svg') }}" alt="Riwayat Target Icon">
+                </div>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Riwayat Target</p>
+            </a>
+            
+            <!-- Ebook -->
+            <a href="{{ route('ebook') }}" class="flex flex-col items-center focus:outline-none">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/newEbook-icon.svg') }}" alt="Ebook Icon">
+                </div>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Ebook</p>
+            </a>
             
             <!-- Artikel -->
             <a href="{{ route('articles') }}" class="flex flex-col items-center focus:outline-none">
-              <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2 hover:opacity-90 transition">
-              <img class="w-8 h-8" src="{{ asset('assets/svg/article-icon.svg') }}" alt="Artikel Icon">
-               </div>
-              <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Artikel</p>
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2 hover:opacity-90 transition">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/newArticle-icon.svg') }}" alt="Artikel Icon">
+                </div>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Artikel</p>
             </a>
             
             <!-- Video -->
-            <div class="flex flex-col items-center">
-                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
-                    <img class="w-8 h-8" src="{{ asset('assets/svg/video-icon.svg') }}" alt="Video Icon">
+            <a href="{{ route('video') }}" class="flex flex-col items-center focus:outline-none">
+                <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
+                    <img class="w-8 h-8" src="{{ asset('assets/svg/newVideo-icon.svg') }}" alt="Video Icon">
                 </div>
-                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Video</p>
-            </div>
-
-            <!-- Ebook -->
-            <a href="{{ route('ebook') }}" class="flex flex-col items-center focus:outline-none">
-            <div class="flex flex-col items-center">
-                <div class="bg-[#3C096C] rounded-2xl w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
-                    <img class="w-8 h-8" src="{{ asset('assets/svg/ebook-icon.svg') }}" alt="Ebook Icon">
-                </div>
-                <p class="text-xs font-quicksand font-quicksand-medium text-black text-center">Ebook</p>
-            </div>
+                <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Video</p>
+            </a>
         </div>
-        <a>
 
         <!-- Top Omset Card -->
         <div class="p-5">
-
             <div class="bg-white border-2 border-black shadow-black rounded-2xl p-5 shadow-sm">
                 <div class="flex justify-between items-center mb-4">
                     <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black">Top Omset</h2>
@@ -135,33 +147,33 @@
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
                     </button>
-            </div>
-            
-            <!-- Top Performer 1 -->
-            <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
-                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
-                <div class="flex-1">
-                    <p class="font-pilcrow font-pilcrow-bold text-black">Siska</p>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
                 </div>
-                <div>
-                    <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                
+                <!-- Top Performer 1 -->
+                <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
+                    <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
+                    <div class="flex-1">
+                        <p class="font-pilcrow font-pilcrow-bold text-black">Siska</p>
+                        <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
+                    </div>
+                    <div>
+                        <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                    </div>
                 </div>
-            </div>
-            
-            <!-- Top Performer 2 -->
-            <div class="flex items-center">
-                <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
-                <div class="flex-1">
-                    <p class="font-pilcrow font-pilcrow-bold text-black">Siska</p>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
-                </div>
-                <div>
-                    <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                
+                <!-- Top Performer 2 -->
+                <div class="flex items-center">
+                    <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
+                    <div class="flex-1">
+                        <p class="font-pilcrow font-pilcrow-bold text-black">Siska</p>
+                        <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
+                    </div>
+                    <div>
+                        <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

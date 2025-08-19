@@ -27,7 +27,7 @@
         <input type="hidden" name="total_omzets" id="totalOmzetInput" value="{{ $product->price }}">
 
         <div class="p-5 rounded-xl mb-5 border-2 border-black shadow-black">
-            <div class="flex flex-row">
+            <div class="flex flex-row gap-2">
                 <!-- Input Nama Produk -->
                 <div class="w-1/2 mb-4">
                     <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Nama Jasa/Produk</label>
@@ -48,7 +48,7 @@
                 </div>
 
                 <!-- Gambar Produk -->
-                <div class="mx-auto">
+                <div class="mx-auto my-auto">
                     <img width="123" class="border-2 border-black rounded-xl" 
                          src="{{ asset('assets/img/' . $product->product_photo) }}" 
                          alt="{{ $product->name }}">

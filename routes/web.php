@@ -87,3 +87,7 @@ Route::get('/setting', function () {
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
+
+Route::get('/omzet', function () {
+    return view('page.user.omzet');
+})->name('omzet');
