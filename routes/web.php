@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OmzetController;
@@ -29,9 +30,10 @@ Route::middleware([
     })->name('dashboard');
 });
 
-Route::get('/user', function () {
-    return view('page.user.dashboard');
-});
+// Route::get('/user', function () {
+//     return view('page.user.dashboard');
+// });
+Route::get('/user', [DashboardController::class, 'index'])->name('user.dashboard');
 
 Route::get('/font-example', function () {
     return view('font-example');
@@ -46,8 +48,6 @@ Route::get('/products', [ProductController::class, 'index'])->name('products');
 
 Route::get('/note/{product}', [NoteController::class, 'create'])->name('note');
 Route::post('/note', [NoteController::class, 'store'])->name('note.store');
-
-Route::post('/omzet/store', [OmzetController::class, 'store'])->name('omzet.store');
 
 Route::get('/add/omzet', function () {
     return view('page.user.addOmzet');
@@ -87,7 +87,5 @@ Route::get('/setting', function () {
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 
-
-Route::get('/omzet', function () {
-    return view('page.user.omzet');
-})->name('omzet');
+Route::get('/omzet', [OmzetController::class, 'index'])->name('omzet');
+Route::get('/riwayat-omzet', [App\Http\Controllers\OmzetController::class, 'index']);

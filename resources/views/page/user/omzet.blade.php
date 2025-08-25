@@ -16,92 +16,99 @@
         <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black">Riwayat Omzet</h1>
     </div>
 
-    <!-- Total Omzet Section -->
-    <div class="bg-primary rounded-lg p-6 shadow-black border-2 border-black mb-6">
-        <div class="text-white">
-            <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2">Total Omzet</p>
-            <p class="text-3xl font-quicksand font-quicksand-regular">Rp 1.400.000</p>
-        </div>
+<!-- Total Omzet -->
+<div class="bg-primary rounded-lg p-6 shadow-black border-2 border-black mb-6">
+    <div class="text-white">
+        <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2">Total Omzet</p>
+        <p class="text-3xl font-quicksand font-quicksand-regular">
+            Rp {{ number_format($totalOmzet,0,',','.') }}
+        </p>
     </div>
+</div>
 
     <!-- Record Omzet Section -->
     <h2 class="text-xl font-pilcrow font-pilcrow-heavy text-black mb-2">Record Omzet</h2>
     <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-black shadow-black">
 
-        <!-- Omzet Bulan ini -->
-        <div class="mb-8">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Omzet Bulan ini</h3>
-                <span class="text-lg font-quicksand font-quicksand-regular text-black">Rp 800.000</span>
-            </div>
-
-            <!-- Entry 1 - Cake -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/cake-thumbnail.jpg') }}" alt="Cake" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">Cake</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 250.000</p>
-                        <p class="text-white text-sm opacity-80">27 Feb 2025</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Entry 2 - SkinCare -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/skincare-thumbnail.jpg') }}" alt="SkinCare" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">SkinCare</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 650.000</p>
-                        <p class="text-white text-sm opacity-80">29 Feb 2025</p>
-                    </div>
-                </div>
-            </div>
+    <!-- Omzet Bulan ini -->
+    <div class="mb-8">
+        <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Omzet Bulan ini</h3>
+            <span class="text-lg font-quicksand font-quicksand-regular text-black">
+                Rp {{ number_format($totalBulanIni,0,',','.') }}
+            </span>
         </div>
 
-        <!-- Divider -->
+        @foreach($omzetBulanIni as $o)
+            <div class="bg-primary rounded-lg p-4 mb-3">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        {{-- kalau ada relasi ke product bisa pakai $o->product->thumbnail --}}
+                        <img src="{{ asset('assets/img/cake-thumbnail.jpg') }}" class="w-12 h-12 rounded-lg mr-3">
+                        <span class="text-white font-medium">{{ $o->product->title ?? 'Produk' }}</span>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-white font-quicksand font-quicksand-regular">
+                            Rp {{ number_format($o->total_omzets,0,',','.') }}
+                        </p>
+                        <p class="text-white text-sm opacity-80">
+                            {{ $o->created_at->format('d M Y') }}
+                        </p>
+                    </div>
+                </div>
+            </div>
+        @endforeach
+    </div>
+
+       <!-- Omzet Bulan Lain -->
+@foreach($perBulan as $pb)
+    {{-- Skip bulan ini biar ga dobel --}}
+    @if($pb->month != now()->month || $pb->year != now()->year)
         <div class="border-t border-gray-200 mb-8"></div>
 
-        <!-- Omzet Januari -->
         <div class="mb-8">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Omzet Januari</h3>
-                <span class="text-lg font-quicksand font-quicksand-regular text-black">Rp 800.000</span>
+                <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">
+                    Omzet {{ \Carbon\Carbon::create($pb->year, $pb->month)->translatedFormat('F Y') }}
+                </h3>
+                <span class="text-lg font-quicksand font-quicksand-regular text-black">
+                    Rp {{ number_format($pb->total,0,',','.') }}
+                </span>
             </div>
 
-            <!-- Entry 1 - Cake -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/cake-thumbnail.jpg') }}" alt="Cake" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">Cake</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 250.000</p>
-                        <p class="text-white text-sm opacity-80">25 Jan 2025</p>
-                    </div>
-                </div>
-            </div>
+            @php
+                $omzetPerBulan = \App\Models\Omzet::whereYear('created_at', $pb->year)
+                    ->whereMonth('created_at', $pb->month)
+                    ->get();
+            @endphp
 
-            <!-- Entry 2 - SkinCare -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/skincare-thumbnail.jpg') }}" alt="SkinCare" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">SkinCare</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 650.000</p>
-                        <p class="text-white text-sm opacity-80">16 Jan 2025</p>
+            @foreach($omzetPerBulan as $o)
+                <div class="bg-primary rounded-lg p-4 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="{{ $o->product->thumbnail ?? asset('assets/img/default-thumbnail.jpg') }}"
+                                 alt="{{ $o->product->title ?? 'Produk' }}"
+                                 class="w-12 h-12 rounded-lg mr-3">
+                            <span class="text-white font-medium">{{ $o->product->title ?? 'Produk' }}</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-white font-quicksand font-quicksand-regular">
+                                Rp {{ number_format($o->total_omzets,0,',','.') }}
+                            </p>
+                            <p class="text-white text-sm opacity-80">
+                                {{ $o->created_at->format('d M Y') }}
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </div>
+            @endforeach
         </div>
-    </div>
+    @endif
+@endforeach
+
+
+</div>
+
+    
 </body>
 </html>

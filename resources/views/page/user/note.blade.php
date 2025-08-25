@@ -32,7 +32,7 @@
                 <div class="w-1/2 mb-4">
                     <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Nama Jasa/Produk</label>
                     <input type="text" value="{{ $product->name }}" readonly
-                           class="w-full mb-2 px-3 py-2 border border-black rounded-lg bg-gray-100">
+                           class="w-full mb-2 px-3 py-2 border text-xs border-black rounded-lg bg-gray-100">
 
                     <!-- Jumlah Produk -->
                     <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Jumlah Produk</label>

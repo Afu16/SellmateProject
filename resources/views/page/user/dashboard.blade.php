@@ -34,7 +34,9 @@
                     <div class="flex justify-between items-center mb-3">
                         <div class="">
                             <h2 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Total Omzet</h2>
-                            <p class="text-3xl font-quicksand font-quicksand-regular text-black mb-4">Rp 10.000.000</p>
+                            <p class="text-3xl font-quicksand font-quicksand-regular text-black mb-4">
+                                Rp {{ number_format($totalOmzet, 0, ',', '.') }}
+                            </p>                                       
                         </div>
                         {{-- <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
                         <div class="-mt-2 w-14 h-14 shadow-black bg-primary rounded-xl flex items-center justify-center">
@@ -88,20 +90,24 @@
             </a>
             
             <!-- Total Omzet -->
+            <a href="{{ route('omzet') }}" class="flex flex-col items-center focus:outline-none">
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/totalOmzet-icon.svg') }}" alt="Total Omzet Icon">
                 </div>
                 <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Total Omzet</p>
             </div>
+            </a>
             
             <!-- Total Komisi -->
+            <a href="{{ route('comission') }}" class="flex flex-col items-center focus:outline-none">
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/newTotalKomisi-icon.svg') }}" alt="Total Komisi Icon">
                 </div>
                 <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Total Komisi</p>
             </div>
+            </a>
             
             <!-- Riwayat Target -->
             <a href="{{ route('targetOmzet') }}" class="flex flex-col items-center focus:outline-none">
