@@ -49,12 +49,14 @@
 <div class="p-6">
 
     <!-- Tombol kembali -->
-    <a class="mr-4 mb-10" href="{{ url('/products') }}">
-        <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
-    </a>
+    <div class="flex items-center">
+            <a href="{{ url('/user') }}" class="mr-4">
+           <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
+            </a>
+            <h1 class=" text-2xl font-bold text-black">Simpan dan Catat Omzetmu</h1>
+        </div>
 
     <!-- Judul -->
-    <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">Simpan dan Catat Omzetmu</h1>
     <img src="{{ asset('assets/img/note-img.png') }}" alt="note" class="mt-5 mx-auto w-80">
 
     <!-- Form -->

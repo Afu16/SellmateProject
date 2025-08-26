@@ -9,11 +9,12 @@
 </head>
 <body>
     <div class="p-6">
-        <a class="mr-4 mb-10" href="{{ url('/user') }}">
-            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
-        </a>
-
-        <h1 class="text-2xl mt-5 font-pilcrow font-pilcrow-semibold text-black mb-5">Sesuaikan Target Omzetmu</h1>
+         <div class="flex items-center">
+            <a href="{{ url('/user') }}" class="mr-4">
+           <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
+            </a>
+            <h1 class=" text-2xl font-bold text-black">Sesuaikan Target Omzetmu</h1>
+        </div>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
             <form action="{{ route('target.store') }}" method="post">
