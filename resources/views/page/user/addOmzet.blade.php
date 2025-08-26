@@ -24,13 +24,13 @@
                 <!-- Timeline Target -->
                 <label class="block text-black font-inter font-inter-bold text-sm mb-2 mt-4">Timeline Target</label>
                 <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
-                    <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-2 text-md font-inter font-inter-regular text-black focus:outline-none bg-secondary border-r border-black" style="border-bottom-left-radius: 12px; border-top-left-radius: 12px;">
+                    <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-secondary border-r border-black" style="border-bottom-left-radius: 12px; border-top-left-radius: 12px;">
                         3 Bulan
                     </button>
-                    <button type="button" id="btn-6bulan" onclick="selectTimeline('6')" class="flex-1 py-2 text-md font-inter font-inter-regular text-black focus:outline-none bg-white border-r border-black">
+                    <button type="button" id="btn-6bulan" onclick="selectTimeline('6')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-white border-r border-black">
                         6 Bulan
                     </button>
-                    <button type="button" id="btn-12bulan" onclick="selectTimeline('12')" class="flex-1 py-2 text-md font-inter font-inter-regular text-black focus:outline-none bg-white" style="border-bottom-right-radius: 12px; border-top-right-radius: 12px;">
+                    <button type="button" id="btn-12bulan" onclick="selectTimeline('12')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-white" style="border-bottom-right-radius: 12px; border-top-right-radius: 12px;">
                         12 Bulan
                     </button>
                 </div>
@@ -42,10 +42,10 @@
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
-                    <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-3 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
+                    <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-2 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
                         Batal
                     </button>
-                    <button type="submit" class=" shadow-black flex-1 py-3 rounded-xl bg-secondary text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-tertiary">
+                    <button type="submit" class=" shadow-black flex-1 py-2 rounded-xl bg-secondary text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-tertiary">
                         Simpan
                     </button>
                 </div>

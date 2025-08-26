@@ -39,15 +39,17 @@
                     </div>
                     
                     <!-- Product Details -->
-                    <div class="p-4">
-                        <h3 class="text-xl font-pilcrow font-pilcrow-bold text-white mb-2">{{ $product->name }}</h3>
-                        <p class="text-md font-pilcrow font-pilcrow-regular text-white mb-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-                        <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-4">Produk</p>
-                        
+                    <div class="p-4 flex">
+                        <div class="w-full">
+                            <h3 class="text-xl font-pilcrow font-pilcrow-bold text-white mb-2">{{ $product->name }}</h3>
+                            <p class="text-md font-pilcrow font-pilcrow-regular text-white mb-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                            <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-4">Produk</p>
+                        </div>
+                            
                         <!-- Add Button -->
                         <button     
                             onclick="window.location.href='{{ route('note', ['product' => $product->id]) }}'" 
-                            class="w-full bg-secondary shadow-black border-2 border-black text-white py-3 px-4 rounded-xl font-pilcrow font-pilcrow-bold text-sm hover:bg-[#C55A1A] transition-colors">
+                            class="w-3/2 h-10 mt-20 bg-secondary shadow-black border-2 border-black text-black py-1 px-6 rounded-full font-pilcrow font-pilcrow-bold text-sm hover:bg-[#C55A1A] transition-colors">
                             Tambah
                         </button>
                     </div>
