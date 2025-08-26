@@ -9,19 +9,19 @@
 </head>
 <body class="p-6">
 <!-- Header -->
-          <div class="flex items-center mb-6">
+          <div class="flex items-center">
             <a href="{{ url('/user') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
             <h1 class=" text-2xl font-bold text-black">Ebook Tefa</h1>
         </div>
 <div class="pt-8 px-4">
-    <div class="flex gap-3 mb-6">
-        <button class="px-6 py-2 rounded-xl border-2 border-black shadow-black bg-secondary text-white font-pilcrow font-pilcrow-semibold  shadow transition-colors duration-200">Edukasi</button>
-        <button class="px-6 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Inspirasi</button>
-        <button class="px-6 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Tips</button>
+    <div class="flex gap-1 mb-6">
+        <button class="px-5 py-2 rounded-xl border-2 border-black shadow-black bg-secondary text-white font-pilcrow font-pilcrow-semibold  shadow transition-colors duration-200">Edukasi</button>
+        <button class="px-5 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Inspirasi</button>
+        <button class="px-5 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Tips</button>
     </div>
-    <div class="grid grid-cols-2 gap-4">
+    <div class="grid grid-cols-1 gap-4">
         <!-- Card 1 -->
         <div class="relative rounded-xl overflow-hidden shadow-md bg-gray-900">
             <img src="{{ asset('assets/img/example-img.jpg') }}" alt="AI bersama tefa" class="w-full h-40 object-cover opacity-70">

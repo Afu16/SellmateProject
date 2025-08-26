@@ -28,6 +28,6 @@ class NoteController extends Controller
             'total_omzets' => $request->total_omzets
         ]);
 
-        return redirect()->back()->with('success', 'Data omzet berhasil disimpan!');
+        return redirect()->route('user.dashboard')->with('success', 'Data omzet berhasil disimpan!');
     }
 }
