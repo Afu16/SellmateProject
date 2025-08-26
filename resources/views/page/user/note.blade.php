@@ -50,7 +50,7 @@
 
     <!-- Tombol kembali -->
     <div class="flex items-center">
-            <a href="{{ url('/user') }}" class="mr-4">
+            <a href="{{ url('/products') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
             <h1 class=" text-2xl font-bold text-black">Simpan dan Catat Omzetmu</h1>

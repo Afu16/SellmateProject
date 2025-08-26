@@ -10,7 +10,7 @@
 <body>
     <!-- Header -->
     <div class="p-6">
-        <div class="flex items-center mb-2">
+        <div class="flex items-center">
             <a href="{{ url('/user') }}" class="mr-4">
                 <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
@@ -20,7 +20,7 @@
 
     <div class="p-4 space-y-6 flex flex-col items-center">
     @foreach($articles as $article)
-    <div class="relative w-full max-w-sm rounded-xl overflow-hidden shadow-lg bg-white">
+    <div class="relative h-52 w-full max-w-sm rounded-xl overflow-hidden shadow-lg bg-white">
         <a href="{{ route('articles.show', $article->id) }}">
             <img class="w-full h-48 object-cover" src="{{ asset('assets/img/' . $article->thumbnail) }}" alt="{{ $article->title }}">
         </a>

@@ -19,10 +19,10 @@
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
             <form action="{{ route('target.store') }}" method="post">
                 @csrf
-                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Jasa/Produk</label>
-                <input type="text" name="title" required class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-pilcrow font-pilcrow-bold text-xs text-black bg-white">
+                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Target</label>
+                <input type="text" name="title" placeholder="Mobil" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-pilcrow font-pilcrow-bold text-xs text-black bg-white">
                 <!-- Timeline Target -->
-                <label class="block text-black font-inter font-inter-bold text-sm mb-2 mt-4">Timeline Target</label>
+                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Timeline Target</label>
                 <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
                     <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-secondary border-r border-black" style="border-bottom-left-radius: 12px; border-top-left-radius: 12px;">
                         3 Bulan
@@ -38,7 +38,7 @@
 
                 <!-- Jumlah Target Omset -->
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>
-                <input type="number" name="target" required class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
+                <input type="number" name="target" placeholder="1000000" class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
