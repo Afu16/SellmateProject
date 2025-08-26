@@ -1,3 +1,19 @@
+@if(session('success'))
+    <div id="notif" class="absolute top-5 right-5 z-10 mb-4 p-4 rounded-lg bg-green-100 border border-green-400 text-green-800 shadow-lg">
+        {{ session('success') }}
+    </div>
+
+    <script>
+        setTimeout(() => {
+            const notif = document.getElementById('notif');
+            if (notif) {
+                notif.style.transition = "opacity 0.5s ease";
+                notif.style.opacity = 0;
+                setTimeout(() => notif.remove(), 500); // hapus setelah fade out
+            }
+        }, 3000); // 3 detik
+    </script>
+@endif
 <!DOCTYPE html>
 <html lang="en">
 <head>

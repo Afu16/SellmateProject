@@ -26,7 +26,7 @@
         </div>
 
         <!-- Product Grid -->
-        <div class="grid grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 gap-4">
             @foreach($products as $product)
                 <div class="bg-primary shadow-black border-2 border-black rounded-2xl overflow-hidden">
                     <!-- Product Image -->
@@ -34,14 +34,14 @@
                         <img 
                             src="{{ asset('assets/img/' . $product->product_photo) }}" 
                             alt="{{ $product->name }}"
-                            class="w-32 h-32 object-cover rounded-xl"
+                            class="w-full h-44 object-cover rounded-xl"
                         >
                     </div>
                     
                     <!-- Product Details -->
                     <div class="p-4">
-                        <h3 class="text-md font-pilcrow font-pilcrow-bold text-white mb-2">{{ $product->name }}</h3>
-                        <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                        <h3 class="text-xl font-pilcrow font-pilcrow-bold text-white mb-2">{{ $product->name }}</h3>
+                        <p class="text-md font-pilcrow font-pilcrow-regular text-white mb-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
                         <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-4">Produk</p>
                         
                         <!-- Add Button -->
