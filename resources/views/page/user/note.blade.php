@@ -79,12 +79,12 @@
                     <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Jumlah Produk</label>
                     <div class="flex items-center">
                         <button type="button" onclick="decrementQuantity()" 
-                                class="w-10 h-10 border border-black rounded-l-lg flex items-center justify-center bg-white hover:bg-gray-50">-</button>
-                        <div class="w-16 h-10 border-t border-b border-black flex items-center justify-center bg-white">
-                            <span id="quantity" class="text-black font-pilcrow font-pilcrow-bold text-sm">1</span>
+                                class="w-10 h-9 border border-black rounded-l-lg flex items-center justify-center bg-white hover:bg-gray-50">-</button>
+                        <div class="w-16 h-9 border-t border-b border-black flex items-center justify-center bg-white">
+                            <span id="quantity" class="text-black font-pilcrow font-pilcrow-bold text-xs">1</span>
                         </div>
                         <button type="button" onclick="incrementQuantity()" 
-                                class="w-10 h-10 border border-black rounded-r-lg flex items-center justify-center bg-white hover:bg-gray-50">+</button>
+                                class="w-10 h-9 border border-black rounded-r-lg flex items-center justify-center bg-white hover:bg-gray-50">+</button>
                     </div>
                 </div>
 
@@ -121,9 +121,9 @@
             <!-- Tombol Aksi -->
             <div class=" flex gap-3">
                 <a href="{{ url('/products') }}" 
-                   class="flex-1 py-3 px-4 shadow-black border border-black rounded-xl font-pilcrow font-pilcrow-bold bg-white text-black text-center">Batal</a>
+                   class="flex-1 py-2 px-4 shadow-black border border-black rounded-xl font-pilcrow font-pilcrow-bold bg-white text-black text-center">Batal</a>
                 <button type="submit" 
-                        class="flex-1 py-3 px-4 shadow-black bg-secondary rounded-xl font-pilcrow font-pilcrow-bold text-black">Simpan</button>
+                        class="flex-1 py-2 px-4 shadow-black bg-secondary rounded-xl font-pilcrow font-pilcrow-bold text-black">Simpan</button>
             </div>
         </div>
     </form>
