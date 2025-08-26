@@ -16,5 +16,9 @@ class Product extends Model
         'product_photo',
         'category',
     ];
+        public function omzets()
+    {
+        return $this->hasMany(Omzet::class, 'product_id');
+    }
 }
 

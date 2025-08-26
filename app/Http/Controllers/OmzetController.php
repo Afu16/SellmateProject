@@ -14,14 +14,20 @@ class OmzetController extends Controller
         $totalOmzet = Omzet::sum('total_omzets');
 
         // omzet bulan ini
-        $omzetBulanIni = Omzet::whereMonth('created_at', Carbon::now()->month)
-            ->whereYear('created_at', Carbon::now()->year)
-            ->get();
+        // $omzetBulanIni = Omzet::whereMonth('date', Carbon::now()->month)
+        //     ->whereYear('date', Carbon::now()->year)
+        //     ->orderBy('date', 'desc') 
+        //     ->get();
+        $omzetBulanIni = Omzet::with('product')
+        ->whereMonth('date', now()->month)
+        ->whereYear('date', now()->year)
+        ->orderBy('date', 'desc') 
+        ->get();
 
         $totalBulanIni = $omzetBulanIni->sum('total_omzets');
 
         // group per bulan (buat history)
-        $perBulan = Omzet::selectRaw('YEAR(created_at) year, MONTH(created_at) month, SUM(total_omzets) total')
+        $perBulan = Omzet::selectRaw('YEAR(date) year, MONTH(date) month, SUM(total_omzets) total')
             ->groupBy('year','month')
             ->orderBy('year','desc')
             ->orderBy('month','desc')

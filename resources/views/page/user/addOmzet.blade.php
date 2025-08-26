@@ -17,10 +17,21 @@
         </div>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
+@if($errors->any())
+    <div id="alert-error" 
+         class="fixed top-5 right-5 z-50 mb-4 p-4 rounded-lg bg-red-100 border border-red-400 text-red-800 shadow-lg w-72">
+        <ul class="list-disc list-inside text-sm">
+            @foreach($errors->all() as $err)
+                <li>{{ $err }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
             <form action="{{ route('target.store') }}" method="post">
                 @csrf
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Target</label>
-                <input type="text" name="title" placeholder="Mobil" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-pilcrow font-pilcrow-bold text-xs text-black bg-white">
+                <input type="text" name="title" value="{{ old('title') }}" placeholder="Mobil" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-pilcrow font-pilcrow-bold text-xs text-black bg-white">
                 <!-- Timeline Target -->
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Timeline Target</label>
                 <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
@@ -34,11 +45,13 @@
                         12 Bulan
                     </button>
                 </div>
-                <input type="hidden" name="timeline" id="timeline" value="3">
+                <input type="hidden" name="timeline" id="timeline" value="{{ old('timeline', 3) }}">
 
                 <!-- Jumlah Target Omset -->
-                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>
-                <input type="number" name="target" placeholder="1000000" class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter font-inter-regular text-black bg-white" placeholder="">
+                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>                
+                <input type="text" name="target" id="target" value="{{ old('target') }}" 
+                class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter font-inter-regular text-black bg-white" 
+                placeholder="10.000.000">
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
@@ -52,27 +65,52 @@
             </div>
         </form>
     </div>
-                <script>
-                    function selectTimeline(val) {
-                        document.getElementById('timeline').value = val;
+            <script>
+                function selectTimeline(val) {
+                    document.getElementById('timeline').value = val;
 
-                    // Reset semua tombol
                     const buttons = ['btn-3bulan', 'btn-6bulan', 'btn-12bulan'];
                     buttons.forEach(id => {
                         document.getElementById(id).classList.remove('bg-secondary', 'text-white');
                         document.getElementById(id).classList.add('bg-white', 'text-black');
                     });
 
-                    // Tambah warna untuk tombol yang dipilih
                     const selectedBtn = document.getElementById(`btn-${val}bulan`);
                     selectedBtn.classList.add('bg-secondary', 'text-white');
-                    selectedBtn.classList.remove('bg-white', 'text-black');
+                    selectedBtn.classList.remove('bg-white', 'text-black');               
+                }
 
+                const target = document.getElementById('target');
+
+                if(target){
+                    // format pas ngetik
+                    target.addEventListener('input', function() {
+                        let value = this.value.replace(/\D/g, '');
+                        this.value = value ? new Intl.NumberFormat('id-ID').format(value) : '';
+                    });
+
+                    // hapus titik sebelum submit
+                    target.form.addEventListener('submit', function() {
+                        target.value = target.value.replace(/\D/g, '');
+                    });
+                }
+
+                window.onload = function() {
+                    let oldTimeline = "{{ old('timeline', 3) }}";
+                    selectTimeline(oldTimeline);
+
+                    if(target && target.value){
+                        target.value = new Intl.NumberFormat('id-ID').format(target.value);
                     }
-                    // Set default ke 3 bulan
-                    window.onload = function() {
-                        selectTimeline('3');
-                    }
-                </script>
+                }
+
+                setTimeout(() => {
+                    const success = document.getElementById('alert-success');
+                    const error = document.getElementById('alert-error');
+                    if(success) success.style.display = 'none';
+                    if(error) error.style.display = 'none';
+                }, 4000);
+            </script>
+
 </body>
 </html>
