@@ -42,7 +42,8 @@ class TargetController extends Controller
         'target' => $request->target
     ]);
 
-    return redirect('/add/omzet')->with('success', 'Target omzet berhasil ditambahkan!');
+    return redirect()->route('user.dashboard')
+                     ->with('success', 'Target omzet berhasil ditambahkan!');
     }
 
     /**

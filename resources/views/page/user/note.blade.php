@@ -107,16 +107,19 @@
             <div class="mb-6">
                 <label class="block text-black font-pilcrow font-pilcrow-bold text-sm mb-2">Hari / Tanggal</label>
                 <div class="relative">
-                    <input type="date" id="dateInput" name="date" value="{{ now()->format('Y-m-d') }}"
-                           class="w-full px-3 py-2 pr-10 border text-xs border-black rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                    <input type="date" id="dateInput" name="date"
+                        value="{{ old('date', now()->format('Y-m-d')) }}"
+                        class="w-full px-3 py-2 pr-10 border text-xs border-black rounded-lg bg-gray-100 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent">
                     <div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-                        <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                        <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
                         </svg>
                     </div>
                 </div>
-                <input type="hidden" id="formattedDate" name="formatted_date" value="{{ now()->format('d M Y') }}">
             </div>
+
 
             <!-- Tombol Aksi -->
             <div class=" flex gap-3">

@@ -43,16 +43,17 @@
             <div class="bg-primary rounded-lg p-4 mb-3">
                 <div class="flex items-center justify-between">
                     <div class="flex items-center">
-                        {{-- kalau ada relasi ke product bisa pakai $o->product->thumbnail --}}
-                        <img src="{{ asset('assets/img/cake-thumbnail.jpg') }}" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">{{ $o->product->title ?? 'Produk' }}</span>
+                     <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
+                        alt="{{ $o->product->name ?? 'Produk' }}"
+                        class="w-12 h-12 rounded-lg mr-3">                          
+                    <span class="text-white font-medium">{{ $o->product->name ?? 'Produk' }}</span>
                     </div>
                     <div class="text-right">
                         <p class="text-white font-quicksand font-quicksand-regular">
                             Rp {{ number_format($o->total_omzets,0,',','.') }}
                         </p>
                         <p class="text-white text-sm opacity-80">
-                            {{ $o->created_at->format('d M Y') }}
+                            {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
                         </p>
                     </div>
                 </div>
@@ -77,8 +78,9 @@
             </div>
 
             @php
-                $omzetPerBulan = \App\Models\Omzet::whereYear('created_at', $pb->year)
-                    ->whereMonth('created_at', $pb->month)
+                $omzetPerBulan = \App\Models\Omzet::whereYear('date', $pb->year)
+                    ->whereMonth('date', $pb->month)
+                    ->orderBy('date', 'desc')
                     ->get();
             @endphp
 
@@ -86,17 +88,18 @@
                 <div class="bg-primary rounded-lg p-4 mb-3">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <img src="{{ $o->product->thumbnail ?? asset('assets/img/default-thumbnail.jpg') }}"
-                                 alt="{{ $o->product->title ?? 'Produk' }}"
-                                 class="w-12 h-12 rounded-lg mr-3">
-                            <span class="text-white font-medium">{{ $o->product->title ?? 'Produk' }}</span>
+                            <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
+                                alt="{{ $o->product->name ?? 'Produk' }}"
+                                class="w-12 h-12 rounded-lg mr-3">
+                             <span class="text-white font-medium">{{ $o->product->name ?? 'Produk' }}</span>
+                        
                         </div>
                         <div class="text-right">
                             <p class="text-white font-quicksand font-quicksand-regular">
                                 Rp {{ number_format($o->total_omzets,0,',','.') }}
                             </p>
                             <p class="text-white text-sm opacity-80">
-                                {{ $o->created_at->format('d M Y') }}
+                                {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
                             </p>
                         </div>
                     </div>

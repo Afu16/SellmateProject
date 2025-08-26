@@ -17,6 +17,7 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->integer('quantity');
             $table->decimal('total_omzets', 10, 0);
+            $table->date('date');
             $table->timestamps();
 
             // Relasi opsional
