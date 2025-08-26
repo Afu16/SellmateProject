@@ -88,7 +88,7 @@
     </div>
 
         <!-- Navigation Icons Grid - 2 rows x 4 columns -->
-        <div class="grid grid-cols-4 gap-4 p-7">
+        <div class="grid grid-cols-4 gap-8 p-7">
             <!-- Catat Omzet -->
             <a href="{{ route('products') }}" class="flex flex-col items-center focus:outline-none">
                 <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
@@ -119,7 +119,7 @@
             <a href="{{ route('comission') }}" class="flex flex-col items-center focus:outline-none">
             <div class="flex flex-col items-center">
                 <div class="bg-[#3C096C] rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
-                    <img class="w-8 h-8" src="{{ asset('assets/svg/newTotalKomisi-icon.svg') }}" alt="Total Komisi Icon">
+                    <img class="w-9 h-9" src="{{ asset('assets/svg/newTotalKomisi-icon.svg') }}" alt="Total Komisi Icon">
                 </div>
                 <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Total Komisi</p>
             </div>
