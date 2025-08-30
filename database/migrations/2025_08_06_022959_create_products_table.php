@@ -16,6 +16,7 @@ return new class extends Migration
         $table->string('name');
         $table->integer('quantity');
         $table->decimal('price', 10, 0);
+        $table->decimal('comission', 5, 2);
         $table->string('product_photo'); // simpan path foto
         $table->string('category');
         $table->timestamps();

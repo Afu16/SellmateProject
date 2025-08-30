@@ -20,7 +20,9 @@
     <div class="bg-primary rounded-lg p-6 shadow-black border-2 border-black mb-6">
         <div class="text-white">
             <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2">Total Komisi</p>
-            <p class="text-3xl font-quicksand font-quicksand-regular">Rp 1.400.000</p>
+            <p class="text-3xl font-quicksand font-quicksand-regular">
+                Rp {{ number_format($totalKomisi, 0, ',', '.') }}
+            </p>
         </div>
     </div>
 
@@ -28,80 +30,52 @@
     <h2 class="text-xl font-pilcrow font-pilcrow-heavy text-black mb-2">Record Komisi</h2>
     <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-black shadow-black">
 
-        <!-- Omzet Bulan ini -->
-        <div class="mb-8">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Omzet Bulan ini</h3>
-                <span class="text-lg font-quicksand font-quicksand-regular text-black">Rp 800.000</span>
-            </div>
+        @php
+            // Grouping komisi berdasarkan bulan & tahun
+            $komisiPerBulan = $riwayatKomisi->groupBy(function($item) {
+                return \Carbon\Carbon::parse($item->date)->format('Y-m');
+            });
+        @endphp
 
-            <!-- Entry 1 - Cake -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/cake-thumbnail.jpg') }}" alt="Cake" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">Cake</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 250.000</p>
-                        <p class="text-white text-sm opacity-80">27 Feb 2025</p>
+        @foreach($komisiPerBulan as $bulan => $items)
+            @php
+                $carbon = \Carbon\Carbon::createFromFormat('Y-m', $bulan);
+            @endphp
+
+            <div class="mb-8">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">
+                        Komisi {{ $carbon->translatedFormat('F Y') }}
+                    </h3>
+                    <span class="text-lg font-quicksand font-quicksand-regular text-black">
+                        Rp {{ number_format($items->sum('komisi_didapat'), 0, ',', '.') }}
+                    </span>
+                </div>
+
+                @foreach($items as $item)
+                <div class="bg-primary rounded-lg p-4 mb-3">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <img src="{{ asset('assets/img/' . ($item->product->product_photo ?? 'default-thumbnail.jpg')) }}"
+                                alt="{{ $item->product->name ?? 'Produk' }}"
+                                class="w-12 h-12 rounded-lg mr-3">
+                            <span class="text-white font-medium">{{ $item->product->name ?? 'Produk' }}</span>
+                        </div>
+                        <div class="text-right">
+                            <p class="text-white font-quicksand font-quicksand-regular">
+                                Rp {{ number_format($item->komisi_didapat, 0, ',', '.') }}
+                            </p>
+                            <p class="text-white text-sm opacity-80">
+                                {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}
+                            </p>
+                        </div>
                     </div>
                 </div>
+                @endforeach
             </div>
+        @endforeach
 
-            <!-- Entry 2 - SkinCare -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/skincare-thumbnail.jpg') }}" alt="SkinCare" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">SkinCare</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 650.000</p>
-                        <p class="text-white text-sm opacity-80">29 Feb 2025</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Divider -->
-        <div class="border-t border-gray-200 mb-8"></div>
-
-        <!-- Omzet Januari -->
-        <div class="mb-8">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Omzet Januari</h3>
-                <span class="text-lg font-quicksand font-quicksand-regular text-black">Rp 800.000</span>
-            </div>
-
-            <!-- Entry 1 - Cake -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/cake-thumbnail.jpg') }}" alt="Cake" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">Cake</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 250.000</p>
-                        <p class="text-white text-sm opacity-80">25 Jan 2025</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Entry 2 - SkinCare -->
-            <div class="bg-primary   rounded-lg p-4 mb-3">
-                <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                        <img src="{{ asset('assets/img/skincare-thumbnail.jpg') }}" alt="SkinCare" class="w-12 h-12 rounded-lg mr-3">
-                        <span class="text-white font-medium">SkinCare</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">Rp 650.000</p>
-                        <p class="text-white text-sm opacity-80">16 Jan 2025</p>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
+
 </body>
 </html>
