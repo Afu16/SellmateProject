@@ -1,19 +1,43 @@
 @if(session('success'))
-    <div id="notif" class="absolute top-5 right-5 z-10 mb-4 p-4 rounded-lg bg-green-100 border border-green-400 text-green-800 shadow-lg">
-        {{ session('success') }}
+<div id="notif" 
+     class="fixed top-5 right-5 z-50 mb-4 px-5 py-4 rounded-xl bg-gradient-to-r from-green-500 to-emerald-600 text-white shadow-xl w-80 animate-slide-in">
+    <div class="flex items-center justify-between">
+        <div class="flex items-center gap-2">
+            <!-- Icon -->
+            <span class="text-xl">✅</span>
+            <p class="text-sm font-medium">{{ session('success') }}</p>
+        </div>
+        <!-- Close Button -->
+        <button onclick="document.getElementById('notif').remove()" 
+                class="ml-3 text-white hover:text-gray-200 font-bold text-lg">
+            ×
+        </button>
     </div>
+</div>
 
-    <script>
-        setTimeout(() => {
-            const notif = document.getElementById('notif');
-            if (notif) {
-                notif.style.transition = "opacity 0.5s ease";
-                notif.style.opacity = 0;
-                setTimeout(() => notif.remove(), 500); // hapus setelah fade out
-            }
-        }, 3000); // 3 detik
-    </script>
+<script>
+    setTimeout(() => {
+        const notif = document.getElementById('notif');
+        if (notif) {
+            notif.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+            notif.style.opacity = 0;
+            notif.style.transform = "translateX(100%)";
+            setTimeout(() => notif.remove(), 500);
+        }
+    }, 3000);
+</script>
+
+<style>
+@keyframes slide-in {
+    from { opacity: 0; transform: translateX(100%); }
+    to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slide-in {
+    animation: slide-in 0.4s ease-out;
+}
+</style>
 @endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,7 +95,7 @@
                     <div class="bg-[#DD661D] h-3 rounded-full" style="width: 80%"></div>
                 </div>
                 <div class="flex justify-between text-sm">
-                    <span class="font-pilcrow font-pilcrow-medium text-black">Rp 8.480.000</span>
+                    <span class="font-pilcrow font-pilcrow-medium text-black">Rp {{ number_format($totalOmzet, 0, ',', '.') }}</span>
                     <span class="font-pilcrow font-pilcrow-medium text-black">Rp 10.000.000</span>
                 </div>
             </div>
