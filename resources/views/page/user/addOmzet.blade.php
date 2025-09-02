@@ -67,7 +67,7 @@
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>                
                 <input type="text" name="target" id="target" value="{{ old('target') }}" 
                 class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter font-inter-regular text-black bg-white" 
-                placeholder="10.000.000">
+                placeholder="10000000">
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
@@ -87,12 +87,12 @@
 
                     const buttons = ['btn-3bulan', 'btn-6bulan', 'btn-12bulan'];
                     buttons.forEach(id => {
-                        document.getElementById(id).classList.remove('bg-secondary', 'text-white');
+                        document.getElementById(id).classList.remove('bg-secondary', 'text-black');
                         document.getElementById(id).classList.add('bg-white', 'text-black');
                     });
 
                     const selectedBtn = document.getElementById(`btn-${val}bulan`);
-                    selectedBtn.classList.add('bg-secondary', 'text-white');
+                    selectedBtn.classList.add('bg-secondary', 'text-black');
                     selectedBtn.classList.remove('bg-white', 'text-black');               
                 }
 

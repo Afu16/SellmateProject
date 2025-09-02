@@ -105,7 +105,7 @@
 
                 <div class="bg-[#DD661D] border-2 border-black rounded-2xl p-5 shadow-sm">
                     <h2 class="text-sm font-quicksand font-quicksand-regular text-white mb-1">Rata - Rata Omset</h2>
-                    <p class="text-2xl font-pilcrow font-pilcrow-bold text-white">Rp 1.600.000</p>
+                    <p class="text-2xl font-pilcrow font-pilcrow-bold text-white">Rp {{ number_format($rataOmzet, 0, ',', '.') }}</p>
                 </div>
             </div>
         </div>
@@ -199,21 +199,21 @@
                 @foreach ($topOmzet as $item)
                     
                 <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
-                    <div class="w-10 h-10  mr-2 flex items-center justify-center">
+                    <div class="w-10 h-10 -ml-4  mr-2 flex items-center justify-center">
                         <p class="text-black font-pilcrow font-pilcrow-bold text-center">{{ $loop->iteration }}.</p>
                     </div>
                     <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
                     <div class="flex-1">
-                        <p class="font-pilcrow font-pilcrow-bold text-black">{{ $item->name }}</p>
+                        <p class="text-sm font-pilcrow font-pilcrow-bold text-black">{{ $item->name }}</p>
                         <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
                     </div>
                     <div>
-                        <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
+                        <p class="text-sm font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
                     </div>
                 </div>
                 @endforeach
                 
-                <a  href="{{ route('topRating') }}" class="bg-secondary shadow-black border-2 mt-5 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
+                <a  href="{{ route('topRating') }}" class="bg-secondary text-center justify-self-center shadow-black border-2 mt-5 border-black text-nowrap text-black px-24 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
                         Lihat Semua
                     </a>
             </div>

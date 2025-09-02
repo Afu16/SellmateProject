@@ -43,15 +43,15 @@
                         <div class="w-full">
                             <h3 class="text-xl font-pilcrow font-pilcrow-bold text-white mb-2">{{ $product->name }}</h3>
                             <p class="text-md font-pilcrow font-pilcrow-regular text-white mb-1">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-                            <p class="text-xs font-pilcrow font-pilcrow-regular text-white mb-4">Produk</p>
-                        </div>
+                            <p class="text-xs font-pilcrow font-pilcrow-regular text-white">Produk</p>
                             
-                        <!-- Add Button -->
-                        <button     
+                            <!-- Add Button -->
+                            <button     
                             onclick="window.location.href='{{ route('note', ['product' => $product->id]) }}'" 
-                            class="w-3/2 h-10 mt-20 bg-secondary shadow-black border-2 border-black text-black py-1 px-6 rounded-full font-pilcrow font-pilcrow-bold text-sm hover:bg-[#C55A1A] transition-colors">
+                            class=" h-10 mt-2  bg-secondary shadow-black border-2 border-black text-black py-1 px-[33vw] items-center rounded-full font-pilcrow font-pilcrow-bold text-sm hover:bg-[#C55A1A] transition-colors">
                             Tambah
                         </button>
+                    </div>
                     </div>
                 </div>
             @endforeach
