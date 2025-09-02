@@ -194,6 +194,9 @@
                         <p class="font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
                     </div>
                 </div>
+                <button class="bg-secondary shadow-black border-2 mt-5 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
+                        Lihat Semua
+                    </button>
             </div>
         </div>
     </div>
