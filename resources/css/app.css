@@ -192,3 +192,14 @@
 .shadow-nav-icon {
     box-shadow: 3px 3px 0px 2px #000000;
 }
+
+/* input:focus {
+    outline: none !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+} */
+input[type="search"]:focus {
+    outline: none;
+    border-color: transparent !important;
+    box-shadow: none !important;
+}
