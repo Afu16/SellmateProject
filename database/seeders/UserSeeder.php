@@ -2,77 +2,30 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Faker\Factory as Faker;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-            'password' => Hash::make('password123'),
-        ]);
+        $faker = Faker::create('id_ID');
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 2',
-            'email' => 'test2@example.com',
-            'password' => Hash::make('password123'),
-        ]); 
+        $users = [];
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 3',
-            'email' => 'test3@example.com',
-            'password' => Hash::make('password123'),
-        ]);
+        // generate 10 user dummy
+        foreach (range(1, 100) as $index) {
+            $users[] = [
+                'name' => $faker->name(),
+                'email' => $faker->unique()->safeEmail(),
+                'password' => Hash::make('password'), // default password
+            ];
+        }
 
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 4',
-            'email' => 'test4@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 5',
-            'email' => 'test5@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 6',
-            'email' => 'test6@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 7',
-            'email' => 'test7@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 8',
-            'email' => 'test8@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 9',
-            'email' => 'test9@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-
-        \App\Models\User::factory()->create([
-            'name' => 'Test User 10',
-            'email' => 'test10@example.com',
-            'password' => Hash::make('password123'),
-        ]);
-            
-
+        foreach ($users as $user) {
+            User::create($user);
+        }
     }
 }

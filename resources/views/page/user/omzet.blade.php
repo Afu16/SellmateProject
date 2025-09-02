@@ -28,7 +28,7 @@
 
     <!-- Record Omzet Section -->
     <h2 class="text-xl font-pilcrow font-pilcrow-heavy text-black mb-2">Record Omzet</h2>
-    <div class="bg-white rounded-lg shadow-lg p-6 border-2 border-black shadow-black">
+    <div class="bg-white rounded-lg shadow-lg p-4 border-2 border-black shadow-black">
 
     <!-- Omzet Bulan ini -->
     <div class="mb-8">
@@ -45,14 +45,16 @@
                     <div class="flex items-center">
                      <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
                         alt="{{ $o->product->name ?? 'Produk' }}"
-                        class="w-12 h-12 rounded-lg mr-3">                          
-                    <span class="text-white font-medium">{{ $o->product->name ?? 'Produk' }}</span>
+                        class="w-10 h-10 rounded-lg mr-2">                          
+                    <span class="text-white text-sm font-medium">{{ $o->product->name ?? 'Produk' }}</span>
                     </div>
                     <div class="text-right">
-                        <p class="text-white font-quicksand font-quicksand-regular">
-                            Rp {{ number_format($o->total_omzets,0,',','.') }}
+                        <p class="text-white text-xs font-quicksand font-quicksand-regular">
+                            <span class="text-nowrap">
+                                Rp {{ number_format($o->total_omzets,0,',','.') }}
+                            </span>
                         </p>
-                        <p class="text-white text-sm opacity-80">
+                        <p class="text-white text-xs text-nowrap opacity-80">
                             {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
                         </p>
                     </div>

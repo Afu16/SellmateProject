@@ -14,7 +14,7 @@
             <a href="{{ url('/user') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class="text-2xl font-inter font-inter-bold text-black">Top Rating</h1>
+            <h1 class="text-2xl font-quicksand font-quicksand-bold text-black">Top Rating</h1>
         </div>
 
         <div class="w-full max-w-sm">
@@ -48,9 +48,9 @@
     <div class="border-2 border-black rounded-2xl w-screen max-w-md mx-auto shadow-black p-4 bg-white">
         <!-- Header Table -->
         <div class="flex justify-between items-center px-2 mb-2">
-            <p class="font-inter font-inter-medium text-black w-1/3">Nama</p>
-            <p class="font-inter font-inter-medium text-black w-1/9 relative left-7 text-center">Nilai</p>
-            <p class="font-inter font-inter-medium text-black w-1/3 text-right">Total Omzet</p>
+            <p class="font-quicksand font-quicksand-medium text-black w-1/3">Nama</p>
+            <p class="font-quicksand font-quicksand-medium text-black w-1/9 relative left-7 text-center">Nilai</p>
+            <p class="font-quicksand font-quicksand-medium text-black w-1/3 text-right">Total Omzet</p>
         </div>
         <!-- List Leaderboard -->
         <div class="flex flex-col gap-3">
@@ -60,19 +60,62 @@
             <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
                 <img src="{{ asset('assets/img/profile/elisa.jpg') }}" alt="Elisa" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
                 <div class="flex-1">
-                    <p class="text-white font-inter font-inter-semibold leading-4">{{ $item->name }}</p>
+                    <p class="text-white text-sm font-quicksand font-quicksand-semibold leading-4">{{ $item->name }}</p>
                     <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">Pemasaran</span>
                 </div>
                 <div class="w-1/6 text-center">
-                    <span class="text-white font-inter font-inter-bold text-lg">A</span>
+                    <span class="text-white text-sm font-quicksand font-quicksand-bold">A</span>
                 </div>
                 <div class="w-1/3 text-right">
-                    <span class="text-white font-inter font-inter-semibold">Rp 850.000</span>
+                    <span class="text-white text-sm font-quicksand font-quicksand-semibold">Rp 850.000</span>
                 </div>
             </div>
             @endforeach
+        </div>
 
-    </div>
+<div class="flex justify-center items-center space-x-2 mt-6">
+    @php
+        $current = $topRating->currentPage();
+        $last = $topRating->lastPage();
+
+        // Hitung start & end supaya selalu tampil 5 angka max
+        $start = max($current - 2, 1);
+        $end = min($start + 4, $last);
+
+        // Kalau udah deket akhir, geser supaya tetap 5 angka
+        if ($end - $start < 4) {
+            $start = max($end - 4, 1);
+        }
+    @endphp
+
+    {{-- Tombol Prev --}}
+    @if ($current > 1)
+        <a href="{{ $topRating->url($current - 1) }}"
+           class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">
+            &lt;
+        </a>
+    @endif
+
+    {{-- Nomor Halaman (max 5) --}}
+    @for ($page = $start; $page <= $end; $page++)
+        @if ($page == $current)
+            <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
+        @else
+            <a href="{{ $topRating->url($page) }}"
+               class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">
+                {{ $page }}
+            </a>
+        @endif
+    @endfor
+
+    {{-- Tombol Next --}}
+    @if ($current < $last)
+        <a href="{{ $topRating->url($current + 1) }}"
+           class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">
+            &gt;
+        </a>
+    @endif
+</div>
 
 
 </div>
