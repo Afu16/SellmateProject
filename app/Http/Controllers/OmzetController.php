@@ -36,4 +36,23 @@ class OmzetController extends Controller
         return view('page.user.omzet', compact('totalOmzet','omzetBulanIni','totalBulanIni','perBulan'));
     }
 
+    public function komisi()
+    {
+        // ambil semua omzet dengan relasi produk
+        $riwayatKomisi = Omzet::with('product')
+            ->orderBy('date', 'desc')
+            ->get()
+            ->map(function ($o) {
+                // ambil rate dari kolom comission di tabel products
+                $rate = $o->product->comission ?? 0;
+                $o->komisi_didapat = $o->total_omzets * $rate;
+                return $o;
+            });
+
+        // total semua komisi dihitung dari semua record
+        $totalKomisi = $riwayatKomisi->sum('komisi_didapat');
+
+        return view('page.user.comission', compact('totalKomisi', 'riwayatKomisi'));
+    }
+
 }

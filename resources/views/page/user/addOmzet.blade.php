@@ -1,3 +1,30 @@
+@if($errors->any())
+<div id="alert-error" 
+     class="fixed top-5 right-5 z-50 w-80 mb-4 px-4 py-3 rounded-lg bg-red-500 text-white shadow-lg animate-slide-in">
+    ⚠️ Coba periksa kembali !!
+</div>
+
+<script>
+    setTimeout(() => {
+        const el = document.getElementById('alert-error');
+        if(el){
+            el.style.transition = "opacity .4s ease, transform .4s ease";
+            el.style.opacity = 0;
+            el.style.transform = "translateX(100%)";
+            setTimeout(()=> el.remove(), 400);
+        }
+    }, 4000);
+</script>
+
+<style>
+@keyframes slide-in {
+    from { opacity:0; transform: translateX(100%); }
+    to { opacity:1; transform: translateX(0); }
+}
+.animate-slide-in { animation: slide-in .3s ease-out; }
+</style>
+@endif
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,17 +44,6 @@
         </div>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
-@if($errors->any())
-    <div id="alert-error" 
-         class="fixed top-5 right-5 z-50 mb-4 p-4 rounded-lg bg-red-100 border border-red-400 text-red-800 shadow-lg w-72">
-        <ul class="list-disc list-inside text-sm">
-            @foreach($errors->all() as $err)
-                <li>{{ $err }}</li>
-            @endforeach
-        </ul>
-    </div>
-@endif
-
             <form action="{{ route('target.store') }}" method="post">
                 @csrf
                 <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Target</label>
@@ -103,13 +119,6 @@
                         target.value = new Intl.NumberFormat('id-ID').format(target.value);
                     }
                 }
-
-                setTimeout(() => {
-                    const success = document.getElementById('alert-success');
-                    const error = document.getElementById('alert-error');
-                    if(success) success.style.display = 'none';
-                    if(error) error.style.display = 'none';
-                }, 4000);
             </script>
 
 </body>

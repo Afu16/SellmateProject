@@ -76,10 +76,6 @@ Route::get('/video', function () {
     return view('page.user.video');
 })->name('video');
 
-Route::get('/comission', function () {
-    return view('page.user.comission');
-})->name('comission');
-
 Route::get('/setting', function () {
     return view('page.user.setting');
 })->name('setting');
@@ -89,3 +85,6 @@ Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles
 
 Route::get('/omzet', [OmzetController::class, 'index'])->name('omzet');
 Route::get('/riwayat-omzet', [App\Http\Controllers\OmzetController::class, 'index']);
+
+Route::get('/comission', [OmzetController::class, 'komisi'])->name('comission');
+Route::get('/riwayat-komisi', [App\Http\Controllers\OmzetController::class, 'komisi']);
