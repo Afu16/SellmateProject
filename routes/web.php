@@ -9,7 +9,7 @@ use App\Http\Controllers\NoteController;
 use App\Http\Controllers\OmzetController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TargetController;
-
+use App\Http\Controllers\TopRatingController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -59,9 +59,7 @@ Route::get('/target', function () {
     return view('page.user.targetOmzet');
 })->name('targetOmzet');
 
-Route::get('/top', function () {
-    return view('page.user.topRating');
-})->name('topRating');
+Route::get('/top', [TopRatingController::class, 'index'])->name('topRating');
 
 
 Route::get('/article-in', function () {
