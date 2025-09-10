@@ -32,16 +32,18 @@ const submit = () => {
 <template>
     <Head title="Log in" />
 
+    <div class="text-center my-8">
+        <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
+        <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign In</h1>
+        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Enter valid username & password to continue</h3>
+    </div>
+
+    
+            <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
+                {{ status }}
+            </div>
+    <form @submit.prevent="submit">
     <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
             <div>
                 <InputLabel for="email" value="Email" />
                 <TextInput
@@ -77,14 +79,31 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-white font-pilcrow font-pilcrow-heavy hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Forgot your password?
                 </Link>
 
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
             </div>
-        </form>
-    </AuthenticationCard>
+        </AuthenticationCard>
+            <PrimaryButton class="ms-4 px-[40vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                Log in
+            </PrimaryButton>
+    </form>
+
+    <div class="px-8 mt-2 mb-2">
+        <div class="relative">
+            <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                <div class="w-full border-t-2 border-gray-300" />
+            </div>
+            <div class="relative flex justify-center">
+                <span class="bg-white px-4 text-xl font-quicksand font-quicksand-regular text-gray-500">
+                    Or Continue With
+                </span>
+            </div>
+        </div>
+    </div>
+
+     <PrimaryButton class="ms-4 bg-white px-[40vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+                Google
+            </PrimaryButton>
 </template>
