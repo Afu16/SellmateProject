@@ -55,22 +55,43 @@
         <!-- List Leaderboard -->
         <div class="flex flex-col gap-3">
             <!-- 1 -->
-            @foreach ($topRating as $item)
-                
-            <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
-                <img src="{{ asset('assets/img/profile/elisa.jpg') }}" alt="Elisa" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
-                <div class="flex-1">
-                    <p class="text-white text-sm font-quicksand font-quicksand-semibold leading-4">{{ $item->name }}</p>
-                    <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">Pemasaran</span>
-                </div>
-                <div class="w-1/6 text-center">
-                    <span class="text-white text-sm font-quicksand font-quicksand-bold">A</span>
-                </div>
-                <div class="w-1/3 text-right">
-                    <span class="text-white text-sm font-quicksand font-quicksand-semibold">Rp 850.000</span>
-                </div>
-            </div>
-            @endforeach
+@foreach ($topRating as $item)
+    @php
+        $total = $item->omzets_sum_total_omzets ?? 0;
+         //sementara nanti ubah sesuai yg di request
+        if ($total >= 40000000) {
+            $grade = 'A';
+        } elseif ($total >= 30000000) {
+            $grade = 'B';
+        } elseif ($total >= 20000000) {
+            $grade = 'C';
+        } else {
+            $grade = 'D';
+        }
+    @endphp
+
+    <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
+        <img src="{{ asset('assets/img/profile/elisa.jpg') }}" alt="{{ $item->name }}" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
+        
+        <div class="flex-1">
+            <p class="text-white text-sm font-quicksand font-quicksand-semibold leading-4">{{ $item->name }}</p>
+            <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">Pemasaran</span>
+        </div>
+
+        <!-- Nilai -->
+        <div class="w-1/6 text-center">
+            <span class="text-white text-sm font-quicksand font-quicksand-bold">{{ $grade }}</span>
+        </div>
+
+        <!-- Total Omzet -->
+        <div class="w-1/3 text-right">
+            <span class="text-white text-sm font-quicksand font-quicksand-semibold">
+                Rp {{ number_format($total, 0, ',', '.') }}
+            </span>
+        </div>
+    </div>
+@endforeach
+
         </div>
 
 <div class="flex justify-center items-center space-x-2 mt-6">

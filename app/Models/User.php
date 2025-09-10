@@ -31,6 +31,11 @@ class User extends Authenticatable
         'password',
     ];
 
+     public function omzets()
+    {
+        return $this->hasMany(Omzet::class, 'user_id');
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
