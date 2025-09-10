@@ -10,6 +10,9 @@ import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
     name: '',
+    major: '',
+    school: '',
+    username: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -26,12 +29,61 @@ const submit = () => {
 <template>
     <Head title="Register" />
 
-    <AuthenticationCard>
-        <template #logo>
-            <AuthenticationCardLogo />
-        </template>
+    <div class="text-center my-8">
+        <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
+        <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign Up</h1>
+        <h3 class="text-xl font-quicksand font-quicksand-regular mt-2">Use proper information to continue</h3>
+    </div>
 
-        <form @submit.prevent="submit">
+    <form @submit.prevent="submit">
+    <AuthenticationCard>
+        <div>
+                <InputLabel for="name" value="Nama Lengkap" />
+                <TextInput
+                    id="name"
+                    v-model="form.name"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autofocus
+                    autocomplete="name"
+                />
+                <InputError class="mt-2" :message="form.errors.name" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="major" value="Jurusan" />
+                <TextInput
+                    id="major"
+                    v-model="form.major"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="major"
+                />
+                <InputError class="mt-2" :message="form.errors.major" />
+            </div>
+
+            <div class="mt-4">
+                <InputLabel for="school" value="Nama Sekolah" />
+                <TextInput
+                    id="school"
+                    v-model="form.school"
+                    type="text"
+                    class="mt-1 block w-full"
+                    required
+                    autocomplete="school"
+                />
+                <InputError class="mt-2" :message="form.errors.school" />
+            </div>
+
+    </AuthenticationCard>
+    
+    <AuthenticationCard>
+        <!-- <template #logo>
+            <AuthenticationCardLogo />
+        </template> -->
+
             <div>
                 <InputLabel for="name" value="Name" />
                 <TextInput
@@ -99,14 +151,14 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <Link :href="route('login')" class="underline text-sm text-white font-pilcrow font-pilcrow-heavy hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Already registered?
                 </Link>
 
-                <PrimaryButton class="ms-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Register
-                </PrimaryButton>
             </div>
-        </form>
-    </AuthenticationCard>
+        </AuthenticationCard>
+        <PrimaryButton class="ms-4 px-[37%]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+            Register
+        </PrimaryButton>
+    </form>
 </template>
