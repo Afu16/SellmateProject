@@ -197,20 +197,21 @@
                 
                 <!-- Top Performer 1 -->
                 @foreach ($topOmzet as $item)
-                    
-                <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
-                    <div class="w-10 h-10 -ml-4  mr-2 flex items-center justify-center">
-                        <p class="text-black font-pilcrow font-pilcrow-bold text-center">{{ $loop->iteration }}.</p>
+                    <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
+                        <div class="w-10 h-10 -ml-4  mr-2 flex items-center justify-center">
+                            <p class="text-black font-pilcrow font-pilcrow-bold text-center">{{ $loop->iteration }}.</p>
+                        </div>
+                        <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
+                        <div class="flex-1">
+                            <p class="text-sm font-pilcrow font-pilcrow-bold text-black">{{ $item->name }}</p>
+                            <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
+                        </div>
+                        <div>
+                            <p class="text-sm font-pilcrow font-pilcrow-bold text-black">
+                                Rp {{ number_format($item->omzets_sum_total_omzets ?? 0, 0, ',', '.') }}
+                            </p>
+                        </div>
                     </div>
-                    <img class="w-10 h-10 rounded-full object-cover mr-3" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo">
-                    <div class="flex-1">
-                        <p class="text-sm font-pilcrow font-pilcrow-bold text-black">{{ $item->name }}</p>
-                        <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
-                    </div>
-                    <div>
-                        <p class="text-sm font-pilcrow font-pilcrow-bold text-black">Rp 20.650.000</p>
-                    </div>
-                </div>
                 @endforeach
                 
                 <a  href="{{ route('topRating') }}" class="bg-secondary text-center justify-self-center shadow-black border-2 mt-5 border-black text-nowrap text-black px-24 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">

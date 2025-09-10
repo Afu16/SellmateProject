@@ -27,4 +27,10 @@ class Omzet extends Model
     {
         return $this->belongsTo(Product::class, 'product_id');
     }
+        // User.php
+    public function omzets()
+    {
+        return $this->hasMany(Omzet::class);
+    }
+
 }

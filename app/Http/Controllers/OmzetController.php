@@ -8,26 +8,27 @@ use Carbon\Carbon;
 
 class OmzetController extends Controller
 {
-        public function index()
+    public function index()
     {
-        // total semua omzet
-        $totalOmzet = Omzet::sum('total_omzets');
+        // $userId = auth()->id();
+        $userId = 1; // sementara, sampe login jadi
+
+        // total omzet user ini
+        $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
 
         // omzet bulan ini
-        // $omzetBulanIni = Omzet::whereMonth('date', Carbon::now()->month)
-        //     ->whereYear('date', Carbon::now()->year)
-        //     ->orderBy('date', 'desc') 
-        //     ->get();
         $omzetBulanIni = Omzet::with('product')
-        ->whereMonth('date', now()->month)
-        ->whereYear('date', now()->year)
-        ->orderBy('date', 'desc') 
-        ->get();
+            ->where('user_id', $userId)
+            ->whereMonth('date', now()->month)
+            ->whereYear('date', now()->year)
+            ->orderBy('date', 'desc') 
+            ->get();
 
         $totalBulanIni = $omzetBulanIni->sum('total_omzets');
 
         // group per bulan (buat history)
         $perBulan = Omzet::selectRaw('YEAR(date) year, MONTH(date) month, SUM(total_omzets) total')
+            ->where('user_id', $userId)
             ->groupBy('year','month')
             ->orderBy('year','desc')
             ->orderBy('month','desc')
@@ -38,21 +39,23 @@ class OmzetController extends Controller
 
     public function komisi()
     {
-        // ambil semua omzet dengan relasi produk
+        // $userId = auth()->id();
+        $userId = 1; // sementara, sampe login jadi
+
+        // ambil semua omzet user ini dengan relasi produk
         $riwayatKomisi = Omzet::with('product')
+            ->where('user_id', $userId)
             ->orderBy('date', 'desc')
             ->get()
             ->map(function ($o) {
-                // ambil rate dari kolom comission di tabel products
                 $rate = $o->product->comission ?? 0;
                 $o->komisi_didapat = $o->total_omzets * $rate;
                 return $o;
             });
 
-        // total semua komisi dihitung dari semua record
+        // total komisi user ini
         $totalKomisi = $riwayatKomisi->sum('komisi_didapat');
 
         return view('page.user.comission', compact('totalKomisi', 'riwayatKomisi'));
     }
-
 }
