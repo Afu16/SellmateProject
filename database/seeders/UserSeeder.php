@@ -13,19 +13,32 @@ class UserSeeder extends Seeder
     {
         $faker = Faker::create('id_ID');
 
-        $users = [];
+        // Admin user
+        User::create([
+            'name' => 'Admin User',
+            'email' => 'admin@example.com',
+            'password' => Hash::make('password'),
+            'role' => 'admin',
+            'school' => $faker->company(),
+            'major' => $faker->jobTitle(),
+            'foto_link' => 'https://source.unsplash.com/random/300x300/?person',
+            'phone' => substr($faker->phoneNumber(), 0, 15), // Batasi menjadi 15 karakter
+            'address' => $faker->address(),
+        ]);
 
-        // generate 10 user dummy
-        foreach (range(1, 100) as $index) {
-            $users[] = [
+        // Generate 99 regular users
+        for ($i = 0; $i < 99; $i++) {
+            User::create([
                 'name' => $faker->name(),
                 'email' => $faker->unique()->safeEmail(),
-                'password' => Hash::make('password'), // default password
-            ];
-        }
-
-        foreach ($users as $user) {
-            User::create($user);
+                'password' => Hash::make('password'),
+                'role' => $faker->randomElement(['user', 'sales']),
+                'school' => $faker->company(),
+                'major' => $faker->jobTitle(),
+                'foto_link' => 'https://source.unsplash.com/random/300x300/?person',
+                'phone' => substr($faker->phoneNumber(), 0, 15), // Batasi menjadi 15 karakter
+                'address' => $faker->address(),
+            ]);
         }
     }
 }
