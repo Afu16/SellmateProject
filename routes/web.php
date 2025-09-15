@@ -55,9 +55,7 @@ Route::get('/add/omzet', function () {
 Route::post('/add/omzet', [TargetController::class, 'store'])->name('target.store');
 
 
-Route::get('/target', function () {
-    return view('page.user.targetOmzet');
-})->name('targetOmzet');
+Route::get('/target', [TargetController::class, 'index'])->name('targetOmzet');
 
 Route::get('/top', [TopRatingController::class, 'index'])->name('topRating');
 

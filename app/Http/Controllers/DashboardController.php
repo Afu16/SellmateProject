@@ -5,41 +5,43 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Omzet;
 use App\Models\User;
-use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // total omzet semua waktu
-        $totalOmzet = Omzet::sum('total_omzets');
+        // $userId = auth()->id();
+        $userId = 1;
 
-        // total omzet bulan ini
-        $totalOmzetBulanIni = Omzet::whereMonth('date', now()->month)
+        // total omzet semua waktu (user ini)
+        $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
+
+        // total omzet bulan ini (user ini)
+        $totalOmzetBulanIni = Omzet::where('user_id', $userId)
+            ->whereMonth('date', now()->month)
             ->whereYear('date', now()->year)
             ->sum('total_omzets');
 
-        // semua transaksi bulan ini
-        $omzetBulanIni = Omzet::whereMonth('date', now()->month)
+        // semua transaksi bulan ini (user ini)
+        $omzetBulanIni = Omzet::where('user_id', $userId)
+            ->whereMonth('date', now()->month)
             ->whereYear('date', now()->year)
             ->get();
 
-        // hitung rata-rata omzet bulan ini
+        // hitung rata-rata omzet bulan ini (user ini)
         $jumlahTransaksi = $omzetBulanIni->count();
         $rataOmzet = $jumlahTransaksi > 0 ? $totalOmzetBulanIni / $jumlahTransaksi : 0;
 
-        // top user (sementara masih paginate user biasa)
-        $topOmzet = User::paginate(10);
-
-        // total omzet semua user (kayaknya sama dengan $totalOmzet, tapi gue biarin sesuai kode lo)
-        $totalUserOmzet = Omzet::sum('total_omzets');
+        // Top omzet per user (leaderboard semua user)
+        $topOmzet = User::withSum('omzets', 'total_omzets')
+            ->orderByDesc('omzets_sum_total_omzets')
+            ->take(10)
+            ->get();
 
         return view('page.user.dashboard', compact(
             'totalOmzet',
             'topOmzet',
-            'totalUserOmzet',
             'rataOmzet'
         ));
     }
 }
-

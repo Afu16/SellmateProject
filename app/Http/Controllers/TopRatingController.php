@@ -9,7 +9,10 @@ class TopRatingController extends Controller
 {
     public function index()
     {
-        $topRating = User::paginate(10);
+        // Ambil semua user + total omzet mereka
+        $topRating = User::withSum('omzets', 'total_omzets')
+            ->paginate(10);
+
         return view('page.user.topRating', compact('topRating'));
     }
 
