@@ -58,12 +58,11 @@
 @foreach ($topRating as $item)
     @php
         $total = $item->omzets_sum_total_omzets ?? 0;
-         //sementara nanti ubah sesuai yg di request
-        if ($total >= 40000000) {
+        if ($total >= 300000) {
             $grade = 'A';
-        } elseif ($total >= 30000000) {
+        } elseif ($total >= 200000) {
             $grade = 'B';
-        } elseif ($total >= 20000000) {
+        } elseif ($total >= 100000) {
             $grade = 'C';
         } else {
             $grade = 'D';
