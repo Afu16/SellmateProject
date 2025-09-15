@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Target;
 use Illuminate\Http\Request;
+use App\Models\Omzet;
 
 class TargetController extends Controller
 {
@@ -12,7 +13,28 @@ class TargetController extends Controller
      */
     public function index()
     {
-        //
+    $userId = 1;
+
+    $targets = Target::where('user_id', $userId)
+        ->orderBy('created_at', 'desc')
+        ->get()
+        ->map(function ($target) use ($userId) {
+            // jumlah omzet untuk user
+            $currentOmzet = \App\Models\Omzet::where('user_id', $userId)->sum('total_omzets');
+
+            // hitung persen progress
+            $progress = $target->target > 0 
+                ? min(100, ($currentOmzet / $target->target) * 100) 
+                : 0;
+
+            // tambahin data ke objek target
+            $target->current_omzet = $currentOmzet;
+            $target->progress = round($progress);
+
+            return $target;
+        });
+
+    return view('page.user.targetOmzet', compact('targets'));
     }
 
     /**

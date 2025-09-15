@@ -25,38 +25,35 @@
         </div>
 
         <!-- Current Target Card -->
-        <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black mb-6">
-            <div class="flex justify-between items-start mb-4">
-                <div>
-                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Omzet Periode 3</h2>
-                    <p class="text-sm font-quicksand font-quicksand-regular text-white">Timeline 3 Bulan</p>
-                </div>
-                <div class="bg-white rounded-full w-12 h-12 flex items-center justify-center">
-                    <img class="w-6 h-6" src="{{ asset('assets/svg/targetArrow-icon.svg') }}" alt="Target Icon">
-                </div>
-            </div>
-            
-            <div class="mb-4">
-                <h3 class="text-sm font-pilcrow font-pilcrow-bold text-white mb-1">Target Omzet</h3>
-                <p class="text-xl font-quicksand font-quicksand-regular text-white">Rp 10.000.000</p>
-            </div>
-            
+@foreach ($targets as $target)
+    <div class="bg-purple-900 p-5 rounded-2xl border-2 border-black shadow-black mb-6">
+        <div class="flex justify-between items-start mb-4">
             <div>
-                <p class="text-sm font-pilcrow font-pilcrow-heavy text-white mb-2">On Progress</p>
-                <div class="flex items-center gap-3 mb-2">
-                    <div class="flex-1">
-                        <div class="w-full bg-white rounded-full h-3">
-                            <div class="bg-[#DD661D] h-3 rounded-full" style="width: 50%"></div>
-                        </div>
-                    </div>
-                    <span class="text-sm font-quicksand font-quicksand-regular text-white">0%</span>
-                </div>
-                <div class="flex justify-between text-sm">
-                    <span class="font-quicksand font-quicksand-regular text-white">Rp 5.000.000,-</span>
-                    <span class="font-quicksand font-quicksand-regular text-white">Rp 10.000.000</span>
-                </div>
+                <h2 class="text-lg text-white mb-1">{{ $target->title }}</h2>
+                <p class="text-sm text-white">Timeline {{ $target->timeline }} Bulan</p>
             </div>
         </div>
+        
+        <div class="mb-4">
+            <h3 class="text-sm text-white mb-1">Target Omzet</h3>
+            <p class="text-xl text-white">
+                Rp {{ number_format($target->current_omzet, 0, ',', '.') }} / Rp {{ number_format($target->target, 0, ',', '.') }}
+            </p>
+        </div>
+        
+        <div>
+            <div class="flex items-center gap-3 mb-2">
+                <div class="flex-1">
+                    <div class="w-full bg-white rounded-full h-3">
+                        <div class="bg-orange-500 h-3 rounded-full" style="width: {{ $target->progress }}%"></div>
+                    </div>
+                </div>
+                <span class="text-sm text-white">{{ $target->progress }}%</span>
+            </div>
+        </div>
+    </div>
+@endforeach
+
 
         <!-- Action Icons -->
         <div class="flex justify-end gap-4 mb-6">

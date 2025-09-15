@@ -85,7 +85,7 @@ const submit = () => {
         </template> -->
 
             <div>
-                <InputLabel for="name" value="Name" />
+                <InputLabel for="user" value="Username" />
                 <TextInput
                     id="name"
                     v-model="form.name"
