@@ -85,20 +85,25 @@
             </a> --}}
         </div>
             
-            <!-- Progress section -->
-            <div>
-                <div class="flex justify-between font-quicksand font-quicksand-regular text-xs text-gray-600 mb-2">
-                    <span>On Progress</span>
-                    <span>80%</span>
-                </div>
-                <div class="w-full bg-gray-200 rounded-full border-2 border-black h-4 mb-3">
-                    <div class="bg-[#DD661D] h-3 rounded-full" style="width: 80%"></div>
-                </div>
-                <div class="flex justify-between text-sm">
-                    <span class="font-pilcrow font-pilcrow-medium text-black">Rp {{ number_format($totalOmzet, 0, ',', '.') }}</span>
-                    <span class="font-pilcrow font-pilcrow-medium text-black">Rp 10.000.000</span>
-                </div>
+        <!-- Progress section -->
+        <div>
+            <div class="flex justify-between font-quicksand font-quicksand-regular text-xs text-gray-600 mb-2">
+                <span>On Progress</span>
+                <span>{{ round($progress) }}%</span>
             </div>
+            <div class="w-full bg-gray-200 rounded-full border-2 border-black h-4 mb-3">
+                <div class="bg-[#DD661D] h-3 rounded-full" style="width: {{ $progress }}%"></div>
+            </div>
+            <div class="flex justify-between text-sm">
+                <span class="font-pilcrow font-pilcrow-medium text-black">
+                    Rp {{ number_format($totalOmzet, 0, ',', '.') }}
+                </span>
+                <span class="font-pilcrow font-pilcrow-medium text-black">
+                    Rp {{ number_format($targetValue, 0, ',', '.') }}
+                </span>
+            </div>
+        </div>
+
             <!-- Rata-Rata Omset Card -->
         </div>
         <div class="bg-white rounded-b-2xl">
