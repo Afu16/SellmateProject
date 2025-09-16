@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Omzet;
 use App\Models\User;
+use App\Models\Target;
 
 class DashboardController extends Controller
 {
@@ -38,10 +39,22 @@ class DashboardController extends Controller
             ->take(10)
             ->get();
 
+        $target = Target::where('user_id', $userId)->latest()->first();
+
+        $progress = 0;
+        $targetValue = 0;
+
+        if ($target) {
+            $targetValue = $target->target;
+            $progress = $targetValue > 0 ? min(100, ($totalOmzet / $targetValue) * 100) : 0;
+        }    
+           
         return view('page.user.dashboard', compact(
             'totalOmzet',
             'topOmzet',
-            'rataOmzet'
+            'rataOmzet',
+            'progress',
+            'targetValue'
         ));
     }
 }

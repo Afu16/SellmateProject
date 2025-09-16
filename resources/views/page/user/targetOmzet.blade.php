@@ -26,7 +26,7 @@
 
         <!-- Current Target Card -->
 @foreach ($targets as $target)
-    <div class="bg-purple-900 p-5 rounded-2xl border-2 border-black shadow-black mb-6">
+    <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black mb-6">
         <div class="flex justify-between items-start mb-4">
             <div>
                 <h2 class="text-lg text-white mb-1">{{ $target->title }}</h2>
