@@ -21,7 +21,7 @@
             <a href="{{ url('/dashboard') }}" class="mr-4">
                 <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">History</h1>
+            <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black text-nowrap select-none">History</h1>
         </div>
 
         <!-- Current Target Card -->
