@@ -14,7 +14,7 @@
             <a href="{{ url('/dashboard') }}" class="mr-4">
                 <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class="text-2xl font-inter font-inter-bold text-black">Artikel</h1>
+            <h1 class="text-2xl font-inter font-inter-bold text-black select-none text-nowrap">Artikel</h1>
         </div>
     </div>
 

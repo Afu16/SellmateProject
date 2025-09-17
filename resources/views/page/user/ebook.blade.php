@@ -9,12 +9,12 @@
 </head>
 <body class="p-1">
 <!-- Header -->
-        <div class="flex p-3  items-center -mb-6">
+        <div class="flex p-6  items-center -mb-6">
             <a href="{{ url('/dashboard') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class=" text-2xl font-bold text-black">Ebook Tefa</h1>
-            <div class="relative ml-14 flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-5 w-56">
+            <h1 class=" text-2xl font-bold text-black text-nowrap select-none">Ebook Tefa</h1>
+            <div class="absolute top-5 right-5 flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-5 w-56">
                        <div class="flex items-center">
                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -24,7 +24,7 @@
                    </div>
         </div>
 <div class="pt-8 px-4">
-    <div class="flex gap-5 mb-6">
+    <div class="flex gap-[11vw] mb-6">
         <button class="w-36 px-5 py-2 rounded-xl border-2 border-black shadow-black bg-secondary text-white font-pilcrow font-pilcrow-semibold  shadow transition-colors duration-200">Edukasi</button>
         <button class="w-36 px-5 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Inspirasi</button>
         <button class="w-36 px-5 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Tips</button>

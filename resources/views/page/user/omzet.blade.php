@@ -13,7 +13,7 @@
         <a href="{{ url('/dashboard') }}" class="mr-4">
             <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
         </a>
-        <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black">Riwayat Omzet</h1>
+        <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black select-none text-nowrap">Riwayat Omzet</h1>
     </div>
 
 <!-- Total Omzet -->
@@ -46,7 +46,7 @@
                      <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
                         alt="{{ $o->product->name ?? 'Produk' }}"
                         class="w-10 h-10 rounded-lg mr-2">                          
-                    <span class="text-white text-sm font-medium">{{ $o->product->name ?? 'Produk' }}</span>
+                    <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</span>
                     </div>
                     <div class="text-right">
                         <p class="text-white text-xs font-quicksand font-quicksand-regular">
@@ -54,7 +54,7 @@
                                 Rp {{ number_format($o->total_omzets,0,',','.') }}
                             </span>
                         </p>
-                        <p class="text-white text-xs text-nowrap opacity-80">
+                        <p class="text-white text-xs text-nowrap font-quicksand font-quicksand-regular opacity-80">
                             {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
                         </p>
                     </div>
@@ -92,15 +92,15 @@
                         <div class="flex items-center">
                             <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
                                 alt="{{ $o->product->name ?? 'Produk' }}"
-                                class="w-12 h-12 rounded-lg mr-3">
-                             <span class="text-white font-medium">{{ $o->product->name ?? 'Produk' }}</span>
+                                class="w-10 h-10 rounded-lg mr-3">
+                             <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</span>
                         
                         </div>
                         <div class="text-right">
-                            <p class="text-white font-quicksand font-quicksand-regular">
+                            <p class="text-white text-xs font-quicksand font-quicksand-regular">
                                 Rp {{ number_format($o->total_omzets,0,',','.') }}
                             </p>
-                            <p class="text-white text-sm opacity-80">
+                            <p class="text-white text-xs font-quicksand font-quicksand-regular opacity-80">
                                 {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
                             </p>
                         </div>

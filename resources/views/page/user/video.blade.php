@@ -14,22 +14,20 @@
                 <a href="{{ url('/dashboard') }}" class="mr-4">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
                 </a>
-                <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black">Video</h1>
+                <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black select-none text-nowrap">Video</h1>
+                <div class="absolute flex top-4 right-6 items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-5 w-56">
+                       <div class="flex items-center">
+                           <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                           </svg>
+                       </div>
+                       <input type="search" name="search" id="search" placeholder="Search" class="w-full text-sm font-quicksand font-quicksand-regular focus:border-none focus:outline-none focus:ring-0 border-0 bg-transparent">
+                   </div>
             </div>
-            
-            <!-- Search Bar -->
-             <div class="relative flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-5 w-56">
-                    <div class="flex items-center">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-                        </svg>
-                    </div>
-                    <input type="search" name="search" id="search" placeholder="Search" class="w-full text-sm font-quicksand font-quicksand-regular focus:border-none focus:outline-none focus:ring-0 border-0 bg-transparent">
-                </div>
         </div>
         
         <!-- Tab Navigation -->
-        <div class="flex gap-3 mb-6">
+        <div class="flex gap-[18vw] mb-6">
             <button class=" w-56 px-6 py-2 rounded-xl shadow-black border-2 border-black bg-[#DD661D] text-white font-pilcrow font-pilcrow-bold shadow-md">Inspirasi</button>
             <button class=" w-56 px-6 py-2 rounded-xl shadow-black border-2 border-black text-black font-pilcrow font-pilcrow-bold bg-white shadow-md">Tips</button>
         </div>

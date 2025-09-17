@@ -22,7 +22,7 @@
                     <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
                 </a>
             </button>
-            <h1 class="text-2xl font-inter font-inter-bold text-black">Produk Unggulan Tefa</h1>
+            <h1 class="text-2xl font-inter font-inter-bold text-black text-nowrap select-none">Produk Unggulan Tefa</h1>
         </div>
 
         <!-- Product Grid -->

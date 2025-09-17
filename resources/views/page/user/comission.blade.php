@@ -13,13 +13,13 @@
         <a href="{{ url('/dashboard') }}" class="mr-4">
             <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
         </a>
-        <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black">Riwayat Komisi</h1>
+        <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black text-nowrap select-none">Riwayat Komisi</h1>
     </div>
 
     <!-- Total Komisi Section -->
     <div class="bg-primary rounded-lg p-6 shadow-black border-2 border-black mb-6">
         <div class="text-white">
-            <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2">Total Komisi</p>
+            <p class="text-sm font-pilcrow font-pilcrow-semibold mb-2 text-nowrap select-none">Total Komisi</p>
             <p class="text-3xl font-quicksand font-quicksand-regular">
                 Rp {{ number_format($totalKomisi, 0, ',', '.') }}
             </p>
