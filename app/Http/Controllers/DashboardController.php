@@ -7,12 +7,13 @@ use App\Models\Omzet;
 use App\Models\User;
 use App\Models\Target;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $userId = auth()->id();
+        $userId = Auth::id();
         // Fallback untuk testing jika auth tidak tersedia
         if (!$userId) {
             $userId = 1;
