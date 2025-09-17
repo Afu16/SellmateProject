@@ -33,13 +33,13 @@ defineProps({
         
         <div class="bg-[#f5f7fa] min-h-screen">
         <!-- Header with greeting -->
-        <div class="bg-primary border-b-10 border-black rounded-b-2xl p-5 shadow-sm mb-2 flex flex-row gap-10 min-h-[118px]">
+        <div class="bg-primary w-full border-b-10 border-black rounded-b-2xl p-5 shadow-sm mb-2 flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-3">
                 <h1 class="text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
                 <p class="text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
-            <div class="mt-3 relative">
-                <button id="userDropdownBtn" class="flex gap-3 items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-14 hover:bg-tertiary transition-colors">
+            <div class="mt-3">
+                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[1vw] items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-36 h-14 hover:bg-tertiary transition-colors">
                     <h3 class="text-l font-pilcrow font-pilcrow-semibold text-black mr-4">
                         {{ $page.props.auth.user.name.split(' ')[0] }}
                     </h3>
@@ -50,15 +50,14 @@ defineProps({
                 </button>
                 
                 <!-- Dropdown Menu -->
-                <div id="userDropdown" class="absolute right-0 mt-2 w-32 h-14 rounded-xl z-50 hidden">
+                <div id="userDropdown" class="absolute top-[8vh] right-[3vw] mt-2 w-36 h-14 rounded-xl z-50 hidden">
                     <div class="py-2">
                         <a href="/setting" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-gray-100 transition-colors">
                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                             Edit Profile
-                        </a>
-                        <hr class="border-gray-200">
+                        </a> 
                         <form method="POST" :action="route('logout')" class="w-full" @submit.prevent="$inertia.post(route('logout'))">
                             <input type="hidden" name="_token" :value="$page.props.jetstream?.csrf_token ?? $page.props.csrf_token" />
                             <button type="submit" class="flex items-center px-4 py-3 text-xs text-red-600 border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-red-50 transition-colors w-full">
@@ -190,8 +189,8 @@ defineProps({
             <div class="p-5">
                 <div class="bg-white border-2 border-black shadow-black rounded-2xl p-5 shadow-sm">
                     <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black">Top Omset</h2>
-                        <button class="bg-secondary shadow-black border-2 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
+                        <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black text-nowrap select-none">Top Omset</h2>
+                        <button class="bg-secondary text-nowrap select-none shadow-black border-2 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
                             Bulan Ini
                             <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
@@ -200,17 +199,50 @@ defineProps({
                     </div>
                     
                     <!-- Top Performer -->
-                    <div v-for="(item, index) in topOmzet" :key="index" class="flex items-center mb-4 pb-4 border-b border-gray-200">
+                    <div
+                        v-for="(item, index) in topOmzet"
+                        :key="index"
+                        class="flex items-center mb-4 pb-4 border-b border-gray-500"
+                    >
                         <div class="w-10 h-10 -ml-4 mr-2 flex items-center justify-center">
-                            <p class="text-black font-pilcrow font-pilcrow-bold text-center">{{ index + 1 }}.</p>
+                            <span
+                                v-if="index === 0"
+                                class="w-8 h-8 flex items-center justify-center rounded-full font-pilcrow font-pilcrow-bold text-white text-center select-none"
+                                style="background: linear-gradient(135deg, #00c6fb 0%, #005bea 100%); box-shadow: 0 0 8px #00c6fb, 0 0 16px #005bea;"
+                                title="Juara 1"
+                            >
+                                {{ index + 1 }}
+                            </span>
+                            <span
+                                v-else-if="index === 1"
+                                class="w-8 h-8 flex items-center justify-center rounded-full font-pilcrow font-pilcrow-bold text-white text-center select-none"
+                                style="background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%); box-shadow: 0 0 8px #FFD700, 0 0 16px #FFA500;"
+                                title="Juara 2"
+                            >
+                                {{ index + 1 }}
+                            </span>
+                            <span
+                                v-else-if="index === 2"
+                                class="w-8 h-8 flex items-center justify-center rounded-full font-pilcrow font-pilcrow-bold text-white text-center select-none"
+                                style="background: linear-gradient(135deg, #cd7f32 0%, #a97142 100%); box-shadow: 0 0 8px #cd7f32, 0 0 16px #a97142;"
+                                title="Juara 3"
+                            >
+                                {{ index + 1 }}
+                            </span>
+                            <p
+                                v-else
+                                class="text-black font-pilcrow font-pilcrow-bold text-center select-none"
+                            >
+                                {{ index + 1 }}.
+                            </p>
                         </div>
                         <img class="w-10 h-10 rounded-full object-cover mr-3" src="/assets/img/profile/photo.png" alt="Profile Photo">
                         <div class="flex-1">
-                            <p class="text-sm font-pilcrow font-pilcrow-bold text-black">{{ item.name }}</p>
-                            <p class="text-xs font-quicksand font-quicksand-regular text-gray-600">Pemasaran</p>
+                            <p class="text-sm font-pilcrow font-pilcrow-bold text-black select-none">{{ item.name }}</p>
+                            <p class="text-xs font-quicksand font-quicksand-regular text-gray-600 select-none">Pemasaran</p>
                         </div>
                         <div>
-                            <p class="text-sm font-pilcrow font-pilcrow-bold text-black">
+                            <p class="text-sm font-pilcrow font-pilcrow-bold text-black select-none">
                                 Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
                             </p>
                         </div>
