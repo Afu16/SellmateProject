@@ -18,7 +18,7 @@
         <!-- Header -->
         <div class="flex items-center mb-6">
             <button class="mr-4">
-                <a href="{{ url('/user') }}">
+                <a href="{{ url('/dashboard') }}">
                     <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
                 </a>
             </button>

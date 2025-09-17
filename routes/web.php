@@ -23,18 +23,9 @@ Route::get('/', function () {
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified',
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return Inertia::render('Dashboard');
-    })->name('dashboard');
-});
-
-// Route::get('/user', function () {
-//     return view('page.user.dashboard');
-// });
-Route::get('/user', [DashboardController::class, 'index'])->name('user.dashboard');
-
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    
 Route::get('/font-example', function () {
     return view('font-example');
 })->name('font.example');
@@ -84,3 +75,4 @@ Route::get('/riwayat-omzet', [App\Http\Controllers\OmzetController::class, 'inde
 
 Route::get('/comission', [OmzetController::class, 'komisi'])->name('comission');
 Route::get('/riwayat-komisi', [App\Http\Controllers\OmzetController::class, 'komisi']);
+});

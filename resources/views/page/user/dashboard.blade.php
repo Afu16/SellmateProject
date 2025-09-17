@@ -61,9 +61,36 @@
                 <h1 class="text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello Siska,</h1>  
                 <p class="text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
-            <div class="mt-3 flex gap-3 items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-14">
-                <h3 class="text-l font-pilcrow font-pilcrow-semibold text-black mr-4">Siska</h3>
-                <img class="w-10 h-10 rounded-full object-cover border-2 border-black" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo of Siska">
+            <div class="mt-3 relative">
+                <button id="userDropdownBtn" class="flex gap-3 items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-14 hover:bg-tertiary transition-colors">
+                    <h3 class="text-l font-pilcrow font-pilcrow-semibold text-black mr-4">Siska</h3>
+                    <img class="w-10 h-10 rounded-full object-cover border-2 border-black" src="{{ asset('assets/img/profile/photo.png') }}" alt="Profile Photo of Siska">
+                    <svg class="w-4 h-4 text-black ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div id="userDropdown" class="absolute right-0 mt-2 w-32 h-14 rounded-xl z-50 hidden">
+                    <div class="py-2">
+                        <a href="{{ route('setting') }}" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-gray-100 transition-colors">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Edit Profile
+                        </a>
+                        <hr class="border-gray-200">
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
+                            <button type="submit" class="flex items-center px-4 py-3 text-xs text-red-600 border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-red-50 transition-colors w-full">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -225,5 +252,33 @@
             </div>
         </div>
     </div>
+
+    <!-- Dropdown JavaScript -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dropdownBtn = document.getElementById('userDropdownBtn');
+            const dropdown = document.getElementById('userDropdown');
+            
+            // Toggle dropdown when button is clicked
+            dropdownBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdown.classList.toggle('hidden');
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdownBtn.contains(e.target) && !dropdown.contains(e.target)) {
+                    dropdown.classList.add('hidden');
+                }
+            });
+            
+            // Close dropdown when pressing Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdown.classList.add('hidden');
+                }
+            });
+        });
+    </script>
 </body>
 </html>

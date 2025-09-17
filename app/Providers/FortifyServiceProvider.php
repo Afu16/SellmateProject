@@ -35,6 +35,21 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
         Fortify::redirectUserForTwoFactorAuthenticationUsing(RedirectIfTwoFactorAuthenticatable::class);
 
+        // Configure login redirect
+        Fortify::loginView(function () {
+            return inertia('Auth/Login');
+        });
+
+        // Configure redirect after login
+        Fortify::redirects('login', function () {
+            return redirect()->route('dashboard');
+        });
+
+        // Configure redirect after registration
+        Fortify::redirects('register', function () {
+            return redirect()->route('dashboard');
+        });
+
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())).'|'.$request->ip());
 

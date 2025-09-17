@@ -10,7 +10,7 @@
 <body class="p-1">
 <!-- Header -->
           <div class="flex p-6 items-center -mb-6">
-            <a href="{{ url('/user') }}" class="mr-4">
+            <a href="{{ url('/dashboard') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
             <h1 class=" text-2xl font-bold text-black">Ebook Tefa</h1>

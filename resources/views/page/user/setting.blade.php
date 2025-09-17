@@ -11,7 +11,7 @@
     <!-- Header -->
     <div class="bg-white p-6">
         <div class="flex items-center">
-            <a href="{{ url('/user') }}" class="mr-4">
+            <a href="{{ url('/dashboard') }}" class="mr-4">
                 <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
             <h1 class="text-2xl font-pilcrow font-pilcrow-bold text-black flex-1 ">Profile</h1>

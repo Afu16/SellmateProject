@@ -6,13 +6,17 @@ use Illuminate\Http\Request;
 use App\Models\Omzet;
 use App\Models\User;
 use App\Models\Target;
+use Inertia\Inertia;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        // $userId = auth()->id();
-        $userId = 1;
+        $userId = auth()->id();
+        // Fallback untuk testing jika auth tidak tersedia
+        if (!$userId) {
+            $userId = 1;
+        }
 
         // total omzet semua waktu (user ini)
         $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
@@ -49,7 +53,7 @@ class DashboardController extends Controller
             $progress = $targetValue > 0 ? min(100, ($totalOmzet / $targetValue) * 100) : 0;
         }    
            
-        return view('page.user.dashboard', compact(
+        return Inertia::render('Dashboard', compact(
             'totalOmzet',
             'topOmzet',
             'rataOmzet',

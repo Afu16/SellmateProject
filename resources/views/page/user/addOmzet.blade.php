@@ -37,7 +37,7 @@
 <body>
     <div class="p-6">
          <div class="flex items-center">
-            <a href="{{ url('/user') }}" class="mr-4">
+            <a href="{{ url('/dashboard') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
             <h1 class=" text-2xl font-bold text-black">Sesuaikan Target Omzetmu</h1>
@@ -71,7 +71,7 @@
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
-                    <button type="button" onclick="window.location.href='{{ url('/user') }}'" class="flex-1 py-2 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
+                    <button type="button" onclick="window.location.href='{{ url('/dashboard') }}'" class="flex-1 py-2 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
                         Batal
                     </button>
                     <button type="submit" class=" shadow-black flex-1 py-2 rounded-xl bg-secondary text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-tertiary">
