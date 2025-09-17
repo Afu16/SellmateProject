@@ -29,7 +29,7 @@
                     <input type="search" name="search" id="search" placeholder="Search" class="w-full text-sm font-quicksand font-quicksand-regular focus:border-none focus:outline-none focus:ring-0 border-0 bg-transparent">
                 </div>
                 
-                <div class="relative">
+                <div class="absolute right-6">
                     <select class="appearance-none border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-2 px-5 rounded-xl shadow-md pr-10 outline-none">
                         <option>Bulan Ini</option>
                         <option>Bulan Lalu</option>
@@ -39,17 +39,16 @@
             </div> 
         </div>
 
-        <div class="border-2 border-black rounded-2xl w-full max-w-md mx-auto shadow-black p-4 bg-white">
+        <div class="border-2 border-black rounded-2xl w-full mx-auto shadow-black p-4 bg-white">
             <!-- Header Table -->
             <div class="flex justify-between items-center px-2 mb-2">
-                <p class="font-quicksand font-quicksand-medium text-black w-1/3">Nama</p>
-                <p class="font-quicksand font-quicksand-medium text-black w-1/9 relative left-7 text-center">Nilai</p>
-                <p class="font-quicksand font-quicksand-medium text-black w-1/3 text-right">Total Omzet</p>
+                <p class="font-pilcrow font-pilcrow-heavy text-black w-1/3">Nama</p>
+                <p class="font-pilcrow font-pilcrow-heavy text-black w-1 relative left-[11vw] text-center">Nilai</p>
+                <p class="font-pilcrow font-pilcrow-heavy text-black w-1/3 text-right">Total Omzet</p>
             </div>
             <!-- List Leaderboard -->
             <div class="flex flex-col gap-3">
-                <!-- 1 -->
-                @foreach ($topRating as $item)
+                @foreach ($topRating->sortByDesc(function($item) { return $item->omzets_sum_total_omzets ?? 0; }) as $item)
                     @php
                         $total = $item->omzets_sum_total_omzets ?? 0;
                         if ($total >= 300000) {
@@ -64,21 +63,27 @@
                     @endphp
 
                     <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
+                        @php
+                            $rank = ($topRating->currentPage() - 1) * $topRating->perPage() + $loop->iteration;
+                        @endphp
+                        <div class="flex items-center justify-center w-4 h-4 rounded-full text-white font-pilcrow font-pilcrow-bold text-lg mr-1 select-none">
+                            {{ $rank }}.
+                        </div>
                         <img src="{{ asset('assets/img/profile/elisa.jpg') }}" alt="{{ $item->name }}" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
                         
                         <div class="flex-1">
-                            <p class="text-white text-sm font-quicksand font-quicksand-semibold leading-4">{{ $item->name }}</p>
+                            <p class="text-white text-sm font-pilcrow font-pilcrow-heavy leading-4">{{ $item->name }}</p>
                             <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">Pemasaran</span>
                         </div>
 
                         <!-- Nilai -->
-                        <div class="w-1/6 text-center">
-                            <span class="text-white text-sm font-quicksand font-quicksand-bold">{{ $grade }}</span>
+                        <div class="w-1 text-center">
+                            <span class="text-white text-sm font-quicksand font-pilcrow-heavy">{{ $grade }}</span>
                         </div>
 
                         <!-- Total Omzet -->
                         <div class="w-1/3 text-right">
-                            <span class="text-white text-sm font-quicksand font-quicksand-semibold">
+                            <span class="text-white text-xs font-quicksand font-quicksand-semibold">
                                 Rp {{ number_format($total, 0, ',', '.') }}
                             </span>
                         </div>
