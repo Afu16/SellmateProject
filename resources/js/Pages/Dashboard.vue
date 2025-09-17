@@ -11,7 +11,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Sales Dashboard Siska" />
+    <Head title="Dashboard Siswa" />
     
     <div>
         <!-- Success Notification -->

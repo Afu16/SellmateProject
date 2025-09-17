@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Target;
 use Illuminate\Http\Request;
 use App\Models\Omzet;
+use Illuminate\Support\Facades\Auth;
 
 class TargetController extends Controller
 {
@@ -13,7 +14,7 @@ class TargetController extends Controller
      */
     public function index()
     {
-    $userId = 1;
+    $userId = Auth::id();
 
     $targets = Target::where('user_id', $userId)
         ->orderBy('created_at', 'desc')
@@ -57,14 +58,13 @@ class TargetController extends Controller
     ]);
 
         Target::create([
-        // 'user_id' => auth()->id(),
-        'user_id' => 1, // Ganti dengan ID user yang sesuai
+        'user_id' => $request->user()->id,
         'title' => $request->title,
         'timeline' => $request->timeline,
         'target' => $request->target
     ]);
 
-    return redirect()->route('user.dashboard')
+    return redirect()->route('dashboard')
                      ->with('success', 'Target omzet berhasil ditambahkan!');
     }
 

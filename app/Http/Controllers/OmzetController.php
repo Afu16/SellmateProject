@@ -5,13 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Omzet;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class OmzetController extends Controller
 {
     public function index()
     {
-        // $userId = auth()->id();
-        $userId = 1; // sementara, sampe login jadi
+        $userId = Auth::id();
 
         // total omzet user ini
         $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
@@ -39,8 +39,7 @@ class OmzetController extends Controller
 
     public function komisi()
     {
-        // $userId = auth()->id();
-        $userId = 1; // sementara, sampe login jadi
+        $userId = Auth::id();
 
         // ambil semua omzet user ini dengan relasi produk
         $riwayatKomisi = Omzet::with('product')
