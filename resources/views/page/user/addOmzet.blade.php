@@ -40,7 +40,7 @@
             <a href="{{ url('/dashboard') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class=" text-2xl font-bold text-black">Sesuaikan Target Omzetmu</h1>
+            <h1 class=" text-2xl font-bold text-black text-nowrap select-none">Sesuaikan Target Omzetmu</h1>
         </div>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
