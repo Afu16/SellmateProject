@@ -1,7 +1,6 @@
 <script setup>
 import { Head, Link, useForm } from '@inertiajs/vue3';
 import AuthenticationCard from '@/Components/AuthenticationCard.vue';
-import AuthenticationCardLogo from '@/Components/AuthenticationCardLogo.vue';
 import Checkbox from '@/Components/Checkbox.vue';
 import InputError from '@/Components/InputError.vue';
 import InputLabel from '@/Components/InputLabel.vue';
@@ -10,9 +9,9 @@ import TextInput from '@/Components/TextInput.vue';
 
 const form = useForm({
     name: '',
-    major: '',
-    school: '',
     username: '',
+    school: '',
+    major: '',
     email: '',
     password: '',
     password_confirmation: '',
@@ -36,8 +35,8 @@ const submit = () => {
     </div>
 
     <form @submit.prevent="submit">
-    <AuthenticationCard>
-        <div>
+        <AuthenticationCard>
+            <div>
                 <InputLabel for="name" value="Nama Lengkap" />
                 <TextInput
                     id="name"
@@ -52,16 +51,16 @@ const submit = () => {
             </div>
 
             <div class="mt-4">
-                <InputLabel for="major" value="Jurusan" />
+                <InputLabel for="username" value="Username" />
                 <TextInput
-                    id="major"
-                    v-model="form.major"
+                    id="username"
+                    v-model="form.username"
                     type="text"
                     class="mt-1 block w-full"
                     required
-                    autocomplete="major"
+                    autocomplete="username"
                 />
-                <InputError class="mt-2" :message="form.errors.major" />
+                <InputError class="mt-2" :message="form.errors.username" />
             </div>
 
             <div class="mt-4">
@@ -77,28 +76,22 @@ const submit = () => {
                 <InputError class="mt-2" :message="form.errors.school" />
             </div>
 
-    </AuthenticationCard>
-    
-    <AuthenticationCard>
-        <!-- <template #logo>
-            <AuthenticationCardLogo />
-        </template> -->
-
-            <div>
-                <InputLabel for="user" value="Username" />
+            <div class="mt-4">
+                <InputLabel for="major" value="Jurusan" />
                 <TextInput
-                    id="name"
-                    v-model="form.name"
+                    id="major"
+                    v-model="form.major"
                     type="text"
                     class="mt-1 block w-full"
                     required
-                    autofocus
-                    autocomplete="name"
+                    autocomplete="major"
                 />
-                <InputError class="mt-2" :message="form.errors.name" />
+                <InputError class="mt-2" :message="form.errors.major" />
             </div>
+        </AuthenticationCard>
 
-            <div class="mt-4">
+        <AuthenticationCard>
+            <div>
                 <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
@@ -106,7 +99,7 @@ const submit = () => {
                     type="email"
                     class="mt-1 block w-full"
                     required
-                    autocomplete="username"
+                    autocomplete="email"
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
@@ -141,9 +134,11 @@ const submit = () => {
                 <InputLabel for="terms">
                     <div class="flex items-center">
                         <Checkbox id="terms" v-model:checked="form.terms" name="terms" required />
-
                         <div class="ms-2">
-                            I agree to the <a target="_blank" :href="route('terms.show')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Terms of Service</a> and <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">Privacy Policy</a>
+                            I agree to the
+                            <a target="_blank" :href="route('terms.show')" class="underline text-sm text-gray-600 hover:text-gray-900">Terms of Service</a>
+                            and
+                            <a target="_blank" :href="route('policy.show')" class="underline text-sm text-gray-600 hover:text-gray-900">Privacy Policy</a>
                         </div>
                     </div>
                     <InputError class="mt-2" :message="form.errors.terms" />
@@ -151,12 +146,12 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-white font-pilcrow font-pilcrow-heavy hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                <Link :href="route('login')" class="underline text-sm text-white font-pilcrow font-pilcrow-heavy hover:text-gray-900">
                     Already registered?
                 </Link>
-
             </div>
         </AuthenticationCard>
+
         <PrimaryButton class="ms-4 px-[37%]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
             Register
         </PrimaryButton>

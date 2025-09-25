@@ -27,8 +27,15 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
+        'school',
+        'major',
+        'role',
+        'foto_link',
+        'phone',
+        'address',
     ];
 
      public function omzets()
