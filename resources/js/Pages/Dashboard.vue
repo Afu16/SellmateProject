@@ -49,7 +49,20 @@ defineProps({
                     <h3 class="text-l font-pilcrow font-pilcrow-semibold text-black mr-4">
                         {{ $page.props.auth.user.name.split(' ')[0] }}
                     </h3>
-                    <img class="w-10 h-10 rounded-full object-cover border-2 border-black" src="/assets/img/profile/photo.png" alt="Profile Photo of Siska">
+            <!-- Avatar Dynamic -->
+            <div
+                class="w-10 h-10 rounded-full border-2 border-black flex items-center justify-center bg-gray-300 text-black font-bold overflow-hidden"
+            >
+            <img
+                v-if="$page.props.auth.user.foto_link"
+                :src="`/storage/${$page.props.auth.user.foto_link}`"
+                alt="Profile Photo"
+                class="w-full h-full object-cover"
+            />
+            <span v-else>
+                {{ $page.props.auth.user.name.charAt(0).toUpperCase() }}
+            </span>
+            </div>
                     <svg class="w-4 h-4 text-black ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
@@ -58,7 +71,7 @@ defineProps({
                 <!-- Dropdown Menu -->
                 <div id="userDropdown" class="absolute top-[8vh] right-[3vw] mt-2 w-36 h-14 rounded-xl z-50 hidden">
                     <div class="py-2">
-                        <a href="/setting" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-gray-100 transition-colors">
+                        <a href="/settings" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-gray-100 transition-colors">
                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
@@ -250,7 +263,20 @@ defineProps({
                                     {{ index + 1 }}.
                                 </p>
                             </div>
-                            <img class="w-10 h-10 rounded-full object-cover mr-3" src="/assets/img/profile/photo.png" alt="Profile Photo">
+                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold overflow-hidden mr-3 border-2 border-black">
+                                <img
+                                    v-if="item.foto_link"
+                                    :src="item.foto_link.startsWith('http') ? item.foto_link : '/storage/' + item.foto_link"
+                                    :alt="item.name"
+                                    class="w-full h-full object-cover"
+                                />
+                                <span
+                                    v-else
+                                    class="w-full h-full flex items-center justify-center bg-primary text-white"
+                                >
+                                    {{ item.name.charAt(0).toUpperCase() }}
+                                </span>
+                                </div>
                             <div class="flex-1">
                                 <span>
                                     <div class="flex items-center gap-2">
@@ -272,7 +298,7 @@ defineProps({
                                 <p
                                     class="text-xs font-quicksand font-quicksand-regular select-none"
                                     :class="index < 3 ? 'text-white/80' : 'text-gray-600'"
-                                >Pemasaran</p>
+                                >{{ item.major }}</p>
                             </div>
                             <div>
                                 <p

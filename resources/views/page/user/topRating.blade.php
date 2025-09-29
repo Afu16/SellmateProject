@@ -69,11 +69,31 @@
                         <div class="flex items-center justify-center w-4 h-4 rounded-full text-white font-pilcrow font-pilcrow-bold text-lg mr-1 select-none">
                             {{ $rank }}.
                         </div>
-                        <img src="{{ asset('assets/img/profile/elisa.jpg') }}" alt="{{ $item->name }}" class="w-10 h-10 rounded-full border-2 border-white object-cover mr-3">
+@php
+    // Sesuaikan dengan colors yg kamu define di tailwind.config.js
+    $colors = [
+        'bg-red-500', 'bg-blue-500', 'bg-green-500',
+        'bg-yellow-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500'
+    ];
+    // Biar konsisten per user: pakai hash dari nama, bukan random
+    $index = crc32($item->name) % count($colors);
+    $bgColor = $colors[$index];
+@endphp
+<div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white font-bold overflow-hidden mr-3 {{ $bgColor }}">
+    @if (!empty($item->foto_link))
+        <img 
+            src="{{ asset('storage/' . $item->foto_link) }}" 
+            alt="{{ $item->name }}" 
+            class="w-full h-full object-cover"
+        >
+    @else
+        {{ strtoupper(substr($item->name, 0, 1)) }}
+    @endif
+</div>
                         
                         <div class="flex-1">
                             <p class="text-white text-sm font-pilcrow font-pilcrow-heavy leading-4">{{ $item->name }}</p>
-                            <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">Pemasaran</span>
+                            <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">{{ $item->major }}</span>
                         </div>
 
                         <!-- Nilai -->

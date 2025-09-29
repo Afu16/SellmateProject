@@ -10,6 +10,8 @@ use App\Http\Controllers\OmzetController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\TargetController;
 use App\Http\Controllers\TopRatingController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\EbookController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -55,17 +57,16 @@ Route::get('/article-in', function () {
     return view('page.user.article-in');
 })->name('article-in');
 
-Route::get('/ebook', function () {
-    return view('page.user.ebook');
-})->name('ebook');
+Route::get('/ebook', [EbookController::class, 'index'])->name('ebook');
 
 Route::get('/video', function () {
     return view('page.user.video');
 })->name('video');
 
-Route::get('/setting', function () {
-    return view('page.user.setting');
-})->name('setting');
+Route::middleware(['auth'])->group(function () {
+    Route::get('/settings', [ProfileController::class, 'index'])->name('settings.index');
+    Route::post('/settings', [ProfileController::class, 'update'])->name('settings.update');
+});
 
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');

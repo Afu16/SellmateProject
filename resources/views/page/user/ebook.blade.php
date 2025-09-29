@@ -29,55 +29,32 @@
         <button class="w-36 px-5 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Inspirasi</button>
         <button class="w-36 px-5 py-2 rounded-xl border-2 border-black shadow-black text-black font-pilcrow font-pilcrow-semibold   bg-white shadow transition-colors duration-200">Tips</button>
     </div>
-    <div class="grid grid-cols-1 gap-4">
-        <!-- Card 1 -->
+
+<div class="grid grid-cols-1 gap-4">
+    @foreach($ebooks as $ebook)
         <div class="relative rounded-xl overflow-hidden shadow-md bg-gray-900">
-            <img src="{{ asset('assets/img/example-img.jpg') }}" alt="AI bersama tefa" class="w-full h-52 object-cover opacity-70">
+            <img src="{{ asset($ebook->thumbnail) }}" alt="{{ $ebook->title }}" class="w-full h-52 object-cover opacity-70">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
             <div class="absolute bottom-0 left-0 p-4 w-full">
-                <div class="flex">
-                    <div class="">
-                        <h2 class="text-white font-semibold text-base mb-1">Pengertian dasar tentang AI bersama tefa</h2>
-                        <p class="text-white text-xs leading-tight line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
-                    <div class="mt-5">
-                        <button class="w-6 h-6">
-                                    <svg class="w-full h-full text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
-                                    </svg>
-                                </button>
-                    </div>
+            <div class="flex">
+                <div class="">
+                <h2 class="text-white font-semibold text-base mb-1">{{ $ebook->title }}</h2>
+                <p class="text-white text-xs leading-tight line-clamp-2">{{ $ebook->description }}</p>
+                <span class="text-xs bg-white/80 text-gray-800 px-2 py-1 rounded">{{ $ebook->kategori }}</span>
+              </div>
+                <div class="mt-5">
+                    <button class="w-6 h-6">
+                        <svg class="w-full h-full text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                        </svg>
+                    </button>
                 </div>
             </div>
-        </div>
-        <!-- Card 2 -->
-        <div class="relative rounded-xl overflow-hidden shadow-md bg-gray-900">
-            <img src="{{ asset('assets/img/it-career.jpg') }}" alt="Karir di bidang IT" class="w-full h-52 object-cover opacity-70">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-            <div class="absolute bottom-0 left-0 p-4 w-full">
-                <h2 class="text-white font-semibold text-base mb-1">Memulai karir di bidang IT</h2>
-                <p class="text-white text-xs leading-tight line-clamp-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
         </div>
-        <!-- Card 3 -->
-        <div class="relative rounded-xl overflow-hidden shadow-md bg-gray-900">
-            <img src="{{ asset('assets/img/content-creator.jpg') }}" alt="Tips content creator" class="w-full h-52 object-cover opacity-70">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-            <div class="absolute top-0 left-0 p-2">
-                <span class="bg-orange-400 text-white text-xs font-semibold px-3 py-1 rounded-full">Tips menjadi content creator</span>
-            </div>
-            <div class="absolute bottom-0 left-0 p-4 w-full">
-                <p class="text-white text-xs leading-tight line-clamp-2 mt-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-            </div>
-        </div>
-        <!-- Card 4 -->
-        <div class="relative rounded-xl overflow-hidden shadow-md bg-gray-900">
-            <img src="{{ asset('assets/img/wirausaha.jpg') }}" alt="Memulai wirausaha" class="w-full h-52 object-cover opacity-70">
-            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-            <div class="absolute top-0 left-0 p-2">
-                <span class="bg-white/80 text-gray-700 text-xs font-semibold px-3 py-1 rounded-full">Cara awal memulai Wirausaha</span>
-            </div>
-            <div class="absolute bottom-0 left-0 p-4 w-full">
+    @endforeach
+</div>
+
     
 </body>
 </html>
