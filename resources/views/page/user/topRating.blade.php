@@ -18,9 +18,9 @@
         </div>
 
         <div class="w-full max-w-sm">
-            <div class="flex justify-between items-center mb-6">
+            <div class="flex justify-between min-w-100 items-center mb-6">
                 <!-- Search Bar -->
-                <div class="relative flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-5 w-52">
+                <div class="relative flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-[5vw] w-[50vw]">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -30,7 +30,7 @@
                 </div>
                 
                 <div class="absolute right-6">
-                    <select class="appearance-none border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-2 px-5 rounded-xl shadow-md pr-10 outline-none">
+                    <select class="appearance-none border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-2 px-[2vw] rounded-xl shadow-md pr-[10vw] outline-none">
                         <option>Bulan Ini</option>
                         <option>Bulan Lalu</option>
                         <option>Tahun Ini</option>

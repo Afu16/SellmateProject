@@ -41,12 +41,12 @@ defineProps({
         <!-- Header with greeting -->
         <div class="bg-primary w-full border-b-10 border-black rounded-b-2xl p-5 shadow-sm mb-2 flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-3">
-                <h1 class="text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
-                <p class="text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
+                <h1 class="text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
+                <p class="text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
             <div class="mt-3">
-                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[1vw] items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-36 h-14 hover:bg-tertiary transition-colors">
-                    <h3 class="text-l font-pilcrow font-pilcrow-semibold text-black mr-4">
+                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[1vw] items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-[32vw] h-[7vh] md:w-36 md:h-14 hover:bg-tertiary transition-colors">
+                    <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black mr-[1vw]">
                         {{ $page.props.auth.user.name.split(' ')[0] }}
                     </h3>
             <!-- Avatar Dynamic -->
@@ -57,7 +57,7 @@ defineProps({
                 v-if="$page.props.auth.user.foto_link"
                 :src="`/storage/${$page.props.auth.user.foto_link}`"
                 alt="Profile Photo"
-                class="w-full h-full object-cover"
+                class=" w-10 h-10 object-cover"
             />
             <span v-else>
                 {{ $page.props.auth.user.name.charAt(0).toUpperCase() }}
@@ -284,7 +284,7 @@ defineProps({
                                             class="text-sm font-pilcrow font-pilcrow-bold select-none"
                                             :class="index < 3 ? 'text-white' : 'text-black'"
                                         >{{ item.name }}</p>
-                                        <span v-if="index === 0">
+                                        <!-- <span v-if="index === 0">
                                             <img src="/assets/img/obsidian-medal.png" alt="Obsidian Medal" class="w-5 h-5 object-cover" title="Juara 1 (Obsidian Medal)">
                                         </span>
                                         <span v-else-if="index === 1">
@@ -292,7 +292,7 @@ defineProps({
                                         </span>
                                         <span v-else-if="index === 2">
                                             <img src="/assets/img/silver-medal.png" alt="Silver Medal" class="w-5 h-5 object-cover" title="Juara 3 (Silver Medal)">
-                                        </span>
+                                        </span> -->
                                     </div>
                                 </span>
                                 <p
