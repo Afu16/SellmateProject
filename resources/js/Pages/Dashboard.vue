@@ -285,13 +285,13 @@ defineProps({
                                             :class="index < 3 ? 'text-white' : 'text-black'"
                                         >{{ item.name }}</p>
                                         <span v-if="index === 0">
-                                            <img src="/assets/img/obsidian-medal.png" alt="Obsidian Medal" class="w-5 h-5" title="Juara 1 (Obsidian Medal)">
+                                            <img src="/assets/img/obsidian-medal.png" alt="Obsidian Medal" class="w-5 h-5 object-cover" title="Juara 1 (Obsidian Medal)">
                                         </span>
                                         <span v-else-if="index === 1">
-                                            <img src="/assets/img/gold-medal.png" alt="Gold Medal" class="w-5 h-5" title="Juara 2 (Gold Medal)">
+                                            <img src="/assets/img/gold-medal.png" alt="Gold Medal" class="w-5 h-5 object-cover" title="Juara 2 (Gold Medal)">
                                         </span>
                                         <span v-else-if="index === 2">
-                                            <img src="/assets/img/silver-medal.png" alt="Silver Medal" class="w-5 h-5" title="Juara 3 (Silver Medal)">
+                                            <img src="/assets/img/silver-medal.png" alt="Silver Medal" class="w-5 h-5 object-cover" title="Juara 3 (Silver Medal)">
                                         </span>
                                     </div>
                                 </span>
