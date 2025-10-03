@@ -20,7 +20,7 @@
         <div class="w-full max-w-sm">
             <div class="flex justify-between min-w-100 items-center mb-6">
                 <!-- Search Bar -->
-                <div class="relative flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-[5vw] w-[50vw]">
+                <div class="relative text-sm flex items-center border-2 border-black bg-white rounded-xl shadow-black shadow-md py-1 px-[5vw] w-[50vw]">
                     <div class="flex items-center">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-black mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -30,7 +30,7 @@
                 </div>
                 
                 <div class="absolute right-6">
-                    <select class="appearance-none border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-2 px-[2vw] rounded-xl shadow-md pr-[10vw] outline-none">
+                    <select class="appearance-none text-sm border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-[1.5vh] px-[2.5vw] rounded-xl shadow-md pr-[10vw] outline-none">
                         <option>Bulan Ini</option>
                         <option>Bulan Lalu</option>
                         <option>Tahun Ini</option>
@@ -44,7 +44,7 @@
             <div class="flex justify-between items-center px-2 mb-2">
                 <p class="font-pilcrow font-pilcrow-heavy text-black w-1/3">Nama</p>
                 <p class="font-pilcrow font-pilcrow-heavy text-black w-1 relative left-[11vw] text-center">Nilai</p>
-                <p class="font-pilcrow font-pilcrow-heavy text-black w-1/3 text-right">Total Omzet</p>
+                <p class="font-pilcrow font-pilcrow-heavy text-black w-1/3 text-right">Total</p>
             </div>
             <!-- List Leaderboard -->
             <div class="flex flex-col gap-3">
@@ -62,11 +62,11 @@
                         }
                     @endphp
 
-                    <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-2 shadow-md">
+                    <div class="flex items-center bg-primary shadow-black border-2 border-black rounded-xl px-3 py-[2vh] shadow-md">
                         @php
                             $rank = ($topRating->currentPage() - 1) * $topRating->perPage() + $loop->iteration;
                         @endphp
-                        <div class="flex items-center justify-center w-4 h-4 rounded-full text-white font-pilcrow font-pilcrow-bold text-lg mr-1 select-none">
+                        <div class="flex text-[4vw] items-center justify-center w-4 h-4 rounded-full text-white font-pilcrow font-pilcrow-bold md:ml-[2vw] mr-[1vw] select-none">
                             {{ $rank }}.
                         </div>
 @php
@@ -79,7 +79,7 @@
     $index = crc32($item->name) % count($colors);
     $bgColor = $colors[$index];
 @endphp
-<div class="w-10 h-10 rounded-full border-2 border-white flex items-center justify-center text-white font-bold overflow-hidden mr-3 {{ $bgColor }}">
+<div class="w-10 h-10 lg:w-[4vw] lg:h-[4vw] rounded-full border-2 border-white flex items-center justify-center text-white font-bold overflow-hidden mr-3 {{ $bgColor }}">
     @if (!empty($item->foto_link))
         <img 
             src="{{ asset('storage/' . $item->foto_link) }}" 
@@ -91,19 +91,19 @@
     @endif
 </div>
                         
-                        <div class="flex-1">
-                            <p class="text-white text-sm font-pilcrow font-pilcrow-heavy leading-4">{{ $item->name }}</p>
-                            <span class="text-xs text-quaternary font-quicksand font-quicksand-regular">{{ $item->major }}</span>
+                        <div class="flex-1 gap-0">
+                            <p class="text-white text-[3.5vw] font-pilcrow font-pilcrow-heavy leading-none">{{ $item->name }}</p>
+                            <span class="text-[3vw] text-quaternary font-quicksand font-quicksand-regular">{{ $item->major }}</span>
                         </div>
 
                         <!-- Nilai -->
                         <div class="w-1 text-center">
-                            <span class="text-white text-sm font-quicksand font-pilcrow-heavy">{{ $grade }}</span>
+                            <span class="text-white text-[3vw] font-quicksand font-pilcrow-heavy">{{ $grade }}</span>
                         </div>
 
                         <!-- Total Omzet -->
                         <div class="w-1/3 text-right">
-                            <span class="text-white text-xs font-quicksand font-quicksand-semibold">
+                            <span class="text-white text-[2.5vw] font-quicksand font-quicksand-semibold">
                                 Rp {{ number_format($total, 0, ',', '.') }}
                             </span>
                         </div>

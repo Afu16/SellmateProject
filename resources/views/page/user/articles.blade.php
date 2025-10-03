@@ -29,7 +29,7 @@
             <div class="absolute bottom-0 left-0 p-4 text-white w-full">
                 <h3 class="text-xl font-semibold mb-1">{{ $article->title }}</h3>
                 <div class="flex items-center justify-between text-sm">
-                    <span class="text-gray-200">Baca sekarang <span class="font-medium">🕒 15 min read</span></span>
+                    <span class="text-gray-200">Baca sekarang </span>
                     
                     <a href="#" class="bg-white/20 p-2 rounded-full backdrop-blur-sm hover:bg-white/30 transition-colors">
                         <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">

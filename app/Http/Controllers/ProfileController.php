@@ -9,13 +9,13 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $user = Auth::user();
+        $user = \App\Models\User::find(Auth::id());
         return view('page.user.setting', compact('user'));
     }
 
     public function update(Request $request)
     {
-        $user = Auth::user();
+        $user = \App\Models\User::find(Auth::id());
 
         $request->validate([
             'name'      => 'required|string|max:255',
