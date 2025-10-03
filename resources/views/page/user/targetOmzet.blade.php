@@ -65,7 +65,7 @@
             </button>
         </div>
 
-        <!-- Section Title -->
+        {{-- <!-- Section Title -->
         <h2 class="text-xl font-pilcrow font-pilcrow-bold text-black mb-4">Riwayat Target Omzetmu</h2>
 
         <!-- Target History Cards -->
@@ -93,10 +93,10 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
 
             <!-- Omzet Periode 2 Card -->
-            <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black">
+            {{-- <div class="bg-primary p-5 rounded-2xl border-2 border-black shadow-black">
                 <div class="mb-4">
                     <h2 class="text-lg font-pilcrow font-pilcrow-bold text-white mb-1">Omzet Periode 2</h2>
                     <p class="text-xs font-quicksand font-quicksand-regular text-white opacity-80">Nov 01/11/2024 - Dec 31/12/2024</p>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </body>

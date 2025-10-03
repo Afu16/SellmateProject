@@ -45,7 +45,7 @@ defineProps({
                 <p class="text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
             <div class="mt-3">
-                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[1vw] items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-[32vw] h-[7vh] md:w-36 md:h-14 hover:bg-tertiary transition-colors">
+                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[3vw] items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-[32vw] h-[7vh] md:w-36 md:h-14 hover:bg-tertiary transition-colors">
                     <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black mr-[1vw]">
                         {{ $page.props.auth.user.name.split(' ')[0] }}
                     </h3>
@@ -69,9 +69,9 @@ defineProps({
                 </button>
                 
                 <!-- Dropdown Menu -->
-                <div id="userDropdown" class="absolute top-[8vh] right-[3vw] mt-2 w-36 h-14 rounded-xl z-50 hidden">
+                <div id="userDropdown" class="absolute top-[8vh] right-[3vw] mt-2 -ml-4 w-[32vw] h-14 rounded-xl z-50 hidden">
                     <div class="py-2">
-                        <a href="/settings" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-gray-100 transition-colors">
+                        <a href="/settings" class="flex mb-2 mt-5 items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-gray-100 transition-colors">
                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
@@ -79,7 +79,7 @@ defineProps({
                         </a> 
                         <form method="POST" :action="route('logout')" class="w-full" @submit.prevent="$inertia.post(route('logout'))">
                             <input type="hidden" name="_token" :value="$page.props.jetstream?.csrf_token ?? $page.props.csrf_token" />
-                            <button type="submit" class="flex items-center px-4 py-3 text-xs text-red-600 border-2 border-black rounded-xl shadow-secondary bg-secondary hover:bg-red-50 transition-colors w-full">
+                            <button type="submit" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-red-50 transition-colors w-full">
                                 <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
                                 </svg>
@@ -225,7 +225,7 @@ defineProps({
                             :style="index === 0
                                 ? 'background: linear-gradient(135deg, #240046, #c04aff, #240046, #c04aff);background-size: 400% 400%;animation: gradient 5s linear infinite;'
                                 : index === 1
-                                    ? 'background: linear-gradient(135deg, #ff7300, #dd661d, #ff7300a);background-size: 400% 400%;animation: gradient 5s ease infinite;'
+                                    ? 'background: linear-gradient(135deg, #ff7300, #dd661d, #ff7300);background-size: 400% 400%;animation: gradient 5s ease infinite;'
                                     : index === 2
                                         ? 'background: linear-gradient(135deg, #b0b0b0 0%, #4a4a4a 100%);'
                                         : 'background: #fff;'"
@@ -302,7 +302,7 @@ defineProps({
                             </div>
                             <div>
                                 <p
-                                    class="text-sm font-pilcrow font-pilcrow-bold select-none"
+                                    class="text-xs font-pilcrow font-pilcrow-bold select-none"
                                     :class="index < 3 ? 'text-white' : 'text-black'"
                                 >
                                     Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
