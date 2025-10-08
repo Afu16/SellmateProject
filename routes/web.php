@@ -12,6 +12,8 @@ use App\Http\Controllers\TargetController;
 use App\Http\Controllers\TopRatingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EbookController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -76,4 +78,18 @@ Route::get('/riwayat-omzet', [App\Http\Controllers\OmzetController::class, 'inde
 
 Route::get('/comission', [OmzetController::class, 'komisi'])->name('comission');
 Route::get('/riwayat-komisi', [App\Http\Controllers\OmzetController::class, 'komisi']);
+});
+
+// Admin Routes
+Route::prefix('admin')->name('admin.')->group(function () {
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login.submit');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Protected Admin Routes
+    Route::middleware(['auth', 'admin'])->group(function () {
+        Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
+        
+        // Add more admin routes here
+    });
 });
