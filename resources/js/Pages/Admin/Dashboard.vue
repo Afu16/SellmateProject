@@ -93,7 +93,40 @@ defineProps({
         </div>
 
         <div class="flex flex-row">
-            <div class="w-[15%] border-r-2 h-screen border-black">NAVBARNYO</div>
+            <div class="w-[15%] -ml-2 flex flex-col border-r-2 h-screen border-black">
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/dashboard-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Dashboard
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/userManage-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    User Management
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/product-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Produk
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/totalOmzet2-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Total Omzet
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/blackVideo-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Video
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/blackEbook-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Ebook
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/blackArticle-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Artikel
+                </a>
+                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                    <img src="/assets/svg/blackHistory-icon.svg" alt="Dashboard" class="w-[1.5vw] h-[1.5vh] mr-1">
+                    Histori
+                </a>
+            </div>
             <div class="w-full p-2">
                 <h1 class="text-big font-pilcrow font-pilcrow-rounded font-bold text-black">Dashboard</h1>
                 <div class="absolute w-[12w] h-[4.5vh] bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black top-[23vh] right-[3vh] rounded-xl p-2">
@@ -134,7 +167,7 @@ defineProps({
                             </div>
                         </div>
 
-                        <div class="border-2 border-black shadow-black p-2 mt-5 rounded-xl">
+                        <div class="border-2 border-black shadow-black p-2 mt-5 rounded-lg">
                             <div class="flex items-center justify-between">
                                 <h5 class="text-[2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none">Top Omzet</h5>
                                 <div class="flex items-center gap-2">
@@ -144,11 +177,11 @@ defineProps({
                                             name="search"
                                             id="search"
                                             placeholder="Search"
-                                            class="w-[15vw] h-[4vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                                            class="w-[15vw] h-[3.5vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
                                         />
                                         <svg
                                             xmlns="http://www.w3.org/2000/svg"
-                                            class="absolute right-3 top-1/2 -translate-y-1/2 h-5 w-5 text-black cursor-pointer"
+                                            class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
                                             fill="none"
                                             viewBox="0 0 24 24"
                                             stroke="currentColor"
@@ -164,21 +197,92 @@ defineProps({
                                 </div>
                             </div>
 
+                            <!-- Table Top Omzet -->
                              <div class="flex justify-between items-center p-1 mb-2 mt-2">
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[0.1vw]">No</p>
-                                    <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[0.9vw]">Nama</p>
+                                    <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[10vw]">Nama</p>
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[0.9vw]">Jurusan</p>
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[0.9vw] text-nowrap">Total Omzet</p>
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[1vw] text-center">Nilai</p>
                                 </div>
-                                <hr>
+                                <hr class="border-t-2 border-black my-2">
 
-                                <div class=""></div>
-
+                                <!-- Table Body -->
+                                <div
+                                    v-for="(item, idx) in topOmzet.slice(0, 5)"
+                                    :key="item.id"
+                                    class="flex justify-between items-center p-1 mb-2"
+                                >
+                                    <p class="text-[0.8vw] font-pilcrow text-black w-[0.1vw]">{{ idx + 1 }}</p>
+                                    <p class="text-[0.8vw] font-pilcrow text-black w-[10vw] text-nowrap">{{ item.name }}</p>
+                                    <p class="text-[0.8vw] font-pilcrow text-black w-[0.9vw]">{{ item.major }}</p>
+                                    <p class="text-[0.8vw] font-pilcrow text-black w-[0.9vw] text-nowrap">
+                                        Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
+                                    </p>
+                                    <p class="text-[0.8vw] font-pilcrow text-black w-[1vw] text-center">
+                                        {{ item.score ?? '-' }}
+                                    </p>    
+                                </div>
                         </div>
                     </div>
-                    <div class="w-1/2 mt-5">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe numquam laudantium deleniti natus? Possimus tempore deleniti debitis ipsum velit quo nemo quisquam, distinctio, nam molestiae quam architecto qui laudantium illum repellat labore rerum natus ut animi fugiat amet eos nihil. Esse atque aspernatur doloremque dolore culpa, sit vero assumenda voluptas.
+                    <div class="w-1/2 mt-5 border-2 border-black shadow-black rounded-lg p-2">
+                        <div class="flex justify-between items-center">
+                            <h1 class="text-[1.5vw] font-pilcrow font-pilcrow-heavy mt-1">Histori Transaksi Omzet</h1>
+                             <div class="flex items-center gap-2">
+                                        <div class="relative">
+                                            <input
+                                                type="search"
+                                                name="search"
+                                                id="search"
+                                                placeholder="Search"
+                                                class="w-[15vw] h-[3.5vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
+                                            />
+                                            <svg
+                                                xmlns="http://www.w3.org/2000/svg"
+                                                class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
+                                                fill="none"
+                                                viewBox="0 0 24 24"
+                                                stroke="currentColor"
+                                            >
+                                                <path
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    stroke-width="2"
+                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                                />
+                                            </svg>
+                                        </div>
+                                    </div>
+                                    <button class="w-[3.5vh] h-[3.5vh] border-2 border-black rounded-xl">
+                                        <img src="/assets/svg/filter-icon.svg" alt="filter-icon" class="    justify-self-center">
+                                    </button>
+                        </div>
+
+
+                        <!-- Table History Omzet -->
+                        <!-- Table Header History Omzet -->
+                        <div class="flex justify-between items-center p-1 mb-2">
+                            <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[3vw] text-center">Tanggal</p>
+                            <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[10vw]">Nama</p>
+                            <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[3vw]">Jurusan</p>
+                            <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[4vw] text-right">Omzet</p>
+                        </div>
+
+                        <hr class="border-t-2 border-black my-2">
+
+                        <!-- Table Body History Omzet -->
+                        <div
+                            v-for="(item, idx) in topOmzet.slice(0, 5)"
+                            :key="item.id"
+                            class="flex justify-between items-center p-1 mb-2"
+                        >
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] text-center">{{ item.created_at ? new Date(item.created_at).toLocaleDateString('id-ID') : '-' }}</p>
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[10vw] truncate">{{ item.name }}</p>
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] truncate">{{ item.major }}</p>
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[4vw] text-right">
+                                Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
