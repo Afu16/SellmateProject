@@ -16,6 +16,52 @@
         <h1 class="text-2xl font-pilcrow font-pilcrow-semibold text-black text-nowrap select-none">Riwayat Komisi</h1>
     </div>
 
+{{-- Dropdown Left --}}
+    <div id="userDropdownL" class="fixed z-50 bottom-16 text-xs left-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
+        <div class="py-1">
+            <h1 href="#" class="block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium hover:bg-gray-100">Semua Produk</h1>
+            <input type="date" name="" id="" class="rounded-xl ml-2 px-4 py-2 text-sm font-pilcrow font-pilcrow-medium">
+        </div>
+    </div>
+
+    {{-- Dropdown Right --}}
+    <div id="userDropdownR" class="fixed z-50 bottom-16 right-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
+         <div class="py-1">
+             @php
+                 $currentMonth = now();
+                 $months = [];
+                 for ($i = 0; $i < 12; $i++) {
+                     $month = now()->subMonths($i);
+                     $months[] = [
+                         'name' => $month->format('F Y'),
+                         'value' => $month->format('Y-m')
+                     ];
+                 }
+             @endphp
+             
+             @foreach($months as $month)
+                 <a href="#" data-value="{{ $month['value'] }}" class="month-option block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium hover:bg-gray-100 border-b border-gray-200">{{ $month['name'] }}</a>
+             @endforeach
+         </div>
+     </div>
+
+    <div class="fixed overflow-hidden -ml-6 px-6 w-full h-16 bg-primary-300 bottom-0 z-10">
+        <div class="flex flex-row mt-4">
+            <div class="w-1/2 text-xs relative">
+                <button id="userDropdownBtnL" class="bg-white w-full h-7 rounded-l-full border-2 border-primary font-pilcrow font-pilcrow-medium">
+                    Semua Produk
+                </button>
+            </div>
+            <div class="bg-primary opacity-100 w-16"></div>
+            <div class="w-1/2 text-xs relative">
+               <button id="userDropdownBtnR" class="bg-white w-full h-7 rounded-r-full border-2 border-primary font-pilcrow font-pilcrow-medium">
+                    {{ date('F Y') }}
+               </button>
+            </div>
+        </div>
+    </div>
+
+
     <!-- Total Komisi Section -->
     <div class="bg-primary rounded-lg p-6 shadow-black border-2 border-black mb-6">
         <div class="text-white">
@@ -44,10 +90,10 @@
 
             <div class="mb-8">
                 <div class="flex justify-between items-center mb-4">
-                    <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">
-                        Komisi {{ $carbon->translatedFormat('F Y') }}
+                    <h3 class="text-sm font-pilcrow font-pilcrow-heavy text-black">
+                     {{ $carbon->translatedFormat('F Y') }}
                     </h3>
-                    <span class="text-lg font-quicksand font-quicksand-regular text-black">
+                    <span class="text-md text-nowrap font-quicksand font-quicksand-regular text-black">
                         Rp {{ number_format($items->sum('komisi_didapat'), 0, ',', '.') }}
                     </span>
                 </div>
@@ -59,13 +105,15 @@
                             <img src="{{ asset('assets/img/' . ($item->product->product_photo ?? 'default-thumbnail.jpg')) }}"
                                 alt="{{ $item->product->name ?? 'Produk' }}"
                                 class="w-12 h-12 rounded-lg mr-3">
-                            <span class="text-white font-medium">{{ $item->product->name ?? 'Produk' }}</span>
+                            <span class="text-white text-sm font-medium">{{ $item->product->name ?? 'Produk' }}</span>
                         </div>
                         <div class="text-right">
-                            <p class="text-white font-quicksand font-quicksand-regular">
-                                Rp {{ number_format($item->komisi_didapat, 0, ',', '.') }}
+                            <p class="text-white text-xs font-quicksand font-quicksand-regular">
+                                <span class="text-nowrap">
+                                    Rp {{ number_format($item->komisi_didapat, 0, ',', '.') }}
+                                </span>
                             </p>
-                            <p class="text-white text-sm opacity-80">
+                            <p class="text-white text-xs opacity-80">
                                 {{ \Carbon\Carbon::parse($item->date)->format('d M Y') }}
                             </p>
                         </div>
@@ -77,5 +125,97 @@
 
     </div>
 
+   <script>
+        // Dropdown JavaScript
+        const dropdownBtnL = document.getElementById('userDropdownBtnL');
+        const dropdownBtnR = document.getElementById('userDropdownBtnR');
+        const dropdownL = document.getElementById('userDropdownL');
+        const dropdownR = document.getElementById('userDropdownR');
+        
+        if (dropdownBtnL && dropdownL) {
+            // Toggle dropdown when button is clicked
+            dropdownBtnL.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownL.classList.toggle('hidden');
+                // Hide the other dropdown if it's open
+                if (dropdownR && !dropdownR.classList.contains('hidden')) {
+                    dropdownR.classList.add('hidden');
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdownBtnL.contains(e.target) && !dropdownL.contains(e.target)) {
+                    dropdownL.classList.add('hidden');
+                }
+            });
+            
+            // Handle product selection
+            const productOptions = dropdownL.querySelectorAll('a');
+            productOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedProduct = this.textContent.trim();
+                    dropdownBtnL.textContent = selectedProduct;
+                    dropdownL.classList.add('hidden');
+                    
+                    // You can add AJAX call here to filter by product
+                    // For now, we'll just reload the page with a query parameter
+                    const url = new URL(window.location.href);
+                    if (selectedProduct === 'Semua Produk') {
+                        url.searchParams.delete('product');
+                    } else {
+                        url.searchParams.set('product', selectedProduct);
+                    }
+                    window.location.href = url.toString();
+                });
+            });
+        }
+
+        if (dropdownBtnR && dropdownR) {
+            // Toggle dropdown when button is clicked
+            dropdownBtnR.addEventListener('click', function(e) {
+                e.stopPropagation();
+                dropdownR.classList.toggle('hidden');
+                // Hide the other dropdown if it's open
+                if (dropdownL && !dropdownL.classList.contains('hidden')) {
+                    dropdownL.classList.add('hidden');
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!dropdownBtnR.contains(e.target) && !dropdownR.contains(e.target)) {    
+                    dropdownR.classList.add('hidden');
+                }
+            });
+            
+            // Handle month selection
+            const monthOptions = document.querySelectorAll('.month-option');
+            monthOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const selectedMonth = this.textContent.trim();
+                    const selectedValue = this.getAttribute('data-value');
+                    dropdownBtnR.textContent = selectedMonth;
+                    dropdownR.classList.add('hidden');
+                    
+                    // You can add AJAX call here to filter by month
+                    // For now, we'll just reload the page with a query parameter
+                    const url = new URL(window.location.href);
+                    url.searchParams.set('month', selectedValue);
+                    window.location.href = url.toString();
+                });
+            });
+            
+            // Close dropdown when pressing Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape') {
+                    dropdownR.classList.add('hidden');
+                    dropdownL.classList.add('hidden');
+                }
+            });
+        }
+    </script>
 </body>
 </html>

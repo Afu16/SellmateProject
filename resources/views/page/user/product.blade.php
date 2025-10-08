@@ -14,7 +14,7 @@
     @vite('resources/js/app.js', 'resources/css/app.css')
 </head>
 <body class="bg-white">
-    <div class="p-6">
+    <div id="mobile-product" class="p-6 md:hidden">
         <!-- Header -->
         <div class="flex items-center mb-6">
             <button class="mr-4">
@@ -48,7 +48,7 @@
                             <!-- Add Button -->
                             <button     
                             onclick="window.location.href='{{ route('note', ['product' => $product->id]) }}'" 
-                            class=" h-10 mt-2  bg-secondary shadow-black border-2 border-black text-black py-1 px-[33vw] items-center rounded-full font-pilcrow font-pilcrow-bold text-sm hover:bg-[#C55A1A] transition-colors">
+                            class=" h-10 mt-2  bg-secondary shadow-black border-2 border-black text-black py-1 w-full items-center rounded-full font-pilcrow font-pilcrow-bold text-sm hover:bg-[#C55A1A] transition-colors">
                             Tambah
                         </button>
                     </div>

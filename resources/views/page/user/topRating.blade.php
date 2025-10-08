@@ -75,7 +75,7 @@
         'bg-red-500', 'bg-blue-500', 'bg-green-500',
         'bg-yellow-500', 'bg-purple-500', 'bg-pink-500', 'bg-indigo-500'
     ];
-    // Biar konsisten per user: pakai hash dari nama, bukan random
+    // Biar konsisten per user, pakai hash dari nama, bukan random
     $index = crc32($item->name) % count($colors);
     $bgColor = $colors[$index];
 @endphp
@@ -93,12 +93,12 @@
                         
                         <div class="flex-1 gap-0">
                             <p class="text-white text-[3.5vw] font-pilcrow font-pilcrow-heavy leading-none">{{ $item->name }}</p>
-                            <span class="text-[3vw] text-quaternary font-quicksand font-quicksand-regular">{{ $item->major }}</span>
+                            <span class="text-[3vw] text-nowrap text-quaternary font-quicksand font-quicksand-regular">{{ $item->major }}</span>
                         </div>
 
                         <!-- Nilai -->
                         <div class="w-1 text-center">
-                            <span class="text-white text-[3vw] font-quicksand font-pilcrow-heavy">{{ $grade }}</span>
+                            <span class="text-white text-[3vw] ml-[2vw] font-quicksand font-pilcrow-heavy">{{ $grade }}</span>
                         </div>
 
                         <!-- Total Omzet -->

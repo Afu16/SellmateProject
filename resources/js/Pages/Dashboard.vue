@@ -13,7 +13,7 @@ defineProps({
 <template>
     <Head title="Dashboard Siswa" />
     
-    <div>
+    <div class="block md:hidden">
         <!-- Success Notification -->
         <div
             v-if="$page.props.flash?.success"
@@ -40,12 +40,12 @@ defineProps({
         <div class="bg-[#f5f7fa] min-h-screen">
         <!-- Header with greeting -->
         <div class="bg-primary w-full border-b-10 border-black rounded-b-2xl p-5 shadow-sm mb-2 flex flex-row gap-10 min-h-[15svh]">
-            <div class="mt-3">
-                <h1 class="text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
-                <p class="text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
+            <div class="mt-5 sm:mt-3">
+                <h1 class="text-[15px] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
+                <p class=" text-[10px] sm:text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
-            <div class="mt-3">
-                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[3vw] items-center p-4 rounded-xl shadow-secondary bg-secondary border-2 border-black w-[32vw] h-[7vh] md:w-36 md:h-14 hover:bg-tertiary transition-colors">
+            <div class="mt-0">
+                <button id="userDropdownBtn" class="flex absolute top-8 right-5 gap-[2vw] items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
                     <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black mr-[1vw]">
                         {{ $page.props.auth.user.name.split(' ')[0] }}
                     </h3>
@@ -57,19 +57,19 @@ defineProps({
                 v-if="$page.props.auth.user.foto_link"
                 :src="`/storage/${$page.props.auth.user.foto_link}`"
                 alt="Profile Photo"
-                class=" w-10 h-10 object-cover"
+                class=" w-[10vw] h-10 object-cover"
             />
             <span v-else>
                 {{ $page.props.auth.user.name.charAt(0).toUpperCase() }}
             </span>
             </div>
-                    <svg class="w-4 h-4 text-black ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="absolute w-4 h-4 text-black right-[2vw] ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 
                 <!-- Dropdown Menu -->
-                <div id="userDropdown" class="absolute top-[8vh] right-[3vw] mt-2 -ml-4 w-[32vw] h-14 rounded-xl z-50 hidden">
+                <div id="userDropdown" class="absolute top-[8vh] right-5 mt-2 -ml-4 w-32 h-14 rounded-xl z-50 hidden">
                     <div class="py-2">
                         <a href="/settings" class="flex mb-2 mt-5 items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-gray-100 transition-colors">
                             <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -281,7 +281,7 @@ defineProps({
                                 <span>
                                     <div class="flex items-center gap-2">
                                         <p
-                                            class="text-sm font-pilcrow font-pilcrow-bold select-none"
+                                            class="text-[10px]   font-pilcrow font-pilcrow-bold select-none"
                                             :class="index < 3 ? 'text-white' : 'text-black'"
                                         >{{ item.name }}</p>
                                         <!-- <span v-if="index === 0">
@@ -296,13 +296,13 @@ defineProps({
                                     </div>
                                 </span>
                                 <p
-                                    class="text-xs font-quicksand font-quicksand-regular select-none"
+                                    class="text-[9px] font-quicksand font-quicksand-regular select-none"
                                     :class="index < 3 ? 'text-white/80' : 'text-gray-600'"
                                 >{{ item.major }}</p>
                             </div>
                             <div>
                                 <p
-                                    class="text-xs font-pilcrow font-pilcrow-bold select-none"
+                                    class="text-[7px] text-nowrap font-pilcrow font-pilcrow-bold select-none"
                                     :class="index < 3 ? 'text-white' : 'text-black'"
                                 >
                                     Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
