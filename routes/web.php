@@ -53,6 +53,7 @@ Route::post('/add/omzet', [TargetController::class, 'store'])->name('target.stor
 Route::get('/target', [TargetController::class, 'index'])->name('targetOmzet');
 
 Route::get('/top', [TopRatingController::class, 'index'])->name('topRating');
+Route::get('/top-rating', [App\Http\Controllers\TopRatingController::class, 'index'])->name('toprating.index');
 
 
 Route::get('/article-in', function () {
