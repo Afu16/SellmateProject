@@ -12,6 +12,7 @@ use App\Http\Controllers\TargetController;
 use App\Http\Controllers\TopRatingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EbookController;
+use App\Http\Controllers\VideoController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
@@ -62,9 +63,12 @@ Route::get('/article-in', function () {
 
 Route::get('/ebook', [EbookController::class, 'index'])->name('ebook');
 
-Route::get('/video', function () {
-    return view('page.user.video');
-})->name('video');
+Route::get('/videos/upload', [VideoController::class, 'uploadForm'])->name('videos.upload.form');
+Route::post('/videos/upload', [VideoController::class, 'uploadStore'])->name('videos.upload.store');
+
+Route::get('/videos', [VideoController::class, 'index'])->name('videos');
+Route::get('/videos/{video}', [VideoController::class, 'show'])->name('videos.show');
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/settings', [ProfileController::class, 'index'])->name('settings.index');

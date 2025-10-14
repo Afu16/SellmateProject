@@ -196,7 +196,7 @@ defineProps({
                 </a>
                 
                 <!-- Video -->
-                <a href="/video" class="flex flex-col items-center focus:outline-none">
+                <a href="/videos" class="flex flex-col items-center focus:outline-none">
                     <div class="bg-[#3C096C] border-2 border-black shadow-black rounded-full w-[65px] h-[65px] p-3 shadow-nav-icon flex items-center justify-center mb-2">
                         <img class="w-8 h-8" src="/assets/svg/newVideo-icon.svg" alt="Video Icon">
                     </div>
