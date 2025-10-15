@@ -43,7 +43,7 @@ function handleImageError() {
     <Link
         v-if="canLogin"
         :href="route('login')"
-        class="text-center mx-10  px-8  py-3 rounded-xl text-primary font-pilcrow font-pilcrow-heavy bg-white border-2 border-secondary hover:bg-secondary transition-colors shadow-lg text-lg"
+        class="text-center mx-10  px-8  py-3 rounded-xl text-black font-pilcrow font-pilcrow-heavy bg-white border-2 border-primary hover:bg-primary transition-colors shadow-lg text-lg"
     >
         Login
     </Link>

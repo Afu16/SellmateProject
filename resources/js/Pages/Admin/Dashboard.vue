@@ -253,7 +253,7 @@ defineProps({
                                             </svg>
                                         </div>
                                     </div>
-                                    <button class="w-[3.5vh] h-[3.5vh] border-2 border-black rounded-xl">
+                                    <button class="w-[3.5vh] h-[3.5vh] rounded-xl">
                                         <img src="/assets/svg/filter-icon.svg" alt="filter-icon" class="    justify-self-center">
                                     </button>
                         </div>

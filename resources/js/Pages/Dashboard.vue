@@ -229,7 +229,7 @@ defineProps({
                                     : index === 2
                                         ? 'background: linear-gradient(135deg, #b0b0b0 0%, #4a4a4a 100%);'
                                         : 'background: #fff;'"
-                            class="flex items-center p-4 mb-4 pb-4 border-b border-gray-500 rounded-xl"
+                            class="flex items-center p-4 mb-4 pb-4 border-2 border-gray-500 rounded-xl"
                         >
                             <div class="w-10 h-10 -ml-4 mr-2 flex items-center justify-center">
                                 <span

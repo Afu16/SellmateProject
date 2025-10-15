@@ -35,7 +35,7 @@ const submit = () => {
     <div class="text-center my-8">
         <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
         <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign In</h1>
-        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Enter valid username & password to continue</h3>
+        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Masukkan email dan password yang benar</h3>
     </div>
 
     

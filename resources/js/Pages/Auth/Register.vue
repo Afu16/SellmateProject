@@ -31,7 +31,7 @@ const submit = () => {
     <div class="text-center my-8">
         <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
         <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign Up</h1>
-        <h3 class="text-xl font-quicksand font-quicksand-regular mt-2">Use proper information to continue</h3>
+        <h3 class="text-md text-nowrap font-quicksand font-quicksand-regular mt-2">Gunakan informasi yang benar untuk mendaftar</h3>
     </div>
 
     <form @submit.prevent="submit">
@@ -146,8 +146,8 @@ const submit = () => {
             </div>
 
             <div class="flex items-center justify-end mt-4">
-                <Link :href="route('login')" class="underline text-sm text-white font-pilcrow font-pilcrow-heavy hover:text-gray-900">
-                    Already registered?
+                <Link :href="route('login')" class="text-sm text-white font-pilcrow font-pilcrow-heavy hover:text-gray-900">
+                    <span>Sudah punya akun?</span><span class="underline"> Login</span>
                 </Link>
             </div>
         </AuthenticationCard>
