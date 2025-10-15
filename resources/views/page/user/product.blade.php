@@ -34,7 +34,7 @@
                         <img 
                             src="{{ asset('assets/img/' . $product->product_photo) }}" 
                             alt="{{ $product->name }}"
-                            class="w-full h-44 object-cover rounded-xl"
+                            class="w-full h-64 object-cover rounded-xl"
                         >
                     </div>
                     
