@@ -66,7 +66,7 @@
 
                 <!-- Name -->
                 <div class="mb-3">
-                    <label class="block text-sm text-white font-pilcrow">Name</label>
+                    <label class="block text-sm text-white font-pilcrow">Nama</label>
                     <input type="text" name="name" value="{{ old('name', $user->name) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
@@ -80,28 +80,28 @@
 
                 <!-- Phone -->
                 <div class="mb-3">
-                    <label class="block text-sm text-white font-pilcrow">Phone</label>
+                    <label class="block text-sm text-white font-pilcrow">Nomor handphone</label>
                     <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
 
                 <!-- Address -->
                 <div class="mb-3">
-                    <label class="block text-sm text-white font-pilcrow">Address</label>
+                    <label class="block text-sm text-white font-pilcrow">Alamat</label>
                     <input type="text" name="address" value="{{ old('address', $user->address) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
 
                 <!-- School -->
                 <div class="mb-3">
-                    <label class="block text-sm text-white font-pilcrow">School</label>
+                    <label class="block text-sm text-white font-pilcrow">Sekolah</label>
                     <input type="text" name="school" value="{{ old('school', $user->school) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
 
                 <!-- Department -->
                 <div class="mb-3">
-                    <label class="block text-sm text-white font-pilcrow">Department</label>
+                    <label class="block text-sm text-white font-pilcrow">Jurusan</label>
                     <input type="text" name="major" value="{{ old('major', $user->major) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>

@@ -18,11 +18,11 @@
         </div>
     </div>
 
-    <div class="p-4 space-y-6 flex flex-col items-center">
+    <div class="p-4 space-y-2 flex flex-col items-center">
     @foreach($articles as $article)
     <a href="{{ route('articles.show', $article->id) }}">
-    <div class="relative h-52 w-full max-w-sm rounded-xl overflow-hidden shadow-lg bg-white">
-            <img class="w-full h-48 object-cover" src="{{ asset('assets/img/' . $article->thumbnail) }}" alt="{{ $article->title }}">
+    <div class="relative h-64 w-full max-w-sm rounded-xl overflow-hidden shadow-lg bg-white">
+            <img class="w-full h-64 object-cover" src="{{ asset('assets/img/' . $article->thumbnail) }}" alt="{{ $article->title }}">
             
             <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black via-black/70 to-transparent h-1/2"></div>
             

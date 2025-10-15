@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <select 
                         name="filter"
                         onchange="this.form.submit()"
-                        class="text-sm border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-[1.5vh] px-[2.5vw] rounded-xl shadow-md outline-none cursor-pointer"
+                        class="text-sm border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-[1.5vh] px-[9vw] rounded-xl shadow-md outline-none cursor-pointer"
                     >
                         <option value="bulan_ini" {{ request('filter') == 'bulan_ini' ? 'selected' : '' }}>Bulan Ini</option>
                         <option value="bulan_lalu" {{ request('filter') == 'bulan_lalu' ? 'selected' : '' }}>Bulan Lalu</option>

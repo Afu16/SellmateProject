@@ -33,7 +33,7 @@
 <div class="grid grid-cols-1 gap-4">
     @foreach($ebooks as $ebook)
         <div class="relative rounded-xl w-[100vw] overflow-hidden shadow-md bg-gray-900">
-            <img src="{{ asset($ebook->thumbnail) }}" alt="{{ $ebook->title }}" class="w-full h-52 object-cover opacity-70">
+            <img src="{{ asset($ebook->thumbnail) }}" alt="{{ $ebook->title }}" class="w-full h-64 object-cover opacity-70">
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
             <div class="absolute bottom-0 left-0 p-4 w-full">
             <div class="flex">

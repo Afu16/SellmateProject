@@ -27,7 +27,7 @@
         </div>
         
         <!-- Tab Navigation -->
-        <div class="flex gap-[18vw] mb-6">
+        <div class="flex gap-[4vw] mb-6">
             <button class=" w-56 px-6 py-2 rounded-xl shadow-black border-2 border-black bg-[#DD661D] text-white font-pilcrow font-pilcrow-bold shadow-md">Inspirasi</button>
             <button class=" w-56 px-6 py-2 rounded-xl shadow-black border-2 border-black text-black font-pilcrow font-pilcrow-bold bg-white shadow-md">Tips</button>
         </div>
