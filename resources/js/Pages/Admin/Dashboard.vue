@@ -258,7 +258,6 @@ defineProps({
                                     </button>
                         </div>
 
-
                         <!-- Table History Omzet -->
                         <!-- Table Header History Omzet -->
                         <div class="flex justify-between items-center p-1 mb-2">
@@ -287,119 +286,6 @@ defineProps({
                 </div>
             </div>
         </div>
-            
-            <!-- Top Omset Card -->
-            <template v-if="topOmzet && topOmzet.length > 0">
-            <div class="p-5">
-                <div class="bg-white border-2 border-black shadow-black rounded-2xl p-5 shadow-sm">
-                    <div class="flex justify-between items-center mb-4">
-                        <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black text-nowrap select-none">Top Omset</h2>
-                        <button class="bg-secondary text-nowrap select-none shadow-black border-2 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
-                            Bulan Ini
-                            <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-                            </svg>
-                        </button>
-                    </div>
-                    
-                    <!-- Top Performer -->
-                        <div
-                            v-for="(item, index) in topOmzet"
-                            :key="index"
-                            :style="index === 0
-                                ? 'background: linear-gradient(135deg, #240046, #c04aff, #240046, #c04aff);background-size: 400% 400%;animation: gradient 5s linear infinite;'
-                                : index === 1
-                                    ? 'background: linear-gradient(135deg, #ff7300, #dd661d, #ff7300);background-size: 400% 400%;animation: gradient 5s ease infinite;'
-                                    : index === 2
-                                        ? 'background: linear-gradient(135deg, #b0b0b0 0%, #4a4a4a 100%);'
-                                        : 'background: #fff;'"
-                            class="flex items-center p-4 mb-4 pb-4 border-b border-gray-500 rounded-xl"
-                        >
-                            <div class="w-10 h-10 -ml-4 mr-2 flex items-center justify-center">
-                                <span
-                                    v-if="index === 0"
-                                    class="w-8 h-8 flex items-center justify-center rounded-full font-pilcrow font-pilcrow-bold text-white text-center select-none animate-gradient-move"
-                                    style="background: linear-gradient(135deg, #a103fc, #5A189A, #240046, #5A189A); background-size: 200% 200%; box-shadow: 0 0 8px #a947ff, 0 0 16px #5A189A;"
-                                    title="Juara 1"
-                                >
-                                    {{ index + 1 }}
-                                </span>
-                                <span
-                                    v-else-if="index === 1"
-                                    class="w-8 h-8 flex items-center justify-center rounded-full font-pilcrow font-pilcrow-bold text-white text-center select-none animate-gradient-move"
-                                    style="background: linear-gradient(135deg, #ff6000, #dd661d, #994817, #dd661d); background-size: 200% 200%; box-shadow: 0 0 8px #ffa973, 0 0 16px #dd661d;"
-                                    title="Juara 2"
-                                >
-                                    {{ index + 1 }}
-                                </span>
-                                <span
-                                    v-else-if="index === 2"
-                                    class="w-8 h-8 flex items-center justify-center rounded-full font-pilcrow font-pilcrow-bold text-white text-center select-none animate-gradient-move"
-                                    style="background: linear-gradient(135deg, #949494, #b0b0b0, #525252, #b0b0b0); background-size: 200% 200%; box-shadow: 0 0 8px #525252, 0 0 16px #b0b0b0;"
-                                    title="Juara 3"
-                                >
-                                    {{ index + 1 }}
-                                </span>
-                                <p
-                                    v-else
-                                    class="text-black font-pilcrow font-pilcrow-bold text-center select-none"
-                                >
-                                    {{ index + 1 }}.
-                                </p>
-                            </div>
-                                <div class="w-10 h-10 rounded-full flex items-center justify-center font-bold overflow-hidden mr-3 border-2 border-black">
-                                <img
-                                    v-if="item.foto_link"
-                                    :src="item.foto_link.startsWith('http') ? item.foto_link : '/storage/' + item.foto_link"
-                                    :alt="item.name"
-                                    class="w-full h-full object-cover"
-                                />
-                                <span
-                                    v-else
-                                    class="w-full h-full flex items-center justify-center bg-primary text-white"
-                                >
-                                    {{ item.name.charAt(0).toUpperCase() }}
-                                </span>
-                                </div>
-                            <div class="flex-1">
-                                <span>
-                                    <div class="flex items-center gap-2">
-                                        <p
-                                            class="text-[10px]   font-pilcrow font-pilcrow-bold select-none"
-                                            :class="index < 3 ? 'text-white' : 'text-black'"
-                                        >{{ item.name }}</p>
-                                        <!-- <span v-if="index === 0">
-                                            <img src="/assets/img/obsidian-medal.png" alt="Obsidian Medal" class="w-5 h-5 object-cover" title="Juara 1 (Obsidian Medal)">
-                                        </span>
-                                        <span v-else-if="index === 1">
-                                            <img src="/assets/img/gold-medal.png" alt="Gold Medal" class="w-5 h-5 object-cover" title="Juara 2 (Gold Medal)">
-                                        </span>
-                                        <span v-else-if="index === 2">
-                                            <img src="/assets/img/silver-medal.png" alt="Silver Medal" class="w-5 h-5 object-cover" title="Juara 3 (Silver Medal)">
-                                        </span> -->
-                                    </div>
-                                </span>
-                                <p
-                                    class="text-[9px] font-quicksand font-quicksand-regular select-none"
-                                    :class="index < 3 ? 'text-white/80' : 'text-gray-600'"
-                                >{{ item.major }}</p>
-                            </div>
-                            <div>
-                                <p
-                                    class="text-[7px] text-nowrap font-pilcrow font-pilcrow-bold select-none"
-                                    :class="index < 3 ? 'text-white' : 'text-black'"
-                                >
-                                    Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
-                                </p>
-                            </div>
-                        </div>
-                        
-                        <a href="/top" class="bg-secondary text-center justify-self-center shadow-black border-2 mt-5 border-black text-nowrap text-black px-24 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
-                            Lihat Semua
-                        </a>
-                    </div>
-                </div>
-            </template>
         </div>
     </div>
 </template>
