@@ -50,8 +50,10 @@ Route::get('/add/omzet', function () {
 })->name('addOmzet');
 Route::post('/add/omzet', [TargetController::class, 'store'])->name('target.store');
 
-
 Route::get('/target', [TargetController::class, 'index'])->name('targetOmzet');
+Route::delete('/target/{id}', [TargetController::class, 'destroy'])->name('target.destroy');
+Route::get('/target/{id}/edit', [TargetController::class, 'edit'])->name('target.edit');
+Route::put('/target/{id}', [TargetController::class, 'update'])->name('target.update');
 
 Route::get('/top', [TopRatingController::class, 'index'])->name('topRating');
 Route::get('/top-rating', [App\Http\Controllers\TopRatingController::class, 'index'])->name('toprating.index');

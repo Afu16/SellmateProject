@@ -40,33 +40,41 @@
             <a href="{{ url('/dashboard') }}" class="mr-4">
            <img class="w-8 h-8" src="{{ asset('assets/svg/arrow-icon.svg') }}" alt="arrow">
             </a>
-            <h1 class=" text-2xl font-bold text-black text-nowrap select-none">Sesuaikan Target Omzetmu</h1>
+            <h1 class=" text-2xl font-bold text-black text-nowrap select-none">
+                {{ isset($target) ? 'Edit Target Omzetmu' : 'Sesuaikan Target Omzetmu' }}
+            </h1>
         </div>
 
         <div class="rounded-xl mt-10 border-2 border-black shadow-black p-5">
-            <form action="{{ route('target.store') }}" method="post">
-                @csrf
-                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Target</label>
-                <input type="text" name="title" value="{{ old('title') }}" placeholder="Mobil" class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-pilcrow font-pilcrow-bold text-xs text-black bg-white">
-                <!-- Timeline Target -->
-                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Timeline Target</label>
-                <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
-                    <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-secondary border-r border-black" style="border-bottom-left-radius: 12px; border-top-left-radius: 12px;">
-                        3 Bulan
-                    </button>
-                    <button type="button" id="btn-6bulan" onclick="selectTimeline('6')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-white border-r border-black">
-                        6 Bulan
-                    </button>
-                    <button type="button" id="btn-12bulan" onclick="selectTimeline('12')" class="flex-1 py-2 text-sm font-inter font-inter-regular text-black focus:outline-none bg-white" style="border-bottom-right-radius: 12px; border-top-right-radius: 12px;">
-                        12 Bulan
-                    </button>
-                </div>
-                <input type="hidden" name="timeline" id="timeline" value="{{ old('timeline', 3) }}">
+            <form action="{{ isset($target) ? route('target.update', $target->id) : route('target.store') }}" method="post">
+            @csrf
+            @if(isset($target))
+                @method('PUT')
+            @endif
 
-                <!-- Jumlah Target Omset -->
-                <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>                
-                <input type="text" name="target" id="target" value="{{ old('target') }}" 
-                class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter font-inter-regular text-black bg-white" 
+            <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2">Nama Target</label>
+            <input type="text" name="title" value="{{ old('title', $target->title ?? '') }}" placeholder="Mobil"
+                class="w-full mb-2 px-3 py-2 border border-black rounded-lg font-pilcrow font-pilcrow-bold text-xs text-black bg-white">
+
+            <!-- Timeline Target -->
+            <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Timeline Target</label>
+            <div class="flex gap-0 border border-black rounded-xl overflow-hidden mb-4 w-full">
+                <button type="button" id="btn-3bulan" onclick="selectTimeline('3')" class="flex-1 py-2 text-sm font-inter text-black bg-white border-r border-black">
+                    3 Bulan
+                </button>
+                <button type="button" id="btn-6bulan" onclick="selectTimeline('6')" class="flex-1 py-2 text-sm font-inter text-black bg-white border-r border-black">
+                    6 Bulan
+                </button>
+                <button type="button" id="btn-12bulan" onclick="selectTimeline('12')" class="flex-1 py-2 text-sm font-inter text-black bg-white">
+                    12 Bulan
+                </button>
+            </div>
+            <input type="hidden" name="timeline" id="timeline" value="{{ old('timeline', $target->timeline ?? 3) }}">
+
+            <!-- Jumlah Target Omset -->
+            <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>                
+            <input type="text" name="target" id="target" value="{{ old('target', $target->target ?? '') }}" 
+                class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter text-black bg-white" 
                 placeholder="10000000">
 
                 <!-- Action Buttons -->
@@ -75,51 +83,48 @@
                         Batal
                     </button>
                     <button type="submit" class=" shadow-black flex-1 py-2 rounded-xl bg-secondary text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-tertiary">
-                        Simpan
+                        {{ isset($target) ? 'Perbarui' : 'Simpan' }}
                     </button>
                 </div>
-            </div>
-        </form>
+            </form>
+        </div>
     </div>
-            <script>
-                function selectTimeline(val) {
-                    document.getElementById('timeline').value = val;
 
-                    const buttons = ['btn-3bulan', 'btn-6bulan', 'btn-12bulan'];
-                    buttons.forEach(id => {
-                        document.getElementById(id).classList.remove('bg-secondary', 'text-black');
-                        document.getElementById(id).classList.add('bg-white', 'text-black');
-                    });
+    <script>
+    function selectTimeline(val) {
+        document.getElementById('timeline').value = val;
 
-                    const selectedBtn = document.getElementById(`btn-${val}bulan`);
-                    selectedBtn.classList.add('bg-secondary', 'text-black');
-                    selectedBtn.classList.remove('bg-white', 'text-black');               
-                }
+        const buttons = ['btn-3bulan', 'btn-6bulan', 'btn-12bulan'];
+        buttons.forEach(id => {
+            const btn = document.getElementById(id);
+            btn.classList.remove('bg-secondary');
+            btn.classList.add('bg-white');
+        });
 
-                const target = document.getElementById('target');
+        const selectedBtn = document.getElementById(`btn-${val}bulan`);
+        selectedBtn.classList.add('bg-secondary');
+        selectedBtn.classList.remove('bg-white');
+    }
 
-                if(target){
-                    // format pas ngetik
-                    target.addEventListener('input', function() {
-                        let value = this.value.replace(/\D/g, '');
-                        this.value = value ? new Intl.NumberFormat('id-ID').format(value) : '';
-                    });
+    window.onload = function() {
+        let oldTimeline = "{{ old('timeline', $target->timeline ?? 3) }}";
+        selectTimeline(oldTimeline);
 
-                    // hapus titik sebelum submit
-                    target.form.addEventListener('submit', function() {
-                        target.value = target.value.replace(/\D/g, '');
-                    });
-                }
+        const targetInput = document.getElementById('target');
+        if(targetInput){
+            targetInput.addEventListener('input', function() {
+                let value = this.value.replace(/\D/g, '');
+                this.value = value ? new Intl.NumberFormat('id-ID').format(value) : '';
+            });
+            targetInput.form.addEventListener('submit', function() {
+                targetInput.value = targetInput.value.replace(/\D/g, '');
+            });
 
-                window.onload = function() {
-                    let oldTimeline = "{{ old('timeline', 3) }}";
-                    selectTimeline(oldTimeline);
-
-                    if(target && target.value){
-                        target.value = new Intl.NumberFormat('id-ID').format(target.value);
-                    }
-                }
-            </script>
-
+            if(targetInput.value){
+                targetInput.value = new Intl.NumberFormat('id-ID').format(targetInput.value);
+            }
+        }
+    };
+    </script>
 </body>
 </html>
