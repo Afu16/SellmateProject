@@ -4,7 +4,9 @@
     "type": "module",
     "scripts": {
         "build": "vite build",
-        "dev": "vite"
+        "dev": "vite",
+        "start": "node server.js",
+        "setup": "node setup.js"
     },
     "devDependencies": {
         "@inertiajs/vue3": "^2.0",
@@ -20,5 +22,9 @@
         "tailwindcss": "^3.4.17",
         "vite": "^6.2.4",
         "vue": "^3.3.13"
+    },
+    "dependencies": {
+        "chalk": "^5.6.2",
+        "open": "^10.2.0"
     }
 }
