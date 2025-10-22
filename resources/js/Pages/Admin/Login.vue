@@ -32,20 +32,15 @@ const submit = () => {
 <template>
     <Head title="Admin Login" />
 
-    <div class="text-center my-8">
-        <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
-        <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Admin Sign In</h1>
-        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Enter valid admin credentials to continue</h3>
-    </div>
 
     <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
         {{ status }}
     </div>
-    
-    <form @submit.prevent="submit">
-        <AuthenticationCard>
-            <div>
-                <InputLabel for="email" value="Email" />
+    <div class="flex gap-2">
+        <div class="w-[40%] bg-primary p-6 h-screen">
+            <form class="mt-[50%]" @submit.prevent="submit">
+                    <div>
+                        <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
                     v-model="form.email"
@@ -83,9 +78,15 @@ const submit = () => {
                     Forgot your password?
                 </Link>
             </div>
-        </AuthenticationCard>
-        <PrimaryButton class="ms-4 px-[40vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+        <PrimaryButton class="text-nowrap px-[40%]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
             Log in
         </PrimaryButton>
     </form>
+</div>
+    <div class="w-[60%] p-6">
+        <h1 class="text-2xl font-pilcrow font-pilcrow-heavy">Kelola produk dengan mudah, monitor pendapatan dengan cermat</h1>
+
+        <img class="mt-5" src="/assets/svg/adminLogin-banner.svg" alt="Admin Login Banner">
+    </div>
+</div>
 </template>
