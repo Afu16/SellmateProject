@@ -64,6 +64,7 @@ Route::get('/article-in', function () {
 })->name('article-in');
 
 Route::get('/ebook', [EbookController::class, 'index'])->name('ebook');
+Route::get('/ebooks/filter', [EbookController::class, 'filter'])->name('ebooks.filter');
 
 Route::get('/videos/upload', [VideoController::class, 'uploadForm'])->name('videos.upload.form');
 Route::post('/videos/upload', [VideoController::class, 'uploadStore'])->name('videos.upload.store');
