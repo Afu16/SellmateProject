@@ -31,17 +31,19 @@
 <!-- Foto -->
 <div class="bg-white p-6 flex justify-center">
     <div class="relative">
-        @if($user->foto_link)
-            <!-- Foto Profil -->
-            <img src="{{ asset('storage/'.$user->foto_link) }}"
-                 class="w-32 h-32 rounded-full object-cover border-2 border-black shadow-black"
-                 alt="Foto Profil">
-        @else
-            <!-- Inisial Nama -->
-            <div class="w-32 h-32 rounded-full flex items-center justify-center bg-gray-400 text-black text-4xl font-bold border-2 border-black shadow-black">
-                {{ strtoupper(substr($user->name, 0, 1)) }}
-            </div>
-        @endif
+        <div id="preview-container">
+            @if($user->foto_link)
+                <img id="preview-image"
+                     src="{{ asset('storage/'.$user->foto_link) }}"
+                     class="w-32 h-32 rounded-full object-cover border-2 border-black shadow-black"
+                     alt="Foto Profil">
+            @else
+                <div id="preview-initial"
+                     class="w-32 h-32 rounded-full flex items-center justify-center bg-gray-400 text-black text-4xl font-bold border-2 border-black shadow-black">
+                    {{ strtoupper(substr($user->name, 0, 1)) }}
+                </div>
+            @endif
+        </div>
 
         <!-- Input file hidden -->
         <input type="file" name="foto_link" id="foto_link" class="hidden" accept="image/*">
@@ -58,6 +60,26 @@
         </label>
     </div>
 </div>
+
+    <script>
+    document.getElementById('foto_link').addEventListener('change', function (event) {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                // Hapus inisial kalo ada
+                const previewContainer = document.getElementById('preview-container');
+                previewContainer.innerHTML = `
+                    <img id="preview-image"
+                         src="${e.target.result}"
+                         class="w-32 h-32 rounded-full object-cover border-2 border-black shadow-black"
+                         alt="Foto Profil">
+                `;
+            }
+            reader.readAsDataURL(file);
+        }
+    });
+    </script>
 
         <!-- Informasi Pribadi -->
         <div class="bg-white p-6">
