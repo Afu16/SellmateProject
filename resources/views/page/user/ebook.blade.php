@@ -55,6 +55,45 @@
     @endforeach
 </div>
 
-    
+ <script>
+document.addEventListener("DOMContentLoaded", function() {
+    const searchInput = document.getElementById('search');
+    const ebookList = document.querySelector('.grid');
+    const buttons = document.querySelectorAll('button');
+
+    let kategoriAktif = '';
+
+    // Realtime search tanpa enter
+    searchInput.addEventListener('input', function() {
+        fetchEbooks(searchInput.value, kategoriAktif);
+    });
+
+    // Tombol kategori (Edukasi, Inspirasi, Tips)
+    buttons.forEach(btn => {
+        btn.addEventListener('click', function() {
+            buttons.forEach(b => {
+                b.classList.remove('bg-secondary', 'text-white');
+                b.classList.add('bg-white', 'text-black');
+            });
+            this.classList.remove('bg-white', 'text-black');
+            this.classList.add('bg-secondary', 'text-white');
+            kategoriAktif = this.textContent.trim();
+            fetchEbooks(searchInput.value, kategoriAktif);
+        });
+    });
+
+    function fetchEbooks(search = '', kategori = '') {
+        fetch(`{{ route('ebooks.filter') }}?search=${encodeURIComponent(search)}&kategori=${encodeURIComponent(kategori)}`)
+            .then(res => res.json())
+            .then(data => {
+                ebookList.innerHTML = data.html || '<p class="text-center text-gray-500">Tidak ada ebook ditemukan.</p>';
+            })
+            .catch(() => {
+                ebookList.innerHTML = '<p class="text-center text-red-500">Gagal memuat data.</p>';
+            });
+    }
+});
+</script>
+   
 </body>
 </html>
