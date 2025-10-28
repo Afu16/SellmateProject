@@ -13,7 +13,7 @@ defineProps({
 <template>
     <Head title="Dashboard Siswa" />
     
-    <div class="">
+    <div class="hidden md:block">
         <!-- Success Notification -->
         <div
             v-if="$page.props.flash?.success"
@@ -39,7 +39,7 @@ defineProps({
         
         <div class="bg-[#f5f7fa] min-h-screen">
         <!-- Header with greeting -->
-        <div class="bg-primary w-full p-5 shadow-sm mb-2 flex flex-row gap-10 min-h-[15svh]">
+        <div class="bg-primary w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-5 sm:mt-3">
                 <h1 class="text-[30px] hidden md:block mt-[1.5vh] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-rounded text-white">Sellmate</h1>  
                 <h1 class="text-[15px] md:hidden sm:text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
@@ -94,74 +94,127 @@ defineProps({
 
         <div class="flex flex-row">
             <div class="w-[15%] -ml-2 flex flex-col border-r-2 h-screen border-black">
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                <a
+                    href="/admin/dashboard"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/dashboard',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
                     <img src="/assets/svg/dashboard-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
                     Dashboard
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/userManage-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                <a
+                    href="/admin/users"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/users',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
+                    <img src="/assets/svg/userManage-icon.svg" alt="User Management" class="w-[2vw] h-[2vh] mr-1">
                     User Management
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/product-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                <a
+                    href="/admin/products"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/products',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
+                    <img src="/assets/svg/product-icon.svg" alt="Produk" class="w-[2vw] h-[2vh] mr-1">
                     Produk
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/totalOmzet2-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                <a
+                    href="/admin/omzet"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/omzet',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
+                    <img src="/assets/svg/totalOmzet2-icon.svg" alt="Total Omzet" class="w-[2vw] h-[2vh] mr-1">
                     Total Omzet
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/blackVideo-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                <a
+                    href="/admin/videos"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/videos',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >   
+                    <img src="/assets/svg/blackVideo-icon.svg" alt="Video" class="w-[2vw] h-[2vh] mr-1">
                     Video
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/blackEbook-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                <a
+                    href="/admin/ebooks"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/ebooks',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
+                    <img src="/assets/svg/blackEbook-icon.svg" alt="Ebook" class="w-[2vw] h-[2vh] mr-1">
                     Ebook
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/blackArticle-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                <a
+                    href="/admin/articles"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/articles',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
+                    <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">
                     Artikel
                 </a>
-                <a href="/admin/dashboard" class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
-                    <img src="/assets/svg/blackHistory-icon.svg" alt="Dashboard" class="w-[1.5vw] h-[1.5vh] mr-1">
+                <a
+                    href="/admin/history"
+                    :class="{
+                        'bg-gray-300': $page.url === '/admin/history',
+                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
+                    }"
+                >
+                    <img src="/assets/svg/blackHistory-icon.svg" alt="Histori" class="w-[1.5vw] h-[1.5vh] mr-1">
                     Histori
                 </a>
-            </div>
+                </div>
             <div class="w-full p-2">
                 <h1 class="text-big font-pilcrow font-pilcrow-rounded font-bold text-black">Dashboard</h1>
-                <div class="absolute w-[12w] h-[4.5vh] bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black top-[23vh] right-[3vh] rounded-xl p-2">
-                    <span>Export <img src="/assets/svg/download-icon.svg" alt="download-icon" class="w-[2vw] h-4 inline ml-1"></span>
+
+                <div class="flex gap-2 absolute w-[12w] h-[4.5vh] right-[1.5vh] top-[23vh]">
+                    <div class="bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black rounded-xl p-2">
+                        <span>Agustus 2025 <img src="/assets/svg/calendar-icon.svg" alt="download-icon" class="w-[2vw] h-4 inline ml-1"></span>
+                    </div>
+                    <div class="bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black rounded-xl p-2">
+                        <span>Export <img src="/assets/svg/download-icon.svg" alt="download-icon" class="w-[2vw] h-4 inline ml-1"></span>
+                    </div>
                 </div>
-                <div class="absolute w-[12w] h-[4.5vh] bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black top-[23vh] right-[14vh] rounded-xl p-2">
-                    <span>Agustus 2025 <img src="/assets/svg/calendar-icon.svg" alt="download-icon" class="w-[2vw] h-4 inline ml-1"></span>
-                </div>
+
                 <p class="text-xs font-quicksand font-quicksand-regular text-black">
                     Tetap monitoring progres dan update aktivitas pendapatan Tefa
                 </p>
+
                 <div class="flex flex-row gap-5">
                     <div class="w-1/2 mt-5">
                         <div class="grid-cols-3 items-center justify-center justify-self-center grid gap-4">
-                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-2xl p-2 shadow-sm">
+                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/totalOmzet2-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Total Omzet</span>
                                 <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">Rp 1.000.000</p>
                             </div>
-                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-2xl p-2 shadow-sm">
+                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/productTefa-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Produk Tefa</span>
                                 <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">4 Produk</p>
                             </div>
-                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-2xl p-2 shadow-sm">
+                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/totalUser-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Total User</span>
                                 <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">20 User</p>
                             </div>
-                              <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-2xl p-2 shadow-sm">
+                              <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackVideo-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Inspirasi, Tips</span>
                                 <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">9 Video</p>
                             </div>
-                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-2xl p-2 shadow-sm">
+                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackEbook-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] text-black inline filter-black"> Edukasi</span>
                                 <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">4 Ebook</p>
                             </div>
-                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-2xl p-2 shadow-sm">
+                            <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackArticle-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Artikel</span>
                                 <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">6 Artikel</p>
                             </div>
@@ -228,34 +281,36 @@ defineProps({
                     <div class="w-1/2 mt-5 border-2 border-black shadow-black rounded-lg p-2">
                         <div class="flex justify-between items-center">
                             <h1 class="text-[1.5vw] font-pilcrow font-pilcrow-heavy mt-1">Histori Transaksi Omzet</h1>
-                             <div class="flex items-center gap-2">
-                                        <div class="relative">
-                                            <input
-                                                type="search"
-                                                name="search"
-                                                id="search"
-                                                placeholder="Search"
-                                                class="w-[15vw] h-[3.5vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
-                                            />
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                stroke="currentColor"
-                                            >
-                                                <path
-                                                    stroke-linecap="round"
-                                                    stroke-linejoin="round"
-                                                    stroke-width="2"
-                                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                                />
-                                            </svg>
-                                        </div>
-                                    </div>
-                                    <button class="w-[3.5vh] h-[3.5vh] rounded-xl">
-                                        <img src="/assets/svg/filter-icon.svg" alt="filter-icon" class="    justify-self-center">
-                                    </button>
+                            <div class="flex">
+                                <div class="flex items-center gap-2">
+                                           <div class="relative">
+                                               <input
+                                                   type="search"
+                                                   name="search"
+                                                   id="search"
+                                                   placeholder="Search"
+                                                   class="w-[15vw] h-[3.5vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
+                                               />
+                                               <svg
+                                                   xmlns="http://www.w3.org/2000/svg"
+                                                   class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
+                                                   fill="none"
+                                                   viewBox="0 0 24 24"
+                                                   stroke="currentColor"
+                                               >
+                                                   <path
+                                                       stroke-linecap="round"
+                                                       stroke-linejoin="round"
+                                                       stroke-width="2"
+                                                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                                                   />
+                                               </svg>
+                                           </div>
+                                       </div>
+                                       <button class="w-[3.5vh] h-[3.5vh] relative top-[0.5vh] rounded-xl">
+                                           <img src="/assets/svg/filter-icon.svg" alt="filter-icon" class="    justify-self-center">
+                                       </button>
+                            </div>
                         </div>
 
                         <!-- Table History Omzet -->

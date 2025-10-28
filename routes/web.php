@@ -97,6 +97,43 @@ Route::prefix('admin')->name('admin.')->group(function () {
     Route::middleware(['auth', 'admin'])->group(function () {
         Route::get('/dashboard', [AdminDashboardController::class, 'index'])->name('dashboard');
         
-        // Add more admin routes here
+        // User Management Routes
+        Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users');
+        Route::post('/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
+        Route::put('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
+        Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+        
+        // Product Management Routes
+        Route::get('/products', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products');
+        Route::post('/products', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store');
+        Route::put('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update');
+        Route::delete('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('products.destroy');
+        
+        // Omzet Management Routes
+        Route::get('/omzet', [\App\Http\Controllers\Admin\OmzetController::class, 'index'])->name('omzet');
+        Route::post('/omzet', [\App\Http\Controllers\Admin\OmzetController::class, 'store'])->name('omzet.store');
+        Route::put('/omzet/{id}', [\App\Http\Controllers\Admin\OmzetController::class, 'update'])->name('omzet.update');
+        Route::delete('/omzet/{id}', [\App\Http\Controllers\Admin\OmzetController::class, 'destroy'])->name('omzet.destroy');
+        
+        // Video Management Routes
+        Route::get('/videos', [\App\Http\Controllers\Admin\VideoController::class, 'index'])->name('videos');
+        Route::post('/videos', [\App\Http\Controllers\Admin\VideoController::class, 'store'])->name('videos.store');
+        Route::put('/videos/{id}', [\App\Http\Controllers\Admin\VideoController::class, 'update'])->name('videos.update');
+        Route::delete('/videos/{id}', [\App\Http\Controllers\Admin\VideoController::class, 'destroy'])->name('videos.destroy');
+        
+        // Ebook Management Routes
+        Route::get('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'index'])->name('ebooks');
+        Route::post('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'store'])->name('ebooks.store');
+        Route::put('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'update'])->name('ebooks.update');
+        Route::delete('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'destroy'])->name('ebooks.destroy');
+        
+        // Article Management Routes
+        Route::get('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'index'])->name('articles');
+        Route::post('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'store'])->name('articles.store');
+        Route::put('/articles/{id}', [\App\Http\Controllers\Admin\ArticleController::class, 'update'])->name('articles.update');
+        Route::delete('/articles/{id}', [\App\Http\Controllers\Admin\ArticleController::class, 'destroy'])->name('articles.destroy');
+        
+        // History Routes
+        Route::get('/history', [\App\Http\Controllers\Admin\HistoryController::class, 'index'])->name('history');
     });
 });
