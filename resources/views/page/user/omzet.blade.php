@@ -18,32 +18,19 @@
 
     {{-- Dropdown Left --}}
     <div id="userDropdownL" class="fixed z-50 bottom-16 text-xs left-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
-        <div class="py-1">
-            <h1 href="#" class="block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium hover:bg-gray-100">Semua Produk</h1>
-            <input type="date" name="" id="" class="rounded-xl ml-2 px-4 py-2 text-sm font-pilcrow font-pilcrow-medium">
+        <div class="py-1 text-center">
+            <h1 id="selectedDateLabel" class="block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium">Tanggal</h1>
+            <input type="date" id="datePicker" class="rounded-xl mx-2 px-2 py-1 text-sm font-pilcrow font-pilcrow-medium w-[85%]">
         </div>
     </div>
 
     {{-- Dropdown Right --}}
-    <div id="userDropdownR" class="fixed z-50 bottom-16 right-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
-         <div class="py-1">
-             @php
-                 $currentMonth = now();
-                 $months = [];
-                 for ($i = 0; $i < 12; $i++) {
-                     $month = now()->subMonths($i);
-                     $months[] = [
-                         'name' => $month->format('F Y'),
-                         'value' => $month->format('Y-m')
-                     ];
-                 }
-             @endphp
-             
-             @foreach($months as $month)
-                 <a href="#" data-value="{{ $month['value'] }}" class="month-option block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium hover:bg-gray-100 border-b border-gray-200">{{ $month['name'] }}</a>
-             @endforeach
-         </div>
-     </div>
+<div id="userDropdownR" class="fixed z-50 bottom-16 right-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
+    <div class="py-1 text-center">
+        <h1 id="selectedDateRight" class="block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium">Tanggal</h1>
+        <input type="date" id="datePickerRight" class="rounded-xl mx-2 px-2 py-1 text-sm font-pilcrow font-pilcrow-medium w-[85%]">
+    </div>
+</div>
 
     <div class="fixed overflow-hidden -ml-6 px-6 w-full h-16 bg-primary-300 bottom-0 z-10">
         <div class="flex flex-row mt-4">
@@ -156,101 +143,134 @@
     @endif
 @endforeach
 
-
 </div>
 
-    
-    <script>
-        // Dropdown JavaScript
-        const dropdownBtnL = document.getElementById('userDropdownBtnL');
-        const dropdownBtnR = document.getElementById('userDropdownBtnR');
-        const dropdownL = document.getElementById('userDropdownL');
-        const dropdownR = document.getElementById('userDropdownR');
-        
-        if (dropdownBtnL && dropdownL) {
-            // Toggle dropdown when button is clicked
-            dropdownBtnL.addEventListener('click', function(e) {
-                e.stopPropagation();
-                dropdownL.classList.toggle('hidden');
-                // Hide the other dropdown if it's open
-                if (dropdownR && !dropdownR.classList.contains('hidden')) {
-                    dropdownR.classList.add('hidden');
-                }
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!dropdownBtnL.contains(e.target) && !dropdownL.contains(e.target)) {
-                    dropdownL.classList.add('hidden');
-                }
-            });
-            
-            // Handle product selection
-            const productOptions = dropdownL.querySelectorAll('a');
-            productOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const selectedProduct = this.textContent.trim();
-                    dropdownBtnL.textContent = selectedProduct;
-                    dropdownL.classList.add('hidden');
-                    
-                    // You can add AJAX call here to filter by product
-                    // For now, we'll just reload the page with a query parameter
-                    const url = new URL(window.location.href);
-                    if (selectedProduct === 'Semua Produk') {
-                        url.searchParams.delete('product');
-                    } else {
-                        url.searchParams.set('product', selectedProduct);
-                    }
-                    window.location.href = url.toString();
-                });
-            });
-        }
+<script>
+    const dropdownBtnL = document.getElementById('userDropdownBtnL');
+    const dropdownBtnR = document.getElementById('userDropdownBtnR');
+    const dropdownL = document.getElementById('userDropdownL');
+    const dropdownR = document.getElementById('userDropdownR');
+    const dateInput = dropdownL.querySelector('input[type="date"]');
+    const datePickerRight = document.getElementById('datePickerRight');
 
-        if (dropdownBtnR && dropdownR) {
-            // Toggle dropdown when button is clicked
-            dropdownBtnR.addEventListener('click', function(e) {
-                e.stopPropagation();
-                dropdownR.classList.toggle('hidden');
-                // Hide the other dropdown if it's open
-                if (dropdownL && !dropdownL.classList.contains('hidden')) {
-                    dropdownL.classList.add('hidden');
-                }
-            });
-            
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!dropdownBtnR.contains(e.target) && !dropdownR.contains(e.target)) {    
-                    dropdownR.classList.add('hidden');
-                }
-            });
-            
-            // Handle month selection
-            const monthOptions = document.querySelectorAll('.month-option');
-            monthOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    e.preventDefault();
-                    const selectedMonth = this.textContent.trim();
-                    const selectedValue = this.getAttribute('data-value');
-                    dropdownBtnR.textContent = selectedMonth;
-                    dropdownR.classList.add('hidden');
-                    
-                    // You can add AJAX call here to filter by month
-                    // For now, we'll just reload the page with a query parameter
-                    const url = new URL(window.location.href);
-                    url.searchParams.set('month', selectedValue);
-                    window.location.href = url.toString();
-                });
-            });
-            
-            // Close dropdown when pressing Escape key
-            document.addEventListener('keydown', function(e) {
-                if (e.key === 'Escape') {
-                    dropdownR.classList.add('hidden');
-                    dropdownL.classList.add('hidden');
-                }
-            });
+    // ======== BAGIAN KIRI (Senin per minggu) ========
+
+    // Fungsi ambil Senin minggu ini
+    function getMonday() {
+        const today = new Date();
+        const day = today.getDay(); // Minggu = 0, Senin = 1
+        const diff = (day === 0 ? -6 : 1 - day);
+        today.setDate(today.getDate() + diff);
+        return today;
+    }
+
+    function formatDateInput(date) {
+        return date.toISOString().split('T')[0];
+    }
+
+    function formatDateReadable(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric', month: 'short', year: 'numeric'
+        });
+    }
+
+    // ambil Senin minggu ini
+    const monday = getMonday();
+    const mondayStr = formatDateInput(monday);
+    const mondayHuman = formatDateReadable(monday);
+
+    // cek local storage
+    const savedDate = localStorage.getItem('selectedDate');
+    const lastMonday = localStorage.getItem('lastMonday');
+
+    // refresh otomatis tiap Senin baru
+    if (!lastMonday || lastMonday !== mondayStr) {
+        localStorage.setItem('lastMonday', mondayStr);
+        localStorage.removeItem('selectedDate');
+        location.reload();
+    }
+
+    // set nilai awal tombol & input
+    if (savedDate) {
+        dateInput.value = savedDate;
+        dropdownBtnL.textContent = formatDateReadable(new Date(savedDate));
+    } else {
+        dateInput.value = mondayStr;
+        dropdownBtnL.textContent = mondayHuman;
+    }
+
+    // ubah tombol pas tanggal diganti manual
+    dateInput.addEventListener('change', (e) => {
+        localStorage.setItem('selectedDate', e.target.value);
+        dropdownBtnL.textContent = formatDateReadable(new Date(e.target.value));
+    });
+
+    // buka & tutup dropdown kiri
+    dropdownBtnL.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownL.classList.toggle('hidden');
+        dropdownR.classList.add('hidden');
+    });
+    document.addEventListener('click', (e) => {
+        if (!dropdownL.contains(e.target) && !dropdownBtnL.contains(e.target)) {
+            dropdownL.classList.add('hidden');
         }
-    </script>
+    });
+
+
+    // ======== BAGIAN KANAN (Tanggal per hari) ========
+
+    function formatTanggal(date) {
+        return date.toLocaleDateString('id-ID', {
+            day: 'numeric',
+            month: 'short',
+            year: 'numeric'
+        });
+    }
+
+    function formatInputDate(date) {
+        return date.toISOString().split('T')[0];
+    }
+
+    const today = new Date();
+    const todayStr = formatInputDate(today);
+    const savedDateR = localStorage.getItem('selectedDateRight');
+    const lastUpdateR = localStorage.getItem('lastUpdateRight');
+
+    // refresh otomatis kalau sudah ganti hari
+    if (!lastUpdateR || lastUpdateR !== todayStr) {
+        localStorage.setItem('lastUpdateRight', todayStr);
+        localStorage.removeItem('selectedDateRight');
+        location.reload();
+    }
+
+    // set nilai awal tombol & input kanan
+    if (savedDateR) {
+        datePickerRight.value = savedDateR;
+        dropdownBtnR.textContent = formatTanggal(new Date(savedDateR));
+    } else {
+        datePickerRight.value = todayStr;
+        dropdownBtnR.textContent = formatTanggal(today);
+    }
+
+    // ubah tombol kanan pas ganti tanggal manual
+    datePickerRight.addEventListener('change', (e) => {
+        localStorage.setItem('selectedDateRight', e.target.value);
+        dropdownBtnR.textContent = formatTanggal(new Date(e.target.value));
+    });
+
+    // buka & tutup dropdown kanan
+    dropdownBtnR.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownR.classList.toggle('hidden');
+        dropdownL.classList.add('hidden');
+    });
+    document.addEventListener('click', (e) => {
+        if (!dropdownR.contains(e.target) && !dropdownBtnR.contains(e.target)) {
+            dropdownR.classList.add('hidden');
+        }
+    });
+</script>
+
 </body>
 </html>
