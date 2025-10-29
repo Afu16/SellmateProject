@@ -40,15 +40,16 @@ const submit = () => {
         <div class="w-[40%] bg-primary p-6 h-screen">
             <form class="mt-[50%]" @submit.prevent="submit">
                     <div>
-                        <InputLabel for="email" value="Email" />
+                        <InputLabel for="email" value="Email atau Username" />
                 <TextInput
                     id="email"
                     v-model="form.email"
-                    type="email"
+                    type="text"
                     class="mt-1 block w-full"
                     required
                     autofocus
                     autocomplete="username"
+                    placeholder="Email atau Username"
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>

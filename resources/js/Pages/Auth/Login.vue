@@ -35,7 +35,7 @@ const submit = () => {
     <div class="text-center my-8">
         <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
         <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign In</h1>
-        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Masukkan email dan password yang benar</h3>
+        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Masukkan email/username dan password yang benar</h3>
     </div>
 
     
@@ -45,15 +45,16 @@ const submit = () => {
     <form @submit.prevent="submit">
     <AuthenticationCard>
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email atau Username" />
                 <TextInput
                     id="email"
                     v-model="form.email"
-                    type="email"
+                    type="text"
                     class="mt-1 block w-full"
                     required
                     autofocus
                     autocomplete="username"
+                    placeholder="Email atau Username"
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>

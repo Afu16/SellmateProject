@@ -9,52 +9,51 @@ use Illuminate\Support\Facades\Auth;
 
 class OmzetController extends Controller
 {
-    public function index()
-    {
-        $userId = Auth::id();
+public function index(Request $request)
+{
+    $userId = Auth::id();
 
-        // total omzet user ini
-        $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
+    // Ambil tanggal dari query (kalau ada)
+    $selectedDate = $request->get('date');
 
-        // omzet bulan ini
-        $omzetBulanIni = Omzet::with('product')
-            ->where('user_id', $userId)
-            ->whereMonth('date', now()->month)
-            ->whereYear('date', now()->year)
-            ->orderBy('date', 'desc') 
-            ->get();
+    $query = Omzet::with('product')->where('user_id', $userId);
 
-        $totalBulanIni = $omzetBulanIni->sum('total_omzets');
-
-        // group per bulan (buat history)
-        $perBulan = Omzet::selectRaw('YEAR(date) year, MONTH(date) month, SUM(total_omzets) total')
-            ->where('user_id', $userId)
-            ->groupBy('year','month')
-            ->orderBy('year','desc')
-            ->orderBy('month','desc')
-            ->get();
-
-        return view('page.user.omzet', compact('totalOmzet','omzetBulanIni','totalBulanIni','perBulan'));
+    // Filter kalau user pilih tanggal
+    if ($selectedDate) {
+        $query->whereDate('date', $selectedDate);
     }
 
-    public function komisi()
-    {
-        $userId = Auth::id();
+    $omzetFiltered = $query->orderBy('date', 'desc')->get();
 
-        // ambil semua omzet user ini dengan relasi produk
-        $riwayatKomisi = Omzet::with('product')
-            ->where('user_id', $userId)
-            ->orderBy('date', 'desc')
-            ->get()
-            ->map(function ($o) {
-                $rate = $o->product->comission ?? 0;
-                $o->komisi_didapat = $o->total_omzets * $rate;
-                return $o;
-            });
+    // Total omzet keseluruhan user
+    $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
 
-        // total komisi user ini
-        $totalKomisi = $riwayatKomisi->sum('komisi_didapat');
+    // Total omzet bulan ini
+    $omzetBulanIni = Omzet::with('product')
+        ->where('user_id', $userId)
+        ->whereMonth('date', now()->month)
+        ->whereYear('date', now()->year)
+        ->orderBy('date', 'desc')
+        ->get();
 
-        return view('page.user.comission', compact('totalKomisi', 'riwayatKomisi'));
-    }
+    $totalBulanIni = $omzetBulanIni->sum('total_omzets');
+
+    // Group per bulan (buat history)
+    $perBulan = Omzet::selectRaw('YEAR(date) year, MONTH(date) month, SUM(total_omzets) total')
+        ->where('user_id', $userId)
+        ->groupBy('year', 'month')
+        ->orderBy('year', 'desc')
+        ->orderBy('month', 'desc')
+        ->get();
+
+    return view('page.user.omzet', compact(
+        'totalOmzet',
+        'omzetBulanIni',
+        'totalBulanIni',
+        'perBulan',
+        'omzetFiltered',
+        'selectedDate'
+    ));
+}
+
 }
