@@ -16,12 +16,18 @@ class AuthController extends Controller
 
     public function login(Request $request)
     {
-        $credentials = $request->validate([
-            'email' => ['required', 'email'],
+        $validated = $request->validate([
+            'email' => ['required'], // can be email or username
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($credentials)) {
+        $login = (string) $validated['email'];
+
+        // Try login by email first, then by username
+        $attempted = Auth::attempt(['email' => $login, 'password' => $validated['password']])
+            || Auth::attempt(['username' => $login, 'password' => $validated['password']]);
+
+        if ($attempted) {
             $user = Auth::user();
             
             if ($user->role !== 'admin') {
