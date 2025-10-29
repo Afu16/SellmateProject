@@ -118,13 +118,19 @@
                             <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
                                  alt="{{ $o->product->name ?? 'Produk' }}"
                                  class="w-10 h-10 rounded-lg mr-2">
-                            <span class="text-black text-sm font-pilcrow font-pilcrow-heavy">
-                                {{ $o->product->name ?? 'Produk' }}
-                            </span>
+                            <div>
+                                <div class="text-black text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</div>
+                                {{-- Rincian harga / qty / persen --}}
+                                <div class="text-xs text-gray-600">
+                                    Harga: Rp {{ number_format($o->product_price ?? ($o->product->price ?? 0), 0, ',', '.') }} ·
+                                    Qty: {{ $o->product_qty ?? ($o->quantity ?? 1) }} ·
+                                    Rate: {{ number_format( ( ($o->commission_percent ?? $o->product->comission ?? 0) * 100 ), 2) }}%
+                                </div>
+                            </div>
                         </div>
                         <div class="text-right">
                             <p class="text-black text-xs font-quicksand font-quicksand-regular">
-                                Rp {{ number_format($o->total_omzets,0,',','.') }}
+                                Rp {{ number_format($o->computed_commission ?? $o->total_omzets ?? 0, 0, ',', '.') }}
                             </p>
                             <p class="text-gray-600 text-xs font-quicksand font-quicksand-regular">
                                 {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
