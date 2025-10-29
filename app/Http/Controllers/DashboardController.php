@@ -40,6 +40,7 @@ class DashboardController extends Controller
 
         // Top omzet per user (leaderboard semua user)
         $topOmzet = User::withSum('omzets', 'total_omzets')
+            ->where('role', 'user')
             ->orderByDesc('omzets_sum_total_omzets')
             ->take(10)
             ->get();

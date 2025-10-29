@@ -13,6 +13,7 @@ class TopRatingController extends Controller
         $filter = $request->input('filter');
 
         $query = User::withSum('omzets', 'total_omzets')
+            ->where('role', 'user')
             ->when($search, function ($q, $search) {
                 $q->where('name', 'like', "%{$search}%")
                 ->orWhere('major', 'like', "%{$search}%");
@@ -37,7 +38,7 @@ class TopRatingController extends Controller
             }
         });
 
-        $topRating = $query->paginate(10);
+        $topRating = $query->where('role', 'user')->paginate(10);
 
         return view('page.user.topRating', compact('topRating'));
     }
