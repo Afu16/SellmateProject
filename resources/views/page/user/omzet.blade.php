@@ -277,9 +277,38 @@
     .flatpickr-input[readonly] { cursor: pointer; background-color: #fff; }
     input[type="date"]::-webkit-calendar-picker-indicator { display: none; }
 </style>
+
 <script>
     if (window.flatpickr) {
-        const fpOpts = { dateFormat: 'Y-m-d', disableMobile: true };
+        const dropdownL = document.getElementById('userDropdownL');
+        const dropdownR = document.getElementById('userDropdownR');
+
+        const fpOpts = {
+            dateFormat: 'Y-m-d',
+            disableMobile: true,
+            position: 'below', // 💥 ini yang bikin kalender muncul di bawah input
+            onOpen: function(selectedDates, dateStr, instance) {
+                // Sembunyikan dropdown putih pas kalender muncul
+                if (instance.input.id === 'datePicker') {
+                    dropdownL.classList.add('hidden');
+                } else if (instance.input.id === 'datePickerRight') {
+                    dropdownR.classList.add('hidden');
+                }
+            },
+            onClose: function(selectedDates, dateStr, instance) {
+                // Tampilkan kembali dropdown setelah kalender ditutup
+                if (instance.input.id === 'datePicker') {
+                    dropdownL.classList.remove('hidden');
+                } else if (instance.input.id === 'datePickerRight') {
+                    dropdownR.classList.remove('hidden');
+                }
+            },
+            onChange: function(selectedDates, dateStr, instance) {
+                // Tutup otomatis setelah pilih tanggal
+                instance.close();
+            }
+        };
+
         if (document.getElementById('datePicker')) {
             flatpickr(document.getElementById('datePicker'), fpOpts);
         }
@@ -288,6 +317,7 @@
         }
     }
 </script>
+
 
 </body>
 </html>
