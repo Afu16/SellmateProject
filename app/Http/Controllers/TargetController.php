@@ -17,36 +17,21 @@ class TargetController extends Controller
             ->orderBy('created_at', 'desc')
             ->get()
             ->map(function ($target) use ($userId) {
-                // Ambil semua target user (terurut)
-$allTargets = Target::where('user_id', $userId)->orderBy('created_at')->get();
+        // Ambil total omzet user
+        $totalOmzet = Omzet::where('user_id', $userId)->sum('total_omzets');
 
-// Ambil total omzet user
-$totalOmzetUser = Omzet::where('user_id', $userId)->sum('total_omzets');
+        // Hitung progres sederhana
+        $progress = $target->target > 0
+            ? min(100, ($totalOmzet / $target->target) * 100)
+            : 0;
 
-// Hitung omzet yang "terpakai" di target-target lama
-$usedOmzet = 0;
-foreach ($allTargets as $t) {
-    if ($totalOmzetUser > $t->target) {
-        $usedOmzet += $t->target;
-        $totalOmzetUser -= $t->target;
-    } else {
-        break;
-    }
-}
+        // Tambahkan ke objek target
+        $target->current_omzet = $totalOmzet;
+        $target->progress = round($progress);
+        $target->is_finished = $totalOmzet >= $target->target;
 
-// Nah sekarang $totalOmzetUser sisa yang belum "dipakai" target lama
-$currentOmzet = $totalOmzetUser;
-
-                $progress = $target->target > 0
-                    ? min(100, ($currentOmzet / $target->target) * 100)
-                    : 0;
-
-                $target->current_omzet = $currentOmzet;
-                $target->progress = round($progress);
-                $target->is_finished = $currentOmzet >= $target->target;
-
-                return $target;
-            });
+        return $target;
+    });
 
         // Pisahkan target aktif dan riwayat (tanpa DB tambahan)
         $current = $targets->first(); // Target terbaru
