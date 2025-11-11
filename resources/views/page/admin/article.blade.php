@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Omzet Management</title>
+      @vite('resources/js/app.js', 'resources/css/app.css')
+</head>
+<body>
+    
+    <div class="hidden md:block">
+        
+        
+        <div class="bg-[#f5f7fa] min-h-screen">
+        <!-- Header with greeting -->
+        <div class="bg-primary w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
+            <div class="mt-5 sm:mt-3">
+                <h1 class="text-[30px] hidden md:block mt-[1.5vh] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-rounded text-white">Sellmate</h1>  
+                <h1 class="text-[15px] md:hidden sm:text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello DEDEN,</h1>  
+                <p class=" text-[10px] md:hidden sm:text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
+            </div>
+            <div class="mt-0">
+                <button id="userDropdownBtn" class="flex absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
+                    <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black ml-2">
+                        DEDEN
+                    </h3>
+            <!-- Avatar Dynamic -->
+            <div
+                class="absolute right-6 md:right-7 w-10 h-10 rounded-full border-2 border-black flex items-center justify-center bg-gray-300 text-black font-bold overflow-hidden"
+            >
+            {{-- <img
+                v-if="$page.props.auth.user.foto_link"
+                :src="`/storage/${$page.props.auth.user.foto_link}`"
+                alt="Profile Photo"
+                class=" w-[10vw] h-10 object-cover"
+            /> --}}
+            <span v-else>
+             CONTOh
+            </span>
+            </div>
+                    <svg class="absolute md:hidden w-4 h-4 text-black right-[2vw] ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
+                </button>
+                
+                <!-- Dropdown Menu -->
+                <div id="userDropdown" class="absolute top-[8vh] right-5 md:right-[10vw] mt-2 -ml-4 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50 hidden">
+                    <div class="py-2">
+                        <a href="/settings" class="flex mb-2 mt-5 items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-gray-100 transition-colors">
+                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
+                            </svg>
+                            Edit Profile
+                        </a> 
+                        <form method="POST" action="route('logout')" class="w-full">
+                            <button type="submit" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-red-50 transition-colors w-full">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="flex flex-row">
+            <div class="w-[15%] -ml-2 flex flex-col border-r-2 h-screen border-black">
+                <a
+                    href="/admin/dashboard"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/dashboard-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
+                    Dashboard
+                </a>
+                <a
+                    href="/admin/users"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/userManage-icon.svg" alt="User Management" class="w-[2vw] h-[2vh] mr-1">
+                    User Management
+                </a>
+                <a
+                    href="/admin/products"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/product-icon.svg" alt="Produk" class="w-[2vw] h-[2vh] mr-1">
+                    Produk
+                </a>
+                <a
+                    href="/admin/omzet"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/totalOmzet2-icon.svg" alt="Total Omzet" class="w-[2vw] h-[2vh] mr-1">
+                    Total Omzet
+                </a>
+                <a
+                    href="/admin/videos"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >   
+                    <img src="/assets/svg/blackVideo-icon.svg" alt="Video" class="w-[2vw] h-[2vh] mr-1">
+                    Video
+                </a>
+                <a
+                    href="/admin/ebooks"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/blackEbook-icon.svg" alt="Ebook" class="w-[2vw] h-[2vh] mr-1">
+                    Ebook
+                </a>
+                <a
+                    href="/admin/articles"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">
+                    Artikel
+                </a>
+                <a
+                    href="/admin/history"
+                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                >
+                    <img src="/assets/svg/blackHistory-icon.svg" alt="Histori" class="w-[1.5vw] h-[1.5vh] mr-1">
+                    Histori
+                </a>
+            </div>
+
+            <div class="w-full p-5">
+                  <div class="flex flex-row">
+                    <div class="w-full">
+                        <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Katalog Artikel</h1>
+                          <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">
+                              Kelola artikel dengan mudah
+                          </p>
+                    </div>
+                    <div class="m-auto">
+                        <button class="bg-secondary px-5 py-2 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">
+                            Tambah Artikel
+                        </button>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-5">
+
+                    <div class="flex flex-col">
+                        <div class="bg-white px-4 py-1 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">
+                            <div class="flex flex-row text-xs rounded-xl gap-2">
+                                <img width="200px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                <div class="flex w-full flex-col">
+                                    <p class=" text-xl font-pilcrow font-pilcrow-bold text-black">Judul Artikel</p>
+                                    <span class="flex gap-2">
+                                        <img width="30px" height="30px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                        <span class="flex flex-col">
+                                            <p class="font-pilcrow font-pilcrow-regular text-black"> Kombel aselole</p>
+                                            <p class="text-[10px] font-pilcrow font-pilcrow-regular text-gray-400">Posted 39 January 2029</p>
+                                        </span>
+                                    </span>   
+                                </div>
+                                <button class="">
+                                    <img src="/assets/svg/trash-icon.svg" alt="">
+                                </button>
+                                <button>
+                                    <img src="/assets/svg/edit-icon.svg" alt="">
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="flex flex-col">
+                        <div class="bg-white px-4 py-1 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">
+                            <div class="flex flex-row text-xs rounded-xl gap-2">
+                                <img width="200px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                <div class="flex w-full flex-col">
+                                    <p class=" text-xl font-pilcrow font-pilcrow-bold text-black">Judul Artikel</p>
+                                    <span class="flex gap-2">
+                                        <img width="30px" height="30px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                        <span class="flex flex-col">
+                                            <p class="font-pilcrow font-pilcrow-regular text-black"> Kombel aselole</p>
+                                            <p class="text-[10px] font-pilcrow font-pilcrow-regular text-gray-400">Posted 39 January 2029</p>
+                                        </span>
+                                    </span>   
+                                </div>
+                                    <button>
+                                        <img src="/assets/svg/trash-icon.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/assets/svg/edit-icon.svg" alt="">
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+
+                     <div class="flex flex-col">
+                        <div class="bg-white px-4 py-1 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">
+                            <div class="flex flex-row text-xs rounded-xl gap-2">
+                                <img width="200px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                <div class="flex w-full flex-col">
+                                    <p class=" text-xl font-pilcrow font-pilcrow-bold text-black">Judul Artikel</p>
+                                    <span class="flex gap-2">
+                                        <img width="30px" height="30px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                        <span class="flex flex-col">
+                                            <p class="font-pilcrow font-pilcrow-regular text-black"> Kombel aselole</p>
+                                            <p class="text-[10px] font-pilcrow font-pilcrow-regular text-gray-400">Posted 39 January 2029</p>
+                                        </span>
+                                    </span>   
+                                </div>
+                                    <button>
+                                        <img src="/assets/svg/trash-icon.svg" alt="">
+                                    </button>
+                                    <button>
+                                        <img src="/assets/svg/edit-icon.svg" alt="">
+                                    </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </body>
+</html>

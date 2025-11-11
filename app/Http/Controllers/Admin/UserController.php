@@ -9,6 +9,6 @@ class UserController extends Controller
 {
     public function index()
     {
-          return inertia('Admin/UserManage');
+          return view('page.admin.userManage');
     }
 }
