@@ -78,7 +78,7 @@ Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
 Route::get('/share/article/{token}', [ArticleController::class, 'showShared']);
 Route::get('/articles/share/{id}', [ArticleController::class, 'share'])->name('articles.share');
-
+Route::get('/share/article/{token}', [ArticleController::class, 'showShared'])->name('articles.shared');
 
 Route::get('/omzet', [OmzetController::class, 'index'])->name('omzet');
 Route::get('/riwayat-omzet', [App\Http\Controllers\OmzetController::class, 'index']);

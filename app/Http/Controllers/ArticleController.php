@@ -39,5 +39,16 @@ class ArticleController extends Controller
         return response()->json(['link' => $link]);
     }
 
+    public function showShared($token)
+   {
+    $article = Article::where('share_token', $token)->firstOrFail();
+
+    // Pakai view yang sesuai folder lo
+    return view('page.user.article-in', [
+        'articles' => collect([$article]),
+        'article'  => $article,
+    ]);
+    }
+
 }
 
