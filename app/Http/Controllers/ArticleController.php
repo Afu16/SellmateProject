@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Article;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ArticleController extends Controller
 {
@@ -17,6 +18,25 @@ class ArticleController extends Controller
     {
         $article = Article::findOrFail($id); // Ambil data sesuai ID
         return view('page.user.article-in', compact('article'));
+    }
+
+    public function share($id)
+    {
+        $article = Article::findOrFail($id);
+
+        // Kalau artikel dari luar (misal detik.com)
+        if ($article->source_link) {
+            $link = $article->source_link;
+        } else {
+            // Kalau artikel internal, generate token share unik
+            if (!$article->share_token) {
+                $article->share_token = Str::uuid();
+                $article->save();
+            }
+            $link = url('/share/article/' . $article->share_token);
+        }
+
+        return response()->json(['link' => $link]);
     }
 
 }

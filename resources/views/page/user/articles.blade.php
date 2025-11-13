@@ -32,16 +32,56 @@
                 class="text-gray-200 hover:text-white underline hover:underline-offset-2 transition">
                 Baca Sekarang
                 </a>
-                    <a href="#" class="bg-white/20 p-2 rounded-full backdrop-blur-sm hover:bg-white/30 transition-colors">
-                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
-                        </svg>
-                    </a> 
+                <a href="javascript:void(0)" 
+                onclick="shareArticle({{ $article->id }})"
+                class="bg-white/20 p-2 rounded-full backdrop-blur-sm hover:bg-white/30 transition-colors">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
+                            d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.367 2.684 3 3 0 00-5.367-2.684z"></path>
+                    </svg>
+                </a>
                 </div>
             </div>
         </div>
 
     @endforeach
     </div>
+
+<script>
+async function shareArticle(id) {
+    try {
+        const response = await fetch(`/articles/share/${id}`);
+        const data = await response.json();
+        const shareLink = data.link;
+
+        if (navigator.share) {
+            // Bisa langsung share ke WhatsApp, Telegram, dll
+            await navigator.share({
+                title: 'Cek artikel ini!',
+                text: 'Artikel menarik nih 👇',
+                url: shareLink
+            });
+        } else {
+            // Browser belum support share, kasih opsi manual
+            const wa = `https://wa.me/?text=${encodeURIComponent('Cek artikel ini: ' + shareLink)}`;
+            const telegram = `https://t.me/share/url?url=${encodeURIComponent(shareLink)}&text=${encodeURIComponent('Artikel menarik nih!')}`;
+            const copy = async () => {
+                await navigator.clipboard.writeText(shareLink);
+                alert('Link disalin ke clipboard!');
+            };
+
+            // popup manual sederhana
+            const pilihan = prompt('Pilih cara share:\n1. WhatsApp\n2. Telegram\n3. Copy Link');
+            if (pilihan == '1') window.open(wa, '_blank');
+            else if (pilihan == '2') window.open(telegram, '_blank');
+            else if (pilihan == '3') copy();
+        }
+    } catch (error) {
+        console.error('Gagal share:', error);
+    }
+}
+</script>
+
+
 </body>
 </html>
