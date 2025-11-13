@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -26,7 +27,20 @@ class ProfileController extends Controller
             'school'    => 'nullable|string|max:255',
             'major'     => 'nullable|string|max:255',
             'foto_link' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'current_password' => 'nullable|string',
+            'password'         => 'nullable|string|min:8',
         ]);
+
+        // Flag untuk mendeteksi apakah password berubah
+        $passwordChanged = false;
+        // Jika user ingin mengubah password, pastikan current_password cocok
+        if ($request->filled('password')) {
+            if (! $request->filled('current_password') || ! Hash::check($request->current_password, $user->password)) {
+                // Jangan simpan apa pun, kembalikan ke halaman settings dengan notifikasi error
+                return redirect()->route('settings.index')->with('error', 'Password lama tidak cocok.')->withInput();
+            }
+            $passwordChanged = true;
+        }
 
         $data = $request->only([
             'name',
@@ -44,7 +58,17 @@ class ProfileController extends Controller
             $data['foto_link'] = $path;
         }
 
+        // Perbarui password jika ada
+        if ($passwordChanged) {
+            $data['password'] = Hash::make($request->password);
+        }
+
         $user->update($data);
+
+        // Jika password diubah, arahkan ke dashboard. Kalau tidak, tetap di halaman settings.
+        if ($passwordChanged) {
+            return redirect()->route('dashboard')->with('success', 'Password berhasil diubah dan profil disimpan.');
+        }
 
         return redirect()->route('settings.index')->with('success', 'Profile updated successfully.');
     }
