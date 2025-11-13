@@ -105,7 +105,7 @@ const submit = () => {
         </div>
     </div>
 
-     <PrimaryButton class="ms-4 bg-white px-[40vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
+     <PrimaryButton class="ms-4 bg-white px-[39vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Google
             </PrimaryButton>
 </template>
