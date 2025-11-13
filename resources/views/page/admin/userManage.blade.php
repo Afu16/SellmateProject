@@ -174,7 +174,7 @@
                                 </div>
                 </div>
 
-                <table class="w-full mt-5">
+                <table class="w-full mt-5 p-6">
                     <tr class="bg-gray-300 rounded-xl px-5">
                         <td></td>
                         <td>
@@ -185,20 +185,35 @@
                         <td class="px-5">Date Added</td>
                     </tr>
 
-                    <tr class="m-auto  border-2 border-black shadow-black rounded-xl">
-                        <td>
-                            <input class="rounded-md" type="checkbox" name="checkbox" id="checkbox">
-                        </td>
-                        <td class="px-5">
-                            <div class="flex items-center gap-2">
-                                <img width="50px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
-                            </div>
-                        </td>
-                        <td class="pr-5">John Doe</td>
-                        <td class="px-6">Active</td>
-                        <td class="px-5">2023-08-15</td>
-                        <td class="px-5">2023-08-10</td>
-                    </tr>
+                    <tr class="mt-5 border-2 border-black shadow-black rounded-xl">
+                            <td>
+                                <input class="rounded-md" type="checkbox" name="checkbox" id="checkbox">
+                            </td>
+                            <td class="px-5">
+                                <div class="flex items-center gap-2">
+                                    <img width="50px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                </div>
+                            </td>
+                            <td class="pr-5">John Doe</td>
+                            <td class="px-6">Active</td>
+                            <td class="px-5">2023-08-15</td>
+                            <td class="px-5">2023-08-10</td>
+                        </tr>
+
+                           <tr class="mt-5 border-2 border-black shadow-black rounded-xl">
+                            <td>
+                                <input class="rounded-md" type="checkbox" name="checkbox" id="checkbox">
+                            </td>
+                            <td class="px-5">
+                                <div class="flex items-center gap-2">
+                                    <img width="50px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
+                                </div>
+                            </td>
+                            <td class="pr-5">John Doe</td>
+                            <td class="px-6">Active</td>
+                            <td class="px-5">2023-08-15</td>
+                            <td class="px-5">2023-08-10</td>
+                        </tr>
                 </table>
             </div>
         </body>
