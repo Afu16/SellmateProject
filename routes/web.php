@@ -58,11 +58,6 @@ Route::put('/target/{id}', [TargetController::class, 'update'])->name('target.up
 Route::get('/top', [TopRatingController::class, 'index'])->name('topRating');
 Route::get('/top-rating', [App\Http\Controllers\TopRatingController::class, 'index'])->name('toprating.index');
 
-
-Route::get('/article-in', function () {
-    return view('page.user.article-in');
-})->name('article-in');
-
 Route::get('/ebook', [EbookController::class, 'index'])->name('ebook');
 Route::get('/ebooks/filter', [EbookController::class, 'filter'])->name('ebooks.filter');
 
@@ -78,8 +73,12 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/settings', [ProfileController::class, 'update'])->name('settings.update');
 });
 
+Route::get('/article-in', function () {return view('page.user.article-in');})->name('article-in');
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');
 Route::get('/articles/{id}', [ArticleController::class, 'show'])->name('articles.show');
+Route::get('/share/article/{token}', [ArticleController::class, 'showShared']);
+Route::get('/articles/share/{id}', [ArticleController::class, 'share'])->name('articles.share');
+
 
 Route::get('/omzet', [OmzetController::class, 'index'])->name('omzet');
 Route::get('/riwayat-omzet', [App\Http\Controllers\OmzetController::class, 'index']);
