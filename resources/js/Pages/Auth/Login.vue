@@ -68,6 +68,7 @@ const submit = () => {
                     class="mt-1 block w-full"
                     required
                     autocomplete="current-password"
+                    placeholder="Password"
                 />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
