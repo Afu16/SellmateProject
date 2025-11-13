@@ -79,9 +79,11 @@
 
                 <!-- Action Buttons -->
                 <div class="flex gap-4">
-                    <button type="button" onclick="window.location.href='{{ url('/target') }}'" class="flex-1 py-2 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
-                        Batal
-                    </button>
+                <button type="button"
+                    onclick="window.location.href='{{ Route::is('addOmzet') ? url('/dashboard') : url('/target') }}'"
+                    class="flex-1 py-2 shadow-black border-2 border-black rounded-xl bg-white text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-gray-50">
+                    Batal
+                </button>
                     <button type="submit" class=" shadow-black flex-1 py-2 rounded-xl bg-secondary text-black font-pilcrow font-pilcrow-semibold text-base hover:bg-tertiary">
                         {{ isset($target) ? 'Perbarui' : 'Simpan' }}
                     </button>
