@@ -86,7 +86,7 @@
                 <div class="bg-white rounded-lg p-4 mb-3 border-2 border-black shadow-black">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}" alt="{{ $o->product->name ?? 'Produk' }}" class="w-10 h-10 rounded-lg mr-2">
+                            <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}" alt="{{ $o->product->name ?? 'Produk' }}" class="w-10 h-10 object-cover rounded-lg mr-2">
                             <span class="text-black text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</span>
                         </div>
                         <div class="text-right">
