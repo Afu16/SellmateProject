@@ -51,39 +51,19 @@ class TopRatingController extends Controller
         }
 
         // fallback: existing behavior (view) - tetap dukung month_year filtering via whereHas
-        $query = User::withSum('omzets', 'total_omzets')
-            ->where('role', 'user')
-            ->when($search, function ($q, $search) {
-                $q->where('name', 'like', "%{$search}%")
-                  ->orWhere('major', 'like', "%{$search}%");
-            });
-
-        // handle explicit month_year for server-side view filter
+$query = User::withSum(['omzets as omzets_sum_total_omzets' => function ($q) use ($monthYear) {
         if (!empty($monthYear) && preg_match('/^\d{4}-\d{2}$/', $monthYear)) {
             [$year, $month] = explode('-', $monthYear);
-            $query->whereHas('omzets', function ($omzet) use ($year, $month) {
-                $omzet->whereYear('date', $year)
-                      ->whereMonth('date', $month);
-            });
+            $q->whereYear('date', $year)->whereMonth('date', $month);
         } else {
-            $query->when($filter, function ($q, $filter) {
-                if ($filter === 'bulan_ini') {
-                    $q->whereHas('omzets', function ($omzet) {
-                        $omzet->whereMonth('date', now()->month)
-                              ->whereYear('date', now()->year);
-                    });
-                } elseif ($filter === 'bulan_lalu') {
-                    $q->whereHas('omzets', function ($omzet) {
-                        $omzet->whereMonth('date', now()->subMonth()->month)
-                              ->whereYear('date', now()->subMonth()->year);
-                    });
-                } elseif ($filter === 'tahun_ini') {
-                    $q->whereHas('omzets', function ($omzet) {
-                        $omzet->whereYear('date', now()->year);
-                    });
-                }
-            });
+            $q->whereYear('date', now()->year)->whereMonth('date', now()->month);
         }
+    }], 'total_omzets')
+    ->where('role', 'user')
+    ->when($search, function ($q, $search) {
+        $q->where('name', 'like', "%{$search}%")
+          ->orWhere('major', 'like', "%{$search}%");
+    });
 
         $topRating = $query->paginate(10);
 
