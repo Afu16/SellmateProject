@@ -75,7 +75,7 @@ Route::get('/videos/{video}', [VideoController::class, 'show'])->name('videos.sh
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/settings', [ProfileController::class, 'index'])->name('settings.index');
-    Route::post('/settings', [ProfileController::class, 'update'])->name('settings.update');
+    Route::put('/settings', [ProfileController::class, 'update'])->name('settings.update');
 });
 
 Route::get('/articles', [\App\Http\Controllers\ArticleController::class, 'index'])->name('articles');

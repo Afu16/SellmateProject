@@ -8,23 +8,111 @@
 </head>
 <body>
 <script>
-document.addEventListener('DOMContentLoaded', function() {
+// Persistensi bulan terpilih: dipanggil saat load dan saat pageshow (back/forward)
+function initTopRatingMonthPersistence() {
+    // Search functionality (tetap seperti sebelumnya)
     const search = document.querySelector('#search');
-    const form = search.closest('form');
+    if (search) {
+        const form = search.closest('form');
+        // pastikan tidak mendaftarkan listener berulang kali
+        if (!search._listenerAttached) {
+            search._listenerAttached = true;
+            search.addEventListener('keyup', function () {
+                const query = search.value;
+                fetch(`${form.action}?search=${encodeURIComponent(query)}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        const parser = new DOMParser();
+                        const doc = parser.parseFromString(html, 'text/html');
+                        const newContent = doc.querySelector('.border-2.border-black.rounded-2xl');
+                        const target = document.querySelector('.border-2.border-black.rounded-2xl');
+                        if (newContent && target) target.innerHTML = newContent.innerHTML;
+                    })
+                    .catch(err => console.error(err));
+            });
+        }
+    }
 
-    search.addEventListener('keyup', function() {
-        const query = search.value;
+    // Filter dropdown (jika ada)
+    const filterDropdown = document.querySelector('#filterDropdown');
+    const filterMenu = document.querySelector('#filterMenu');
+    if (filterDropdown && filterMenu && !filterDropdown._listenerAttached) {
+        filterDropdown._listenerAttached = true;
+        filterDropdown.addEventListener('click', function (e) {
+            e.preventDefault();
+            filterMenu.classList.toggle('hidden');
+        });
+        document.addEventListener('click', function (e) {
+            if (!filterDropdown.contains(e.target) && !filterMenu.contains(e.target)) {
+                filterMenu.classList.add('hidden');
+            }
+        });
+    }
 
-        fetch(`${form.action}?search=${encodeURIComponent(query)}`)
-            .then(response => response.text())
-            .then(html => {
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const newContent = doc.querySelector('.border-2.border-black.rounded-2xl');
-                document.querySelector('.border-2.border-black.rounded-2xl').innerHTML = newContent.innerHTML;
-            })
-            .catch(err => console.error(err));
-    });
+    // Persistensi bulan
+    const monthInput = document.querySelector('input[name="month_year"]');
+    if (!monthInput) return;
+
+    // simpan ke localStorage saat user pilih (input juga sudah punya onchange inline)
+    if (!monthInput._changeAttached) {
+        monthInput._changeAttached = true;
+        monthInput.addEventListener('change', function () {
+            try { localStorage.setItem('toprating_month', this.value); } catch (e) { /* ignore */ }
+        });
+    }
+
+    // Jika user baru saja datang dari /dashboard, hapus value tersimpan supaya kembali ke bulan sekarang
+    try {
+        const ref = document.referrer || '';
+        if (ref.includes('/dashboard')) {
+            localStorage.removeItem('toprating_month');
+        }
+    } catch (e) { /* ignore */ }
+
+    // Jika URL tidak punya month_year tapi localStorage punya -> set dan submit
+    const urlParams = new URL(window.location.href).searchParams;
+    const urlHasMonth = urlParams.get('month_year');
+    const saved = localStorage.getItem('toprating_month');
+    if (!urlHasMonth && saved) {
+        monthInput.value = saved;
+        const frm = monthInput.closest('form');
+        if (frm) {
+            if (!frm.querySelector('input[name="filter"]')) {
+                const hid = document.createElement('input');
+                hid.type = 'hidden';
+                hid.name = 'filter';
+                hid.value = 'month';
+                frm.appendChild(hid);
+            }
+            // submit untuk memuat data bulan yang tersimpan
+            frm.submit();
+        }
+    }
+
+    // Tambahkan listener pada semua link ke dashboard: saat diklik, hapus stored month
+    try {
+        document.querySelectorAll('a[href]').forEach(a => {
+            const href = a.getAttribute('href');
+            if (href && href.includes('/dashboard')) {
+                // jangan daftarkan lebih dari sekali
+                if (!a._clearTopratingAttached) {
+                    a._clearTopratingAttached = true;
+                    a.addEventListener('click', () => {
+                        try { localStorage.removeItem('toprating_month'); } catch (e) {}
+                        // biarkan navigasi lanjut seperti biasa
+                    });
+                }
+            }
+        });
+    } catch (e) { /* ignore */ }
+}
+
+// jalankan pada load awal
+document.addEventListener('DOMContentLoaded', initTopRatingMonthPersistence);
+// jalankan juga saat pageshow (menangani back/forward cache)
+window.addEventListener('pageshow', function (event) {
+    // selalu panggil kembali inisialisasi agar tidak reset ke bulan sekarang
+    initTopRatingMonthPersistence();
 });
 </script>
 
@@ -58,24 +146,27 @@ document.addEventListener('DOMContentLoaded', function() {
                     class="w-full text-sm font-quicksand font-quicksand-regular focus:border-none focus:outline-none focus:ring-0 border-0 bg-transparent"
                 >
             </form>
-
+            <!-- Filter Dropdown -->
             <div class="absolute right-6">
-                <form action="{{ route('toprating.index') }}" method="GET">
-                    <select 
-                        name="filter"
-                        onchange="this.form.submit()"
-                        class="text-sm border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-[1.5vh] px-[9vw] rounded-xl shadow-md outline-none cursor-pointer"
-                    >
-                        <option value="bulan_ini" {{ request('filter') == 'bulan_ini' ? 'selected' : '' }}>Bulan Ini</option>
-                        <option value="bulan_lalu" {{ request('filter') == 'bulan_lalu' ? 'selected' : '' }}>Bulan Lalu</option>
-                        <option value="tahun_ini" {{ request('filter') == 'tahun_ini' ? 'selected' : '' }}>Tahun Ini</option>
-                    </select>
-                </form>
+                <div class="relative">
+                    <form action="{{ route('toprating.index') }}" method="GET" class="flex items-center">
+                        @if(request('search'))
+                            <input type="hidden" name="search" value="{{ request('search') }}">
+                        @endif
+                        <input 
+                            type="month" 
+                            name="month_year" 
+                            value="{{ request('month_year', date('Y-m')) }}"
+                            class="text-sm border-2 border-black shadow-black bg-orange-500 text-black font-semibold py-[1.5vh] px-[1vw] rounded-xl shadow-md outline-none cursor-pointer w-[25vw]"
+                            onchange="localStorage.setItem('toprating_month', this.value); this.form.submit()"
+                        >
+                        <input type="hidden" name="filter" value="month">
+                    </form>
+                </div>
             </div>
-            
         </div> 
     </div>
-
+    <!-- Leaderboard Content -->
     <div class="border-2 border-black rounded-2xl w-full mx-auto shadow-black p-4 bg-white">
         <!-- Header Table -->
         <div class="flex justify-between items-center px-2 mb-2">
@@ -139,23 +230,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     if ($end - $start < 4) $start = max($end - 4, 1);
                 @endphp
 
-                {{-- Tombol Prev --}}
+                {{-- Previous Button --}}
                 @if ($current > 1)
-                    <a href="{{ $topRating->url($current - 1) }}" class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
+                    <a href="{{ $topRating->appends(request()->query())->url($current - 1) }}" 
+                       class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
                 @endif
 
-                {{-- Nomor Halaman --}}
+                {{-- Page Numbers --}}
                 @for ($page = $start; $page <= $end; $page++)
                     @if ($page == $current)
                         <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
                     @else
-                        <a href="{{ $topRating->url($page) }}" class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
+                        <a href="{{ $topRating->appends(request()->query())->url($page) }}" 
+                           class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
                     @endif
                 @endfor
 
-                {{-- Tombol Next --}}
+                {{-- Next Button --}}
                 @if ($current < $last)
-                    <a href="{{ $topRating->url($current + 1) }}" class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
+                    <a href="{{ $topRating->appends(request()->query())->url($current + 1) }}" 
+                       class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
                 @endif
             </div>
         @else

@@ -17,18 +17,18 @@
     </div>
 
     {{-- Dropdown Left --}}
-    <div id="userDropdownL" class="fixed z-50 bottom-16 text-xs left-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
+    <div id="userDropdownL" class="fixed z-50 bottom-16 text-xs left-0 bg-white w-40 sm:w-48 rounded-lg hidden shadow-lg border-2 border-primary">
         <div class="py-1 text-center">
             <h1 id="selectedDateLabel" class="block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium">Tanggal</h1>
-            <input type="date" id="datePicker" class="rounded-xl mx-2 px-2 py-1 text-sm font-pilcrow font-pilcrow-medium w-[85%]">
+            <input type="date" id="datePicker" class="rounded-xl mx-2 px-2 py-0.5 h-8 text-xs sm:text-sm font-pilcrow font-pilcrow-medium w-[85%]">
         </div>
     </div>
 
     {{-- Dropdown Right --}}
-<div id="userDropdownR" class="fixed z-50 bottom-16 right-0 bg-white w-48 rounded-lg hidden shadow-lg border-2 border-primary">
+<div id="userDropdownR" class="fixed z-50 bottom-16 right-0 bg-white w-40 sm:w-48 rounded-lg hidden shadow-lg border-2 border-primary">
     <div class="py-1 text-center">
         <h1 id="selectedDateRight" class="block px-4 py-2 text-sm font-pilcrow font-pilcrow-medium">Tanggal</h1>
-        <input type="date" id="datePickerRight" class="rounded-xl mx-2 px-2 py-1 text-sm font-pilcrow font-pilcrow-medium w-[85%]">
+        <input type="date" id="datePickerRight" class="rounded-xl mx-2 px-2 py-0.5 h-8 text-xs sm:text-sm font-pilcrow font-pilcrow-medium w-[85%]">
     </div>
 </div>
 
@@ -61,87 +61,47 @@
     <!-- Record Omzet Section -->
     <h2 class="text-xl font-pilcrow font-pilcrow-heavy text-black mb-2">Record Omzet</h2>
     <div class="bg-white rounded-lg shadow-lg p-4 border-2 border-black shadow-black mb-20">
-
-    <!-- Omzet Bulan ini -->
-    <div class="mb-8">
-        <div class="flex justify-between items-center mb-4">
-            <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">Bulan ini</h3>
+        <div class="mb-4 flex justify-between items-center">
+            <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">
+                {{ \Carbon\Carbon::createFromFormat('Y-m', $selectedMonth)->translatedFormat('F Y') }}
+            </h3>
             <span class="text-lg font-quicksand font-quicksand-regular text-black">
                 Rp {{ number_format($totalBulanIni,0,',','.') }}
             </span>
         </div>
 
-        @foreach($omzetBulanIni as $o)
+        @php
+            $labels = [1=>'Minggu 1',2=>'Minggu 2',3=>'Minggu 3',4=>'Minggu 4'];
+        @endphp
+
+        @foreach($labels as $i => $label)
             <div class="bg-primary rounded-lg p-4 mb-3">
                 <div class="flex items-center justify-between">
-                    <div class="flex items-center">
-                     <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
-                        alt="{{ $o->product->name ?? 'Produk' }}"
-                        class="w-10 h-10 rounded-lg mr-2">                          
-                    <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</span>
-                    </div>
-                    <div class="text-right">
-                        <p class="text-white text-xs font-quicksand font-quicksand-regular">
-                            <span class="text-nowrap">
-                                Rp {{ number_format($o->total_omzets,0,',','.') }}
-                            </span>
-                        </p>
-                        <p class="text-white text-xs text-nowrap font-quicksand font-quicksand-regular opacity-80">
-                            {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
-                        </p>
-                    </div>
+                    <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $label }}</span>
+                    <span class="text-white text-sm font-quicksand font-quicksand-regular">Rp {{ number_format($weeks[$i] ?? 0,0,',','.') }}</span>
                 </div>
             </div>
-        @endforeach
-    </div>
 
-       <!-- Omzet Bulan Lain -->
-@foreach($perBulan as $pb)
-    {{-- Skip bulan ini biar ga dobel --}}
-    @if($pb->month != now()->month || $pb->year != now()->year)
-        <div class="border-t border-gray-200 mb-8"></div>
-
-        <div class="mb-8">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-pilcrow font-pilcrow-heavy text-black">
-                    {{ \Carbon\Carbon::create($pb->year, $pb->month)->translatedFormat('F Y') }}
-                </h3>
-                <span class="text-lg font-quicksand font-quicksand-regular text-black">
-                    Rp {{ number_format($pb->total,0,',','.') }}
-                </span>
-            </div>
-
-            @php
-                $omzetPerBulan = \App\Models\Omzet::whereYear('date', $pb->year)
-                    ->whereMonth('date', $pb->month)
-                    ->orderBy('date', 'desc')
-                    ->get();
-            @endphp
-
-            @foreach($omzetPerBulan as $o)
-                <div class="bg-primary rounded-lg p-4 mb-3">
+            @foreach(($weeksItems[$i] ?? collect()) as $o)
+                <div class="bg-white rounded-lg p-4 mb-3 border-2 border-black shadow-black">
                     <div class="flex items-center justify-between">
                         <div class="flex items-center">
-                            <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}"
-                                alt="{{ $o->product->name ?? 'Produk' }}"
-                                class="w-10 h-10 rounded-lg mr-3">
-                             <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</span>
-                        
+                            <img src="{{ asset('assets/img/' . ($o->product->product_photo ?? 'default-thumbnail.jpg')) }}" alt="{{ $o->product->name ?? 'Produk' }}" class="w-10 h-10 rounded-lg mr-2">
+                            <span class="text-black text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</span>
                         </div>
                         <div class="text-right">
-                            <p class="text-white text-xs font-quicksand font-quicksand-regular">
-                                Rp {{ number_format($o->total_omzets,0,',','.') }}
+                            <p class="text-black text-xs font-quicksand font-quicksand-regular">
+                                <span class="text-nowrap">Rp {{ number_format($o->total_omzets,0,',','.') }}</span>
                             </p>
-                            <p class="text-white text-xs font-quicksand font-quicksand-regular opacity-80">
+                            <p class="text-gray-600 text-xs text-nowrap font-quicksand font-quicksand-regular">
                                 {{ \Carbon\Carbon::parse($o->date)->format('d M Y') }}
                             </p>
                         </div>
                     </div>
                 </div>
             @endforeach
-        </div>
-    @endif
-@endforeach
+        @endforeach
+    </div>
 
 </div>
 
@@ -179,8 +139,12 @@
     const mondayStr = formatDateInput(monday);
     const mondayHuman = formatDateReadable(monday);
 
+    // Session persistence per-kunjungan halaman
+    const urlObj = new URL(window.location.href);
+    const keepParam = urlObj.searchParams.get('keep');
+    const ss = window.sessionStorage;
+
     // cek local storage
-    const savedDate = localStorage.getItem('selectedDate');
     const lastMonday = localStorage.getItem('lastMonday');
 
     // refresh otomatis tiap Senin baru
@@ -190,31 +154,28 @@
         location.reload();
     }
 
-    // set nilai awal tombol & input
-    if (savedDate) {
-        dateInput.value = savedDate;
-        dropdownBtnL.textContent = formatDateReadable(new Date(savedDate));
+    // set nilai awal tombol & input kiri
+    const savedLeft = keepParam === '1' ? ss.getItem('selectedDateL') : null;
+    if (savedLeft) {
+        dateInput.value = savedLeft;
+        dropdownBtnL.textContent = formatDateReadable(new Date(savedLeft));
     } else {
         dateInput.value = mondayStr;
         dropdownBtnL.textContent = mondayHuman;
+        ss.removeItem('selectedDateL');
     }
 
     // ubah tombol pas tanggal diganti manual
     dateInput.addEventListener('change', (e) => {
-        localStorage.setItem('selectedDate', e.target.value);
-        dropdownBtnL.textContent = formatDateReadable(new Date(e.target.value));
-    });
-
-    // buka & tutup dropdown kiri
-    dropdownBtnL.addEventListener('click', (e) => {
-        e.stopPropagation();
-        dropdownL.classList.toggle('hidden');
-        dropdownR.classList.add('hidden');
-    });
-    document.addEventListener('click', (e) => {
-        if (!dropdownL.contains(e.target) && !dropdownBtnL.contains(e.target)) {
-            dropdownL.classList.add('hidden');
-        }
+        const val = e.target.value;
+        dropdownBtnL.textContent = formatDateReadable(new Date(val));
+        ss.setItem('selectedDateL', val);
+        // also set start_date in URL and keep=1
+        const url = new URL(window.location.href);
+        url.searchParams.set('start_date', val);
+        url.searchParams.set('keep', '1');
+        // month follows right-date handler; don't override here
+        window.location.href = url.toString();
     });
 
 
@@ -234,7 +195,6 @@
 
     const today = new Date();
     const todayStr = formatInputDate(today);
-    const savedDateR = localStorage.getItem('selectedDateRight');
     const lastUpdateR = localStorage.getItem('lastUpdateRight');
 
     // refresh otomatis kalau sudah ganti hari
@@ -245,18 +205,47 @@
     }
 
     // set nilai awal tombol & input kanan
-    if (savedDateR) {
-        datePickerRight.value = savedDateR;
-        dropdownBtnR.textContent = formatTanggal(new Date(savedDateR));
+    const savedRight = keepParam === '1' ? ss.getItem('selectedDateR') : null;
+    if (savedRight) {
+        datePickerRight.value = savedRight;
+        dropdownBtnR.textContent = formatTanggal(new Date(savedRight));
     } else {
         datePickerRight.value = todayStr;
         dropdownBtnR.textContent = formatTanggal(today);
+        ss.removeItem('selectedDateR');
+    }
+
+    function setMonthQueryFromDateStr(dateStr) {
+        // dateStr format: YYYY-MM-DD
+        if (!dateStr) return;
+        const url = new URL(window.location.href);
+        url.searchParams.set('month', dateStr.slice(0, 7));
+        window.location.href = url.toString();
     }
 
     // ubah tombol kanan pas ganti tanggal manual
     datePickerRight.addEventListener('change', (e) => {
-        localStorage.setItem('selectedDateRight', e.target.value);
-        dropdownBtnR.textContent = formatTanggal(new Date(e.target.value));
+        const val = e.target.value;
+        dropdownBtnR.textContent = formatTanggal(new Date(val));
+        ss.setItem('selectedDateR', val);
+        // update month, end_date, and keep=1
+        const url = new URL(window.location.href);
+        url.searchParams.set('end_date', val);
+        url.searchParams.set('month', val.slice(0,7));
+        url.searchParams.set('keep', '1');
+        window.location.href = url.toString();
+    });
+
+    // buka & tutup dropdown kiri
+    dropdownBtnL.addEventListener('click', (e) => {
+        e.stopPropagation();
+        dropdownL.classList.toggle('hidden');
+        dropdownR.classList.add('hidden');
+    });
+    document.addEventListener('click', (e) => {
+        if (!dropdownL.contains(e.target) && !dropdownBtnL.contains(e.target)) {
+            dropdownL.classList.add('hidden');
+        }
     });
 
     // buka & tutup dropdown kanan
@@ -271,6 +260,64 @@
         }
     });
 </script>
+
+<!-- Flatpickr (smaller calendar on mobile) -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+<style>
+    @media (max-width: 640px) {
+        .flatpickr-calendar {
+            font-size: 12px;
+            transform: scale(0.9);
+            transform-origin: top right;
+        }
+        .flatpickr-day { line-height: 28px; height: 28px; }
+        .flatpickr-months .flatpickr-month { height: 32px; }
+    }
+    .flatpickr-input[readonly] { cursor: pointer; background-color: #fff; }
+    input[type="date"]::-webkit-calendar-picker-indicator { display: none; }
+</style>
+
+<script>
+    if (window.flatpickr) {
+        const dropdownL = document.getElementById('userDropdownL');
+        const dropdownR = document.getElementById('userDropdownR');
+
+        const fpOpts = {
+            dateFormat: 'Y-m-d',
+            disableMobile: true,
+            position: 'below', // 💥 ini yang bikin kalender muncul di bawah input
+            onOpen: function(selectedDates, dateStr, instance) {
+                // Sembunyikan dropdown putih pas kalender muncul
+                if (instance.input.id === 'datePicker') {
+                    dropdownL.classList.add('hidden');
+                } else if (instance.input.id === 'datePickerRight') {
+                    dropdownR.classList.add('hidden');
+                }
+            },
+            onClose: function(selectedDates, dateStr, instance) {
+                // Tampilkan kembali dropdown setelah kalender ditutup
+                if (instance.input.id === 'datePicker') {
+                    dropdownL.classList.remove('hidden');
+                } else if (instance.input.id === 'datePickerRight') {
+                    dropdownR.classList.remove('hidden');
+                }
+            },
+            onChange: function(selectedDates, dateStr, instance) {
+                // Tutup otomatis setelah pilih tanggal
+                instance.close();
+            }
+        };
+
+        if (document.getElementById('datePicker')) {
+            flatpickr(document.getElementById('datePicker'), fpOpts);
+        }
+        if (document.getElementById('datePickerRight')) {
+            flatpickr(document.getElementById('datePickerRight'), fpOpts);
+        }
+    }
+</script>
+
 
 </body>
 </html>
