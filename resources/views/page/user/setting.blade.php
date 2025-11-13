@@ -24,9 +24,15 @@
             {{ session('success') }}
         </div>
     @endif
+    @if(session('error'))
+        <div class="bg-red-200 text-red-800 p-4 text-center">
+            {{ session('error') }}
+        </div>
+    @endif
 
     <form action="{{ route('settings.update') }}" method="POST" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
 
 <!-- Foto -->
 <div class="bg-white p-6 flex justify-center">
@@ -142,12 +148,24 @@
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
 
-                <!-- Password (info saja) -->
                 <div class="mb-3">
                     <label class="block text-sm text-white font-pilcrow">Password</label>
-                    <input type="password" value="********" readonly
-                           class="w-full bg-gray-100 border-2 border-black rounded-lg p-2">
-                    <small class="text-white">Untuk ubah password silakan ke menu "Change Password".</small>
+                    <div class="grid grid-cols-2 gap-3">
+                        <div>
+                            <input type="password" name="current_password" placeholder="Password lama"
+                                   class="w-full h-[45px] text-xs bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
+                            @error('current_password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                        <div>
+                            <input type="password" name="password" placeholder="Password baru"
+                                   class="w-full h-[45px] text-xs bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
+                            @error('password')
+                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            @enderror
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
