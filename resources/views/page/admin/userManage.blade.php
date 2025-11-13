@@ -36,7 +36,7 @@
                 class=" w-[10vw] h-10 object-cover"
             /> --}}
             <span v-else>
-             CONTOh
+             FOTO
             </span>
             </div>
                     <svg class="absolute md:hidden w-4 h-4 text-black right-[2vw] ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

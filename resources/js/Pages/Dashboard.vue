@@ -346,7 +346,7 @@ const computeGrade = (total) => {
                             <img class="w-8 h-8" src="/assets/svg/newArticle-icon.svg" alt="Artikel Icon">
                         </div>
                         <p class="text-xs font-pilcrow font-pilcrow-heavy text-black text-center">Artikel</p>
-                    </a>
+                    </a>\<h1></h1>
                     
                     <!-- Video -->
                     <a href="/videos" class="flex flex-col items-center focus:outline-none">
