@@ -70,56 +70,56 @@
             <div class="w-[15%] -ml-2 flex flex-col border-r-2 h-screen border-black">
                 <a
                     href="/admin/dashboard"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/dashboard' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >
                     <img src="/assets/svg/dashboard-icon.svg" alt="Dashboard" class="w-[2vw] h-[2vh] mr-1">
                     Dashboard
                 </a>
                 <a
                     href="/admin/users"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/users' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >
                     <img src="/assets/svg/userManage-icon.svg" alt="User Management" class="w-[2vw] h-[2vh] mr-1">
                     User Management
                 </a>
                 <a
                     href="/admin/products"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/products' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >
                     <img src="/assets/svg/product-icon.svg" alt="Produk" class="w-[2vw] h-[2vh] mr-1">
                     Produk
                 </a>
                 <a
                     href="/admin/omzet"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/omzet' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >
                     <img src="/assets/svg/totalOmzet2-icon.svg" alt="Total Omzet" class="w-[2vw] h-[2vh] mr-1">
                     Total Omzet
                 </a>
                 <a
                     href="/admin/videos"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/videos' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >   
                     <img src="/assets/svg/blackVideo-icon.svg" alt="Video" class="w-[2vw] h-[2vh] mr-1">
                     Video
                 </a>
                 <a
                     href="/admin/ebooks"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/ebooks' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >
                     <img src="/assets/svg/blackEbook-icon.svg" alt="Ebook" class="w-[2vw] h-[2vh] mr-1">
                     Ebook
                 </a>
                 <a
                     href="/admin/articles"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/articles' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"    
                 >
                     <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">
                     Artikel
                 </a>
                 <a
                     href="/admin/history"
-                    class="flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
+                    class=" {{ request()->path() == 'admin/history' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
                 >
                     <img src="/assets/svg/blackHistory-icon.svg" alt="Histori" class="w-[1.5vw] h-[1.5vh] mr-1">
                     Histori
