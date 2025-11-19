@@ -3,10 +3,13 @@ import { Head } from '@inertiajs/vue3';
 
 defineProps({
     totalOmzet: Number,
+    totalUser: Number,
+    totalProduct: Number,
+    totalVideo: Number,
+    totalEbook: Number,
+    totalArticle: Number,
     topOmzet: Array,
-    rataOmzet: Number,
-    progress: Number,
-    targetValue: Number,
+    history: Array,
 });
 </script>
 
@@ -196,27 +199,27 @@ defineProps({
                         <div class="grid-cols-3 items-center justify-center justify-self-center grid gap-4">
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/totalOmzet2-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Total Omzet</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">Rp 1.000.000</p>
+                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">Rp {{ new Intl.NumberFormat('id-ID').format(totalOmzet) }}</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/productTefa-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Produk Tefa</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">4 Produk</p>
+                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalProduct }} Produk</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/totalUser-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Total User</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">20 User</p>
+                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalUser }} User</p>
                             </div>
                               <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackVideo-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Inspirasi, Tips</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">9 Video</p>
+                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalVideo }} Video</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackEbook-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] text-black inline filter-black"> Edukasi</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">4 Ebook</p>
+                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalEbook }} Ebook</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
                                 <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackArticle-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Artikel</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold text-black text-nowrap select-none">6 Artikel</p>
+                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalArticle }} Artikel</p>
                             </div>
                         </div>
 
@@ -326,15 +329,15 @@ defineProps({
 
                         <!-- Table Body History Omzet -->
                         <div
-                            v-for="(item, idx) in topOmzet.slice(0, 5)"
+                            v-for="(item, idx) in history"
                             :key="item.id"
                             class="flex justify-between items-center p-1 mb-2"
                         >
-                            <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] text-center">{{ item.created_at ? new Date(item.created_at).toLocaleDateString('id-ID') : '-' }}</p>
-                            <p class="text-[0.8vw] font-pilcrow text-black w-[10vw] truncate">{{ item.name }}</p>
-                            <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] truncate">{{ item.major }}</p>
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] text-center">{{ new Date(item.date).toLocaleDateString('id-ID') }}</p>
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[10vw] truncate">{{ item.user.name }}</p>
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] truncate">{{ item.user.major }}</p>
                             <p class="text-[0.8vw] font-pilcrow text-black w-[4vw] text-right">
-                                Rp {{ new Intl.NumberFormat('id-ID').format(item.omzets_sum_total_omzets || 0) }}
+                                Rp {{ new Intl.NumberFormat('id-ID').format(item.total_omzets) }}
                             </p>
                         </div>
                     </div>
