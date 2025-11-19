@@ -88,15 +88,17 @@
     </script>
 
         <!-- Informasi Pribadi -->
-        <div class="bg-white p-6">
-            <h2 class="text-xl font-pilcrow font-pilcrow-bold text-black mb-4">Informasi Pribadi</h2>
-            <div class="bg-primary border-2 border-black shadow-black rounded-lg p-6 mb-6">
+        <div class="p-6">
 
-                <!-- Name -->
-                <div class="mb-3">
-                    <label class="block text-sm text-white font-pilcrow">Nama</label>
-                    <input type="text" name="name" value="{{ old('name', $user->name) }}"
-                           class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
+            <div class="bg-white">
+                <h2 class="text-xl font-pilcrow font-pilcrow-bold text-black mb-4">Informasi Pribadi</h2>
+                <div class="bg-primary border-2 border-black shadow-black rounded-lg p-6 mb-6">
+                    
+                    <!-- Name -->
+                    <div class="mb-3">
+                        <label class="block text-sm text-white font-pilcrow">Nama</label>
+                        <input type="text" name="name" value="{{ old('name', $user->name) }}"
+                        class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
 
                 <!-- Email -->
@@ -112,7 +114,7 @@
                     <input type="text" name="phone" value="{{ old('phone', $user->phone) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
-
+                
                 <!-- Address -->
                 <div class="mb-3">
                     <label class="block text-sm text-white font-pilcrow">Alamat</label>
@@ -128,16 +130,16 @@
                 </div>
 
                 <!-- Department -->
-                <div class="mb-3">
+                <div class="">
                     <label class="block text-sm text-white font-pilcrow">Jurusan</label>
                     <input type="text" name="major" value="{{ old('major', $user->major) }}"
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
             </div>
         </div>
-
+        
         <!-- Keamanan Akun -->
-        <div class="bg-white p-6">
+        <div class="bg-white">
             <h2 class="text-xl font-pilcrow font-pilcrow-bold text-black mb-4">Keamanan Akun</h2>
             <div class="bg-primary border-2 border-black shadow-black rounded-lg p-6 mb-6">
 
@@ -148,39 +150,40 @@
                            class="w-full bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                 </div>
 
-                <div class="mb-3">
+                <div class="">
                     <label class="block text-sm text-white font-pilcrow">Password</label>
                     <div class="grid grid-cols-2 gap-3">
                         <div>
                             <input type="password" name="current_password" placeholder="Password lama"
-                                   class="w-full h-[45px] text-xs bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
+                            class="w-full h-[45px] text-xs bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                             @error('current_password')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                         <div>
                             <input type="password" name="password" placeholder="Password baru"
                                    class="w-full h-[45px] text-xs bg-white border-2 border-black rounded-lg p-2 focus:outline-none">
                             @error('password')
-                                <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                             @enderror
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
+        
         <!-- Action -->
-        <div class="bg-white p-6 flex gap-4">
+        <div class="bg-white flex gap-4">
             <a href="{{ url('/dashboard') }}"
                class="flex-1 text-center bg-white border-2 border-black shadow-black py-3 rounded-lg font-pilcrow hover:bg-gray-50">
                 Batal
             </a>
             <button type="submit"
-                    class="flex-1 bg-secondary text-white border-2 border-black shadow-black py-3 rounded-lg font-pilcrow hover:bg-tertiary">
+            class="flex-1 bg-secondary text-white border-2 border-black shadow-black py-3 rounded-lg font-pilcrow hover:bg-tertiary">
                 Simpan
             </button>
         </div>
+    </div>
     </form>
 </body>
 </html>

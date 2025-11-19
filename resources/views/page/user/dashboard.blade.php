@@ -94,7 +94,7 @@
             </div>
         </div>
 
-        <!-- Target Omset Card -->
+        <!-- Target Omzet Card -->
         <div class=" p-5">
             <div class="bg-white shadow-black border-2 border-black rounded-2xl">
                 <div class="bg-white border-2 rounded-t-2xl p-5 shadow-sm">
@@ -131,12 +131,12 @@
             </div>
         </div>
 
-            <!-- Rata-Rata Omset Card -->
+            <!-- Rata-Rata Omzet Card -->
         </div>
         <div class="bg-white rounded-b-2xl">
 
                 <div class="bg-[#DD661D] border-2 border-black rounded-2xl p-5 shadow-sm">
-                    <h2 class="text-sm font-quicksand font-quicksand-regular text-white mb-1">Rata - Rata Omset</h2>
+                    <h2 class="text-sm font-quicksand font-quicksand-regular text-white mb-1">Rata - Rata Omzet</h2>
                     <p class="text-2xl font-pilcrow font-pilcrow-bold text-white">Rp {{ number_format($rataOmzet, 0, ',', '.') }}</p>
                 </div>
             </div>
@@ -214,11 +214,11 @@
             </a>
         </div>
 
-        <!-- Top Omset Card -->
+        <!-- Top Omzet Card -->
         <div class="p-5">
             <div class="bg-white border-2 border-black shadow-black rounded-2xl p-5 shadow-sm">
                 <div class="flex justify-between items-center mb-4">
-                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black">Top Omset</h2>
+                    <h2 class="text-lg font-pilcrow font-pilcrow-bold text-black">Top Omzet</h2>
                     <button class="bg-secondary shadow-black border-2 border-black text-black px-3 py-2 rounded-xl text-xs font-quicksand font-quicksand-medium flex items-center">
                         Bulan Ini
                         <svg class="w-3 h-3 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">

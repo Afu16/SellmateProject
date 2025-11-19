@@ -71,8 +71,8 @@
             </div>
             <input type="hidden" name="timeline" id="timeline" value="{{ old('timeline', $target->timeline ?? 3) }}">
 
-            <!-- Jumlah Target Omset -->
-            <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omset</label>                
+            <!-- Jumlah Target Omzet -->
+            <label class="block text-black font-pilcrow font-pilcrow-semibold text-sm mb-2 mt-4">Jumlah Target Omzet</label>                
             <input type="text" name="target" id="target" value="{{ old('target', $target->target ?? '') }}" 
                 class="w-full mb-6 px-3 py-2 text-xs border border-black rounded-lg font-inter text-black bg-white" 
                 placeholder="10000000">
