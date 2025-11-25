@@ -12,11 +12,17 @@ class VideoController extends Controller
 
     public function index(Request $request)
     {
-        $videos = \App\Models\Video::with('user')
-            ->orderBy('created_at', 'desc')
-            ->get();
+        
+    $filter = $request->get('filter'); // inspirasi / tips
 
-        return view('page.user.video', compact('videos'));
+    $videos = Video::with('user')
+        ->when($filter, function($q) use ($filter) {
+            $q->where('category', ucfirst($filter)); // Samakan format
+        })
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+    return view('page.user.video', compact('videos'));
     }
 
     public function show(Video $video)
