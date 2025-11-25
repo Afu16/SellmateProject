@@ -16,12 +16,10 @@
         <!-- Header with greeting -->
         <div class="bg-primary w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-5 sm:mt-3">
-                <h1 class="text-[30px] hidden md:block mt-[1.5vh] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-rounded text-white">Sellmate</h1>  
-                <h1 class="text-[15px] md:hidden sm:text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello DEDEN,</h1>  
-                <p class=" text-[10px] md:hidden sm:text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
+                <h1 class="text-[30px] hidden md:block mt-[1.5vh] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-rounded text-white">SellMate</h1>
             </div>
-            <div class="mt-0">
-                <button id="userDropdownBtn" class="flex absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
+            <div class="mt-0 ml-auto">
+                 <button id="userDropdownBtn" class="flex absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
                     <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black ml-2">
                         DEDEN
                     </h3>
@@ -43,8 +41,6 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
-                
-                <!-- Dropdown Menu -->
                 <div id="userDropdown" class="absolute top-[8vh] right-5 md:right-[10vw] mt-2 -ml-4 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50 hidden">
                     <div class="py-2">
                         <a href="/settings" class="flex mb-2 mt-5 items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-gray-100 transition-colors">
@@ -52,8 +48,9 @@
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
                             </svg>
                             Edit Profile
-                        </a> 
-                        <form method="POST" action="route('logout')" class="w-full">
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="w-full">
+                            @csrf
                             <button type="submit" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-red-50 transition-colors w-full">
                                 <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
@@ -117,104 +114,157 @@
                     <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">
                     Artikel
                 </a>
-                <a
-                    href="/admin/history"
-                    class=" {{ request()->path() == 'admin/history' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
-                >
-                    <img src="/assets/svg/blackHistory-icon.svg" alt="Histori" class="w-[1.5vw] h-[1.5vh] mr-1">
-                    Histori
-                </a>
             </div>
             
             <div class="w-full p-5">
-                    <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">User Management</h1>
-                    <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">
-                        Manage your team members and their account permissions here
-                    </p>
+                <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">User Management</h1>
+                <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">Manage your team members and their account permissions here</p>
 
-                <div class="flex flex-row gap-5">
-                    <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">All User</h1>
+                <div class="flex items-center gap-3">
+                    <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">All users</h1>
                     <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">44</h1>
-                    <div class="flex flex-row ml-auto gap-5">
-                        <div class="flex items-center gap-2">
-                            <div class="relative">
-                                <input
-                                type="search"
-                                name="search"
-                                id="search"
-                                placeholder="Search"
-                                class="w-[15vw] h-[3.5vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
-                                />
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor"
-                                >
-                                <path
-                                stroke-linecap="round"
-                                stroke-linejoin="round"
-                                stroke-width="2"
-                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                />
+                    <div class="flex items-center gap-3 ml-auto">
+                        <div class="relative">
+                            <input type="search" name="search" id="search" placeholder="Search" class="w-[18vw] h-[4.2vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[10px] focus:outline-none focus:ring-2 focus:ring-primary" />
+                            <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </div>
+                        <button class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
+                            <img width="10" src="/assets/svg/filter-icon.svg" alt="filter-icon">
+                            Filters
+                        </button>
+                        <button class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
+                            <img width="10" src="/assets/svg/blackPlus-icon.svg" alt="plus-icon">
+                            Add Users
+                        </button>
                     </div>
-
-                    <button class="w-[3.5vh] h-[3.5vh] relative top-[0.5vh]  border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary">
-                                           <img width="10px" src="/assets/svg/filter-icon.svg" alt="filter-icon" class="justify-self-center">
-                                           Filter
-                                       </button>
-
-                                        <button class="w-[4vh] h-[3.5vh]  text-nowrap relative top-[0.5vh]  border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary">
-                                           <img width="10px" src="/assets/svg/blackPlus-icon.svg" alt="plus-icon" class=" justify-self-center">
-                                           Add User
-                                       </button>
-                                </div>
                 </div>
 
-                <table class="w-full mt-5 p-6">
-                    <tr class="bg-gray-300 rounded-xl px-5">
-                        <td></td>
-                        <td>
-                        </td>
-                        <td class="pr-5">Nama</td>
-                        <td class="px-6">Status</td>
-                        <td class="px-5">Last Active</td>
-                        <td class="px-5">Date Added</td>
-                    </tr>
+                <div class="w-full mt-5">
+                    <div class="grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-gray-300 rounded-xl px-4 py-2 text-black border-2 border-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div>Username</div>
+                        <div class="text-center">Status</div>
+                        <div class="text-center">Last active</div>
+                        <div class="text-center">date added</div>
+                        <div></div>
+                    </div>
 
-                    <tr class="mt-5 border-2 border-black shadow-black rounded-xl">
-                            <td>
-                                <input class="rounded-md" type="checkbox" name="checkbox" id="checkbox">
-                            </td>
-                            <td class="px-5">
-                                <div class="flex items-center gap-2">
-                                    <img width="50px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
-                                </div>
-                            </td>
-                            <td class="pr-5">John Doe</td>
-                            <td class="px-6">Active</td>
-                            <td class="px-5">2023-08-15</td>
-                            <td class="px-5">2023-08-10</td>
-                        </tr>
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Mitchell</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
 
-                           <tr class="mt-5 border-2 border-black shadow-black rounded-xl">
-                            <td>
-                                <input class="rounded-md" type="checkbox" name="checkbox" id="checkbox">
-                            </td>
-                            <td class="px-5">
-                                <div class="flex items-center gap-2">
-                                    <img width="50px"  src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="check-icon" class=" justify-self-center">
-                                </div>
-                            </td>
-                            <td class="pr-5">John Doe</td>
-                            <td class="px-6">Active</td>
-                            <td class="px-5">2023-08-15</td>
-                            <td class="px-5">2023-08-10</td>
-                        </tr>
-                </table>
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Soham</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Courtney</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Darrell</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Shane</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Ann</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Cameron</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+
+                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div>
+                            <input class="rounded-md" type="checkbox" />
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <span class="font-pilcrow font-pilcrow-rounded text-black">Arthur</span>
+                        </div>
+                        <div class="text-center">Active</div>
+                        <div class="text-center">Mar 4, 2024</div>
+                        <div class="text-center">July 4, 2024</div>
+                        <div class="text-right text-xl">⋮</div>
+                    </div>
+                </div>
             </div>
         </body>
         </html>
