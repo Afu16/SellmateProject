@@ -137,14 +137,16 @@
                     </div>
                 </div>
 
-                <table class="border-2 w-full p-5 border-black shadow-black">
-                    <tr>
-                        <td>
-                              <div class="flex items-center gap-2">
+                <div class="border-2 border-black shadow-black p-2 rounded-xl">
+                    <div class="flex flex-row justify-between items-center mb-3">
+                        <div class="text-[1vw] font-quicksand font-quicksand-regular text-black">
+                            {{-- blank --}}
+                        </div>
+                         <div class="flex items-center gap-2">
                                 <div class="relative">
                                     <input
                                     type="search"
-                                    name="search"
+                                        name="search"
                                     id="search"
                                     placeholder="Search"
                                     class="w-[15vw] h-[3.5vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
@@ -165,23 +167,37 @@
                                 </svg>
                         </div>
                     </div>
-                        </td>
-                    </tr>
-                    <tr>
+                </div>
+
+                <table class="w-full">  
+                    <tr  class="text-center">
                         <td>No</td>
                         <td>Nama</td>
                         <td>Jurusan</td>
                         <td>Top Omzet</td>
                         <td>Nilai</td>
                     </tr>
-                    <tr>
+                    <tr class="">
+                        <td colspan="6">
+                            <div class="w-full h-[1px] bg-black rounded-full"></div>
+                        </td>
+                    </tr>
+                    <tr  class="text-center">
                         <td>1</td>
                         <td>Charless</td>
                         <td>PMN</td>
                         <td>Rp 2.000.000</td>
                         <td>A</td>
                     </tr>
+                      <tr  class="text-center">
+                        <td>2</td>
+                        <td>Charless</td>
+                        <td>PMN</td>
+                        <td>Rp 2.000.000</td>
+                        <td>A</td>
+                    </tr>
                 </table>
-               </div>
+            </div>
+            </div>
         </body>
 </html>

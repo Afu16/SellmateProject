@@ -141,9 +141,9 @@
                     </div>
                 </div>
 
-                <div class="border-2 border-black shadow-black p-2">
+                <div class="border-2 border-black shadow-black rounded-xl p-2">
                     <div class="flex justify-between items-center mb-5">
-                        <h6 class="text-sm mt-2 font-pilcrow font-pilcrow-rounded font-bold text-black">Katalog Produk</h6>
+                        <h6 class="text-sm mt-2 font-pilcrow font-pilcrow-medium text-black">Katalog Produk</h6>
                         <div class="flex items-center gap-2">
                             <div class="relative">
                                 <input
