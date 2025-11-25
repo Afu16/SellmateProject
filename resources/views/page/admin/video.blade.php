@@ -21,42 +21,40 @@
                 <p class=" text-[10px] md:hidden sm:text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
             <div class="mt-0">
-                <button id="userDropdownBtn" class="flex absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
+                <button class="user-dropdown-btn flex absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
+
+                    <!-- Nama User -->
                     <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black ml-2">
-                        DEDEN
+                        {{ Auth::user()->name }}
                     </h3>
-            <!-- Avatar Dynamic -->
-            <div
-                class="absolute right-6 md:right-7 w-10 h-10 rounded-full border-2 border-black flex items-center justify-center bg-gray-300 text-black font-bold overflow-hidden"
-            >
-            {{-- <img
-                v-if="$page.props.auth.user.foto_link"
-                :src="`/storage/${$page.props.auth.user.foto_link}`"
-                alt="Profile Photo"
-                class=" w-[10vw] h-10 object-cover"
-            /> --}}
-            <span v-else>
-             FOTO
-            </span>
-            </div>
+
+                    <!-- Foto Profil -->
+                    <div class="absolute right-6 md:right-7 w-10 h-10 rounded-full border-2 border-black flex items-center justify-center overflow-hidden bg-gray-300 text-black font-bold">
+                        @if(Auth::user()->foto_link)
+                            <img src="{{ asset('storage/' . Auth::user()->foto_link) }}" class="w-full h-full object-cover">
+                        @else
+                            <span class="text-[10px]">FOTO</span>
+                        @endif
+                    </div>
+
+                    <!-- Icon Arrow -->
                     <svg class="absolute md:hidden w-4 h-4 text-black right-[2vw] ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
-                
-                <!-- Dropdown Menu -->
-                <div id="userDropdown" class="absolute top-[8vh] right-5 md:right-[10vw] mt-2 -ml-4 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50 hidden">
+                <!-- Dropdown -->
+                <div class="user-dropdown absolute top-[8vh] right-5 md:right-[10vw] mt-2 -ml-4 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50 hidden">
                     <div class="py-2">
-                        <a href="/settings" class="flex mb-2 mt-5 items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-gray-100 transition-colors">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                            Edit Profile
-                        </a> 
-                        <form method="POST" action="route('logout')" class="w-full">
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
                             <button type="submit" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-red-50 transition-colors w-full">
                                 <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0
+                                        01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0
+                                        013 3v1">
+                                    </path>
                                 </svg>
                                 Logout
                             </button>
@@ -180,5 +178,26 @@
                         </div>
                     </div>
             </div>
-        </body>
+        </div>
+    </div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const buttons = document.querySelectorAll('.user-dropdown-btn');
+
+        buttons.forEach(btn => {
+            btn.addEventListener('click', function (e) {
+                e.stopPropagation();
+                const dropdown = this.parentElement.querySelector('.user-dropdown');
+                dropdown.classList.toggle('hidden');
+            });
+        });
+
+        // Klik di luar => tutup semua dropdown
+        document.addEventListener('click', function () {
+            document.querySelectorAll('.user-dropdown').forEach(drop => drop.classList.add('hidden'));
+        });
+    });
+    </script>
+
+</body>
 </html>
