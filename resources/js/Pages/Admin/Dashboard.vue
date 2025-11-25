@@ -42,7 +42,7 @@ defineProps({
         
         <div class="bg-[#f5f7fa] min-h-screen">
         <!-- Header with greeting -->
-        <div class="bg-primary w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
+        <div class="bg-primary  sticky top-0 z-10 w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-5 sm:mt-3">
                 <h1 class="text-[30px] hidden md:block mt-[1.5vh] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-rounded text-white">Sellmate</h1>  
                 <h1 class="text-[15px] md:hidden sm:text-lg md:text-3xl font-pilcrow font-pilcrow-heavy text-white">Hello {{ $page.props.auth.user.name.split(' ')[0] }},</h1>  
@@ -96,7 +96,7 @@ defineProps({
         </div>
 
         <div class="flex flex-row">
-            <div class="w-[15%] -ml-2 flex flex-col border-r-2 h-screen border-black">
+            <div class="w-[15%] sticky top-[15svh] -ml-2 flex flex-col border-r-2 h-screen border-black">
                 <a
                     href="/admin/dashboard"
                     :class="{
