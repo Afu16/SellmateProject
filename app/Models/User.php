@@ -76,4 +76,8 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+
+    protected $casts = [
+    'last_active' => 'datetime',
+    ];
 }
