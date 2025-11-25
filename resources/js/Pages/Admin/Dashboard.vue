@@ -167,16 +167,6 @@ defineProps({
                     <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">
                     Artikel
                 </a>
-                <a
-                    href="/admin/history"
-                    :class="{
-                        'bg-gray-300': $page.url === '/admin/history',
-                        'flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full': true
-                    }"
-                >
-                    <img src="/assets/svg/blackHistory-icon.svg" alt="Histori" class="w-[1.5vw] h-[1.5vh] mr-1">
-                    Histori
-                </a>
                 </div>
             <div class="w-full p-2">
                 <h1 class="text-big font-pilcrow font-pilcrow-rounded font-bold text-black">Dashboard</h1>

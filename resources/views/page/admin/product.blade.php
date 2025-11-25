@@ -117,13 +117,6 @@
                     <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">
                     Artikel
                 </a>
-                <a
-                    href="/admin/history"
-                    class=" {{ request()->path() == 'admin/history' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full"
-                >
-                    <img src="/assets/svg/blackHistory-icon.svg" alt="Histori" class="w-[1.5vw] h-[1.5vh] mr-1">
-                    Histori
-                </a>
             </div>
 
             <div class="w-full p-5">
