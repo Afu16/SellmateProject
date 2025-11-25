@@ -119,7 +119,7 @@
 
                 <div class="flex items-center gap-3">
                     <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">All users</h1>
-                    <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">44</h1>
+                    <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">{{ $users->total() }}</h1>
                     <div class="flex items-center gap-3 ml-auto">
                         <div class="relative">
                             <input type="search" name="search" id="search" placeholder="Search" class="w-[18vw] h-[4.2vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[10px] focus:outline-none focus:ring-2 focus:ring-primary" />
@@ -149,118 +149,41 @@
                         <div class="text-center">date added</div>
                         <div></div>
                     </div>
+@foreach ($users as $user)
+    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Mitchell</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        <div>
+            <input type="checkbox" class="rounded-md">
+        </div>
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Soham</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        <div class="flex items-center gap-3">
+            <img width="40" height="40"
+                 src="{{ $user->foto_link ? asset('storage/'.$user->foto_link) : '/assets/img/default-avatar.png' }}"
+                 alt="avatar"
+                 class="w-10 h-10 rounded-full border-2 border-black object-cover">
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Courtney</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+            <span class="font-pilcrow font-pilcrow-rounded text-black">
+                {{ $user->name }}
+            </span>
+        </div>
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Darrell</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        <div class="text-center">
+            {{ $user->status ?? 'Active' }}
+        </div>
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Shane</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        <div class="text-center">
+{{ optional($user->last_active)->format('M d, Y') ?? '-' }}
+        </div>
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Ann</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        <div class="text-center">
+{{ optional($user->last_active)->format('M d, Y') ?? '-' }}
+        </div>
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Cameron</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        <div class="text-right text-xl">⋮</div>
+    </div>
+@endforeach
 
-                    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                        <div>
-                            <input class="rounded-md" type="checkbox" />
-                        </div>
-                        <div class="flex items-center gap-3">
-                            <img width="40" height="40" src="/storage/profile/QzBiJ2sbQ5yIgcy2vEOEOA1R7hwyNYvwdmzbwez5.jpg" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
-                            <span class="font-pilcrow font-pilcrow-rounded text-black">Arthur</span>
-                        </div>
-                        <div class="text-center">Active</div>
-                        <div class="text-center">Mar 4, 2024</div>
-                        <div class="text-center">July 4, 2024</div>
-                        <div class="text-right text-xl">⋮</div>
-                    </div>
+        
                 </div>
             </div>
         </div>
