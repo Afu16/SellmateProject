@@ -11,4 +11,8 @@ class ArticleController extends Controller
     {
         return view('page.admin.article');
     }
+    public function create()
+    {
+        return view('page.admin.article-add');
+    }
 }

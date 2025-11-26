@@ -105,6 +105,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
         
         // Product Management Routes
+        Route::get('/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
         Route::get('/products', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products');
         Route::post('/products', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store');
         Route::put('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update');
@@ -117,18 +118,21 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/omzet/{id}', [\App\Http\Controllers\Admin\OmzetController::class, 'destroy'])->name('omzet.destroy');
         
         // Video Management Routes
+        Route::get('/videos/create', [\App\Http\Controllers\Admin\VideoController::class, 'create'])->name('videos.create');
         Route::get('/videos', [\App\Http\Controllers\Admin\VideoController::class, 'index'])->name('videos');
         Route::post('/videos', [\App\Http\Controllers\Admin\VideoController::class, 'store'])->name('videos.store');
         Route::put('/videos/{id}', [\App\Http\Controllers\Admin\VideoController::class, 'update'])->name('videos.update');
         Route::delete('/videos/{id}', [\App\Http\Controllers\Admin\VideoController::class, 'destroy'])->name('videos.destroy');
         
         // Ebook Management Routes
+        Route::get('/ebooks/create', [\App\Http\Controllers\Admin\EbookController::class, 'create'])->name('ebooks.create');
         Route::get('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'index'])->name('ebooks');
         Route::post('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'store'])->name('ebooks.store');
         Route::put('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'update'])->name('ebooks.update');
         Route::delete('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'destroy'])->name('ebooks.destroy');
         
         // Article Management Routes
+        Route::get('/articles/create', [\App\Http\Controllers\Admin\ArticleController::class, 'create'])->name('articles.create');
         Route::get('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'index'])->name('articles');
         Route::post('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'store'])->name('articles.store');
         Route::put('/articles/{id}', [\App\Http\Controllers\Admin\ArticleController::class, 'update'])->name('articles.update');

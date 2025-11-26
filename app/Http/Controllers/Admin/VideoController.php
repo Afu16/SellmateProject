@@ -12,4 +12,8 @@ class VideoController extends Controller
     {
         return view('page.admin.video');
     }
+    public function create()
+    {
+        return view('page.admin.video-add');
+    }
 }

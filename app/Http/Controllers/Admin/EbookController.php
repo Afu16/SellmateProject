@@ -11,4 +11,8 @@ class EbookController extends Controller
     {   
         return view('page.admin.ebook');
     }
+    public function create()
+    {
+        return view('page.admin.ebook-add');
+    }
 }
