@@ -244,7 +244,7 @@ defineProps({
                             </div>
 
                             <!-- Table Top Omzet -->
-                             <div class="flex justify-between items-center p-1 mb-2 mt-2">
+                             <div class="flex justify-between items-center p-1 mb-2 ">
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[0.1vw]">No</p>
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[10vw]">Nama</p>
                                     <p class="text-[0.8vw] font-pilcrow font-pilcrow-heavy text-black w-[0.9vw]">Jurusan</p>
@@ -255,7 +255,7 @@ defineProps({
 
                                 <!-- Table Body -->
                                 <div
-                                    v-for="(item, idx) in topOmzet.slice(0, 5)"
+                                    v-for="(item, idx) in topOmzet.slice(0, 10)"
                                     :key="item.id"
                                     class="flex justify-between items-center p-1 mb-2"
                                 >
