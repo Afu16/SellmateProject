@@ -60,7 +60,7 @@ Route::get('/top-rating', [App\Http\Controllers\TopRatingController::class, 'ind
 
 Route::get('/ebook', [EbookController::class, 'index'])->name('ebook');
 Route::get('/ebooks/filter', [EbookController::class, 'filter'])->name('ebooks.filter');
-Route::get('/share/ebook/{slug}', [\App\Http\Controllers\EbookController::class, 'share'])->name('ebook.share');
+Route::get('/ebook/share/{id}', [EbookController::class, 'shareLink'])->name('ebook.share');
 
 Route::get('/videos/upload', [VideoController::class, 'uploadForm'])->name('videos.upload.form');
 Route::post('/videos/upload', [VideoController::class, 'uploadStore'])->name('videos.upload.store');
