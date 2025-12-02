@@ -4,11 +4,11 @@
 <div id="transaction-detail" class="w-full">
     <div class="flex items-center gap-4">
         <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Detail Transaksi {{ $username }}</h1>
-        <img src="/assets/img/default-avatar.png" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
+        <img src="/storage/{{ $profile_picture }}" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
         <div class="ml-auto flex items-center gap-3">
             <div class="flex items-center gap-2 bg-secondary border-2 border-black rounded-xl px-4 py-2">
                 <span class="text-black text-sm">Total Omzet</span>
-                <span id="totalOmzet" class="text-black text-sm font-bold">0</span>
+                <span id="totalOmzet" class="text-black text-sm font-bold"></span>
             </div>
             <div class="relative">
                 <input type="search" id="searchInput" placeholder="Search" class="w-[18vw] h-[4.2vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[10px] focus:outline-none focus:ring-2 focus:ring-primary" />
@@ -16,7 +16,7 @@
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                 </svg>
             </div>
-            <button id="filterBtn" class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
+            <button id="filterBtn" class="text-nowrap flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
                 <img width="10" src="/assets/svg/filter-icon.svg" alt="filter-icon">
                 Bulan ini
             </button>
@@ -24,16 +24,13 @@
     </div>
 
     <div class="w-full mt-5">
-        <div class="grid grid-cols-[40px,1fr,140px,160px,120px,160px,40px] items-center bg-gray-300 rounded-xl px-4 py-2 text-black border-2 border-black">
-            <div>
-                <input class="rounded-md" type="checkbox" />
-            </div>
-            <div>Username</div>
+        <div class="text-[10px] grid grid-cols-[60px,100px,120px,100px,140px,40px] items-center bg-gray-300 rounded-xl px-4 py-2 text-black border-2 border-black">
+            <div class="text-center">Username</div>
             <div class="text-center">School</div>
             <div class="text-center">Department</div>
             <div class="text-center">Product</div>
             <div class="text-center">Price</div>
-            <div class="text-center">Transaction Date</div>
+            <div class="text-center text-nowrap">Transaction Date</div>
             <div></div>
         </div>
 
@@ -49,6 +46,7 @@
 
 <script>
 (() => {
+    const userId = @json($userId);
     const username = @json($username);
     const listEl = document.getElementById('items');
     const loadingEl = document.getElementById('loading');
@@ -66,7 +64,7 @@
         errorEl.classList.add('hidden');
         listEl.innerHTML = '';
         try {
-            const res = await fetch(`/admin/usermana/${encodeURIComponent(username)}/data?page=${page}&per_page=${perPage}`);
+            const res = await fetch(`/admin/usermana/${encodeURIComponent(userId)}/data?page=${page}&per_page=${perPage}`);
             if (!res.ok) throw new Error('Network');
             const json = await res.json();
             totalOmzetEl.textContent = new Intl.NumberFormat('id-ID').format(json.total_omzet);
@@ -88,18 +86,15 @@
             item.school.toLowerCase().includes(q)
         );
         listEl.innerHTML = filtered.map(item => `
-            <div class="grid grid-cols-[40px,1fr,140px,160px,120px,160px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
-                <div><input class="rounded-md" type="checkbox" /></div>
+            <div class="text-[10px] grid grid-cols-[60px,100px,120px,100px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
                 <div class="flex items-center gap-3">
-                    <img width="40" height="40" src="/assets/img/default-avatar.png" alt="avatar" class="w-10 h-10 rounded-full border-2 border-black object-cover">
                     <span class="font-pilcrow font-pilcrow-rounded text-black">${username}</span>
                 </div>
                 <div class="text-center">${item.school}</div>
                 <div class="text-center">${item.department}</div>
                 <div class="text-center">${item.product}</div>
                 <div class="text-center">Rp ${new Intl.NumberFormat('id-ID').format(item.price)}</div>
-                <div class="text-center">${new Date(item.transaction_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
-                <div class="text-right text-xl">⋮</div>
+                <div class="text-center text-nowrap">${new Date(item.transaction_date).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</div>
             </div>
         `).join('');
     }
@@ -121,4 +116,3 @@
 })();
 </script>
 @endsection
-

@@ -105,8 +105,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::put('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 
-        Route::get('/admin/usermana/{username}', [UserTransactionsController::class, 'index'])->name('usermana');
-Route::get('/admin/usermana/{username}/data', [UserTransactionsController::class, 'data'])->name('usermana.data');
+        Route::get('/usermana/{id}', [UserTransactionsController::class, 'index'])->name('usermana');
+        Route::get('/usermana/{id}/data', [UserTransactionsController::class, 'data'])->name('usermana.data');
         
         // Product Management Routes
         Route::get('/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
@@ -146,6 +146,5 @@ Route::get('/admin/usermana/{username}/data', [UserTransactionsController::class
         Route::get('/history', [\App\Http\Controllers\Admin\HistoryController::class, 'index'])->name('history');
     });
 });
-
 
 
