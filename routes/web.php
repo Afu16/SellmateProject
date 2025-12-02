@@ -13,6 +13,7 @@ use App\Http\Controllers\TopRatingController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\EbookController;
 use App\Http\Controllers\VideoController;
+use App\Http\Controllers\Admin\UserTransactionsController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 
@@ -103,6 +104,9 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::post('/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
         Route::put('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
+
+        Route::get('/admin/usermana/{username}', [UserTransactionsController::class, 'index'])->name('usermana');
+Route::get('/admin/usermana/{username}/data', [UserTransactionsController::class, 'data'])->name('usermana.data');
         
         // Product Management Routes
         Route::get('/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
@@ -142,3 +146,6 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/history', [\App\Http\Controllers\Admin\HistoryController::class, 'index'])->name('history');
     });
 });
+
+
+

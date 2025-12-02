@@ -162,9 +162,9 @@
                  alt="avatar"
                  class="w-10 h-10 rounded-full border-2 border-black object-cover">
 
-            <span class="font-pilcrow font-pilcrow-rounded text-black">
+            <a href="{{ route('usermana', ['username' => $user->name]) }}" class="font-pilcrow font-pilcrow-rounded text-black hover:underline">
                 {{ $user->name }}
-            </span>
+            </a>
         </div>
 
         <div class="text-center">
