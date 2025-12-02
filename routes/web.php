@@ -68,6 +68,7 @@ Route::post('/videos/upload', [VideoController::class, 'uploadStore'])->name('vi
 
 Route::get('/videos', [VideoController::class, 'index'])->name('videos');
 Route::get('/videos/{video}', [VideoController::class, 'show'])->name('videos.show');
+Route::get('/video/share/{id}', [VideoController::class, 'shareLink'])->name('video.share');
 
 
 Route::middleware(['auth'])->group(function () {
