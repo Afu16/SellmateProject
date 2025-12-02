@@ -49,7 +49,7 @@
                     <img src="/assets/svg/blackArticle-icon.svg" alt="Artikel" class="w-[2vw] h-[2vh] mr-1">Artikel
                 </a>
             </div>
-            <div class="w-full p-5">
+            <div class="w-full overflow-auto">
                 @yield('content')
             </div>
         </div>
