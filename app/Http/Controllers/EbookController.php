@@ -89,12 +89,13 @@ class EbookController extends Controller
         return response()->json(['html' => $html]);
     }
     
-    public function share($slug)
+    public function shareLink($id)
     {
-        $ebook = Ebook::where('slug', $slug)->firstOrFail();
+        $ebook = Ebook::findOrFail($id);
 
-        // Arahkan langsung ke file PDF di storage
-        return redirect(asset('storage/' . $ebook->file_url));
+        return response()->json([
+            'link' => $ebook->file_url,
+        ]);
     }
 
 }
