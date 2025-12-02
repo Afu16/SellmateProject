@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Katalog Artikel')
 @section('content')
 <!-- Content -->
             <div class="w-full p-5">

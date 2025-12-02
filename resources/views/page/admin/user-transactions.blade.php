@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Transaksi Pengguna')
 @section('content')
 <div id="transaction-detail" class="w-full">
     <div class="flex items-center gap-4">

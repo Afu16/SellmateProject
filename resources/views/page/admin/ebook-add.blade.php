@@ -1,5 +1,5 @@
 @extends('layout.admin')
-
+@section('title', 'Tambah Ebook')
 @section('content')
                 <!-- Content -->
                 <div class="w-full p-5">

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Manajemen Pengguna')
 @section('content')
     
 <div class="w-full p-5">

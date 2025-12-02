@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-
+@section('title', 'Top Omzet')
 @section('content')
     
 
