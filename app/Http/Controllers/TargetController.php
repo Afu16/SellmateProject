@@ -77,8 +77,12 @@ class TargetController extends Controller
             'current_omzet' => 0,
         ]);
 
-        return redirect()->route('targetOmzet')->with('success', 'Target omzet baru berhasil dibuat!');
-    }
+        if ($request->action === 'simpan') {
+            return redirect()->route('dashboard')->with('success', 'Target omzet baru berhasil dibuat!');
+        }
+
+        return redirect()->route('targetOmzet')->with('success', 'Target omzet baru berhasil diubah!');
+        }
 
     public function edit($id)
     {
@@ -114,8 +118,12 @@ class TargetController extends Controller
             'target' => $request->target,
         ]);
 
-        return redirect()->route('targetOmzet')->with('success', 'Target berhasil diperbarui!');
-    }
+        if ($request->action === 'perbarui') {
+            return redirect()->route('targetOmzet')->with('success', 'Target berhasil diperbarui!');
+        }
+
+        return redirect()->route('dashboard')->with('success', 'Target berhasil diperbarui!');
+        }
 
     public function destroy($id)
     {
