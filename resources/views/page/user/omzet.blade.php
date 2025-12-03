@@ -74,7 +74,9 @@
             $labels = [1=>'Minggu 1',2=>'Minggu 2',3=>'Minggu 3',4=>'Minggu 4'];
         @endphp
 
-        @foreach($labels as $i => $label)
+        @foreach($weeks as $i => $total)
+            @php $label = "Minggu $i"; @endphp
+
             <div class="bg-primary rounded-lg p-4 mb-3">
                 <div class="flex items-center justify-between">
                     <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $label }}</span>
@@ -170,11 +172,10 @@
         const val = e.target.value;
         dropdownBtnL.textContent = formatDateReadable(new Date(val));
         ss.setItem('selectedDateL', val);
-        // also set start_date in URL and keep=1
+
         const url = new URL(window.location.href);
         url.searchParams.set('start_date', val);
         url.searchParams.set('keep', '1');
-        // month follows right-date handler; don't override here
         window.location.href = url.toString();
     });
 
@@ -228,7 +229,7 @@
         const val = e.target.value;
         dropdownBtnR.textContent = formatTanggal(new Date(val));
         ss.setItem('selectedDateR', val);
-        // update month, end_date, and keep=1
+
         const url = new URL(window.location.href);
         url.searchParams.set('end_date', val);
         url.searchParams.set('month', val.slice(0,7));

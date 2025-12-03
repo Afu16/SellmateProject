@@ -101,7 +101,8 @@
             $labels = [1=>'Minggu 1', 2=>'Minggu 2', 3=>'Minggu 3', 4=>'Minggu 4'];
         @endphp
 
-        @foreach($labels as $i => $label)
+@foreach($weeks as $i => $total)
+    @php $label = "Minggu $i"; @endphp
             <div class="bg-primary rounded-lg p-4 mb-3">
                 <div class="flex items-center justify-between">
                     <span class="text-white text-sm font-pilcrow font-pilcrow-heavy">{{ $label }}</span>
@@ -122,7 +123,7 @@
                                 <div class="text-black text-sm font-pilcrow font-pilcrow-heavy">{{ $o->product->name ?? 'Produk' }}</div>
                                 {{-- Rincian harga / qty / persen --}}
                                 <div class="text-xs text-gray-600">
-                                    Harga: Rp {{ number_format($o->product_price ?? ($o->product->price ?? 0), 0, ',', '.') }} ·
+                                    Harga: Rp{{ number_format($o->product_price ?? ($o->product->price ?? 0), 0, ',', '.') }} ·
                                     Qty: {{ $o->product_qty ?? ($o->quantity ?? 1) }} ·
                                     Rate: {{ number_format( ( ($o->commission_percent ?? $o->product->comission ?? 0) * 100 ), 2) }}%
                                 </div>

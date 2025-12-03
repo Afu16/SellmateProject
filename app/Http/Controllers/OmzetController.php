@@ -49,33 +49,38 @@ class OmzetController extends Controller
         $omzetBulanIni = $monthlyQuery->orderBy('date', 'asc')->get();
         $totalBulanIni = $omzetBulanIni->sum('total_omzets');
 
-        // Hitung agregasi per minggu (Minggu 1-4: 1-7, 8-14, 15-21, 22-akhir)
-        $weeks = [
-            1 => 0,
-            2 => 0,
-            3 => 0,
-            4 => 0,
-        ];
-        $weeksItems = [
-            1 => collect(),
-            2 => collect(),
-            3 => collect(),
-            4 => collect(),
-        ];
+    // Jika tidak ada transaksi bulan ini
+    if ($omzetBulanIni->isEmpty()) {
+        $weeks = [];
+        $weeksItems = [];
+    } else {
 
+        // Ambil tanggal transaksi pertama di bulan ini
+        $firstDate = Carbon::parse($omzetBulanIni->first()->date);
+
+        // Cari Senin pertama minggu transaksi pertama
+        $firstMonday = $firstDate->copy()->startOfWeek(Carbon::MONDAY);
+
+        $weeks = [];
+        $weeksItems = [];
+        
         foreach ($omzetBulanIni as $o) {
-            $day = Carbon::parse($o->date)->day;
-            $weekBucket = 1;
-            if ($day >= 22) {
-                $weekBucket = 4;
-            } elseif ($day >= 15) {
-                $weekBucket = 3;
-            } elseif ($day >= 8) {
-                $weekBucket = 2;
+            $date = Carbon::parse($o->date);
+
+            // Hitung index minggu (0 = minggu pertama)
+            $weekIndex = floor($firstMonday->diffInDays($date) / 7) + 1;
+
+            // Inisialisasi jika belum ada
+            if (!isset($weeks[$weekIndex])) {
+                $weeks[$weekIndex] = 0;
+                $weeksItems[$weekIndex] = collect();
             }
-            $weeks[$weekBucket] += (int) $o->total_omzets;
-            $weeksItems[$weekBucket]->push($o);
+
+            // Tambahkan omzet
+            $weeks[$weekIndex] += (int) $o->total_omzets;
+            $weeksItems[$weekIndex]->push($o);
         }
+    }
 
         // Produk untuk dropdown filter
         $products = Product::orderBy('name')->get();
@@ -96,7 +101,7 @@ class OmzetController extends Controller
         $userId = Auth::id();
 
         // Filters
-        $selectedMonth = $request->string('month')->toString(); // YYYY-MM
+        $selectedMonth = $request->string('month')->toString();
         if (!$selectedMonth) {
             $selectedMonth = now()->format('Y-m');
         }
@@ -108,69 +113,85 @@ class OmzetController extends Controller
         $year = (int) $monthCarbon->format('Y');
         $month = (int) $monthCarbon->format('m');
 
-        // Ambil semua Omzet user (untuk total komisi keseluruhan) dan hitung berdasarkan product.price * omzet.quantity * product.comission(decimal)
+        // Total komisi keseluruhan user (tanpa filter)
         $allOmzets = Omzet::with('product')->where('user_id', $userId)->get();
         $totalKomisi = $allOmzets->sum(function ($o) {
             $qty = (float) ($o->quantity ?? 1);
             $price = (float) ($o->product->price ?? 0);
-            // product migration menyimpan komisi dalam bentuk decimal (mis. 0.05 untuk 5%)
             $percent = (float) ($o->product->comission ?? 0);
-            $computed = $price * $qty * $percent;
-            return $computed;
+            return $price * $qty * $percent;
         });
-        
-        // Query transaksi sesuai rentang atau bulan (untuk tampilan bulan ini)
+
+        // Query transaksi sesuai filter
         $query = Omzet::with('product')->where('user_id', $userId);
+
         if (!empty($startDate) && !empty($endDate)) {
             $query->whereBetween('date', [$startDate, $endDate]);
         } else {
             $query->whereYear('date', $year)->whereMonth('date', $month);
         }
+
         if (!empty($selectedProductId)) {
             $query->where('product_id', $selectedProductId);
         }
 
-        $komisiBulanIni = $query->orderBy('date', 'asc')->get();
+        $omzetBulanIni = $query->orderBy('date','asc')->get();
 
-        // Hitung komisi per item dan total bulan ini (gunakan omzets.quantity dan product.price & product.comission)
-        $totalKomisiBulanIni = 0;
-        foreach ($komisiBulanIni as $o) {
-            $qty = (float) ($o->quantity ?? 1);
-            $price = (float) ($o->product->price ?? 0);
-            // product->comission adalah decimal (mis. 0.05)
-            $percent = (float) ($o->product->comission ?? 0);
-            $computed = $price * $qty * $percent;
+    // Hitung total komisi bulan ini
+    $totalKomisiBulanIni = $omzetBulanIni->sum(function ($o) {
+        $qty = (float) ($o->quantity ?? 1);
+        $price = (float) ($o->product->price ?? 0);
+        $percent = (float) ($o->product->comission ?? 0);
+        return $price * $qty * $percent;
+    });
 
-            // lampirkan atribut agar view bisa menampilkan rincian
-            $o->computed_commission = $computed;
-            $o->product_price = $price;
-            $o->product_qty = $qty;
-            $o->commission_percent = $percent;
+    // Jika tidak ada transaksi bulan itu
+    if ($omzetBulanIni->isEmpty()) {
+        $weeks = [];
+        $weeksItems = [];
+    } else {
 
-            $totalKomisiBulanIni += $computed;
+        // Ambil tanggal transaksi pertama
+        $firstDate = Carbon::parse($omzetBulanIni->first()->date);
+
+        // Cari Senin pertama minggu transaksi pertama
+        $firstMonday = $firstDate->copy()->startOfWeek(Carbon::MONDAY);
+
+    $weeks = [];
+    $weeksItems = [];
+
+    foreach ($omzetBulanIni as $o) {
+        $date = Carbon::parse($o->date);
+        $weekIndex = floor($firstMonday->diffInDays($date) / 7) + 1;
+
+        if (!isset($weeks[$weekIndex])) {
+            $weeks[$weekIndex] = 0;
+            $weeksItems[$weekIndex] = collect();
         }
 
-        // Aggregasi per minggu berdasarkan computed_commission
-        $weeks = [1=>0,2=>0,3=>0,4=>0];
-        $weeksItems = [1=>collect(),2=>collect(),3=>collect(),4=>collect()];
-        foreach ($komisiBulanIni as $o) {
-            $day = Carbon::parse($o->date)->day;
-            $bucket = 1;
-            if ($day >= 22) $bucket = 4; elseif ($day >= 15) $bucket = 3; elseif ($day >= 8) $bucket = 2;
-            $weeks[$bucket] += (float)($o->computed_commission ?? 0);
-            $weeksItems[$bucket]->push($o);
-        }
+        $qty = (float) ($o->quantity ?? 1);
+        $price = (float) ($o->product->price ?? 0);
+        $percent = (float) ($o->product->comission ?? 0);
 
-        $products = Product::orderBy('name')->get();
+        $commission = $price * $qty * $percent;
 
-        return view('page.user.comission', [
-            'totalKomisi' => $totalKomisi,
-            'totalKomisiBulanIni' => $totalKomisiBulanIni,
-            'weeks' => $weeks,
-            'weeksItems' => $weeksItems,
-            'selectedMonth' => $selectedMonth,
-            'selectedProductId' => $selectedProductId,
-            'products' => $products,
-        ]);
+        $weeks[$weekIndex] += $commission;
+        $o->computed_commission = $commission;
+
+        $weeksItems[$weekIndex]->push($o);
     }
+
+        }
+
+    return view('page.user.comission', [
+        'totalKomisi' => $totalKomisi,
+        'totalKomisiBulanIni' => $totalKomisiBulanIni,
+        'weeks' => $weeks,
+        'weeksItems' => $weeksItems,
+        'selectedMonth' => $selectedMonth,
+        'selectedProductId' => $selectedProductId,
+    ]);
+
+    }
+
 }
