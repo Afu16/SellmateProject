@@ -11,9 +11,9 @@
                           </p>
                         </div>
                     <div class="">
-                        <button class="bg-secondary mb-5 px-5 py-2 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">
+                        <a href="{{ route('admin.products.create') }}" class="bg-secondary mb-5 px-5 py-2 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">
                             Tambah Produk
-                        </button>
+                        </a>
                     </div>
                 </div>
 

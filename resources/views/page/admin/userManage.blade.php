@@ -3,11 +3,11 @@
 @section('content')
     
 <div class="w-full p-5">
-    <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">User Management</h1>
-                <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">Manage your team members and their account permissions here</p>
+    <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Manajemen Pengguna</h1>
+                <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">Kelola anggota tim Anda dan izin akun mereka di sini</p>
 
                 <div class="flex items-center gap-3">
-                    <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">All users</h1>
+                    <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">Semua pengguna</h1>
                     <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">{{ $users->total() }}</h1>
                     <div class="flex items-center gap-3 ml-auto">
                         <div class="relative">
@@ -20,10 +20,10 @@
                             <img width="10" src="/assets/svg/filter-icon.svg" alt="filter-icon">
                             Filters
                         </button>
-                        <button class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
+                        <a href="{{ route('admin.users.create') }}" class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
                             <img width="10" src="/assets/svg/blackPlus-icon.svg" alt="plus-icon">
-                            Add Users
-                        </button>
+                            Tambah Pengguna
+                        </a>
                     </div>
                 </div>
 
@@ -34,8 +34,8 @@
                         </div>
                         <div>Username</div>
                         <div class="text-center">Status</div>
-                        <div class="text-center">Last active</div>
-                        <div class="text-center">date added</div>
+                        <div class="text-center">Terakhir aktif</div>
+                        <div class="text-center">Dibuat pada</div>
                         <div></div>
                     </div>
 @foreach ($users as $user)
