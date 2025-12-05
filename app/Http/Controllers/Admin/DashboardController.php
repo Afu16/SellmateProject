@@ -33,7 +33,7 @@ class DashboardController extends Controller
 
         $history = Omzet::with('user')
             ->orderBy('date', 'desc')
-            ->take(11)
+            ->take(17)
             ->get();
 
         return inertia('Admin/Dashboard', [

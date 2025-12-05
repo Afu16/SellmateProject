@@ -8,72 +8,71 @@
         <div class="w-full">
                         <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Top Omzet</h1>
                           <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">
-                             Tetap monitoring progres dan update aktivitas pendapatan Tefa
+                             Monitoring omzet yang didapat setiap saat
                           </p>
                         </div>
                     </div>
                     
-                <div class="border-2 border-black shadow-black p-2 rounded-xl">
-                    <div class="flex flex-row justify-between items-center mb-3">
-                        <div class="text-[1vw] font-quicksand font-quicksand-regular text-black">
-                            {{-- blank --}}
-                        </div>
-                         <div class="flex items-center gap-2">
-                                <div class="relative">
-                                    <input
-                                    type="search"
-                                    name="search"
-                                    id="search"
-                                    placeholder="Search"
-                                    class="w-[15vw] h-[3.5vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
-                                    />
-                                    <svg
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
-                                    fill="none"
-                                    viewBox="0 0 24 24"
-                                    stroke="currentColor"
-                                    >
-                                    <path
-                                    stroke-linecap="round"
-                                    stroke-linejoin="round"
-                                    stroke-width="2"
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                    />
-                                </svg>
-                        </div>
-                    </div>
-                </div>
+                     <div class="flex absolute top-[22vh] right-5 gap-2">
 
-                <table class="w-full">  
-                    <tr  class="text-center">
-                        <td>No</td>
-                        <td>Nama</td>
-                        <td>Jurusan</td>
-                        <td>Top Omzet</td>
-                        <td>Nilai</td>
-                    </tr>
-                    <tr class="">
-                        <td colspan="6">
-                            <div class="w-full h-[1px] bg-black rounded-full"></div>
-                        </td>
-                    </tr>
-                    <tr  class="text-center">
-                        <td>1</td>
-                        <td>Charless</td>
-                        <td>PMN</td>
-                        <td>Rp 2.000.000</td>
-                        <td>A</td>
-                    </tr>
-                    <tr  class="text-center">
-                        <td>2</td>
-                        <td>Charless</td>
-                        <td>PMN</td>
-                        <td>Rp 2.000.000</td>
-                        <td>A</td>
-                    </tr>
-                </table>
-            </div>
+                       <button class="bg-white w-[3vw] h-[3.5vh] border-2 border-black rounded-md shadow-black py-1 text-[7px]    ">
+                            <img src="/assets/svg/newFilter-icon.svg" alt="newFilter-icon" class="justify-self-center" width="10" height="10">
+                        </button>
+
+                                <div class="relative bottom-[0.4vh] focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <!-- w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary -->
+                                       <input
+                                           type="search"
+                                           name="search"
+                                           id="search"
+                                           placeholder="Search"
+                                           class="w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
+
+                                       />
+                                       <img src="/assets/svg/fluentSearch-icon.svg" alt="Search icon" class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer">
+                                   </div>
+
+
+                         <div class="bg-white inline-flex relative w-[7.5vw] h-[3.5vh] justify-between border-2 border-black rounded-md shadow-black px-2 py-1 text-[7px]">
+                                <span class="relative top-[0.2vh] text-gray-400 gap-1 text-nowrap">Bulan ini </span><img src="/assets/svg/fluentCalendar-icon.svg" alt="newCalendar-icon" width="10" height="10">
+                        </div>
+                                </div>
+                                {{-- Table --}}
+                <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg">                            
+                        <div class="flex justify-between items-center p-3">
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center">No</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center">Username</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[10vw]">Nama</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw]">Jurusan</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Total Omzet</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">Nilai</p>
+                        </div>
+
+                        <hr class="border-t-2 border-black">
+
+                        <div
+                            class="flex justify-between border-b-2 border-b-black items-center p-3 "
+                        >
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">1</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">Deden12312</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[10vw]">Charless</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw]">PMN</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-nowrap">Rp. 2.000.000</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-center">A</p>
+                        </div>
+
+                          <div
+                            class="flex justify-between border-b-2 border-b-black items-center p-3 "
+                        >
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">1</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">Deden12312</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[10vw]">Charless</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw]">PMN</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-nowrap">Rp. 2.000.000</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-center">A</p>
+                        </div>
+
+                      </div>
             </div>
         </div>
     </div>

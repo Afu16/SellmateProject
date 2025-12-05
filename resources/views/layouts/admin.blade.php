@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>@yield('title') - Admin</title>
     @vite('resources/js/app.js', 'resources/css/app.css')
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
     <div class="bg-[#f5f7fa] min-h-screen">
@@ -13,15 +14,27 @@
             <div class="mt-5 sm:mt-3">
                 <h1 class="text-[30px] hidden md:block mt-[1.5vh] sm:text-lg md:text-3xl font-pilcrow font-pilcrow-rounded text-white">SellMate</h1>
             </div>
-            <div class="mt-0 ml-auto">
-                <button class="flex items-center gap-3 p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-40 h-[7vh] md:w-48 md:h-14 xl:w-56 xl:h-16">
-                    <div class="flex flex-col leading-tight">
-                        <span class="text-xs font-pilcrow font-pilcrow-semibold text-black">Admin</span>
-                    </div>
-                    <div class="w-10 h-10 rounded-full border-2 border-black flex items-center justify-center bg-gray-300 text-black font-bold overflow-hidden">
-                        <span>👤</span>
-                    </div>
+             <div class="mt-0 ml-auto relative" x-data="{open:false}" @keydown.escape.window="open=false">
+                <button @click="open = !open" class="flex justify-between absolute top-3 right-0  items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
+                    <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black ml-2">{{ explode(' ', Auth::user()->name)[0] }}</h3>
+                    <img src="/assets/svg/fluentPersonCircle-icon.svg" alt="Person Icon">
+                    <svg class="absolute md:hidden w-4 h-4 text-black right-[2vw] ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                    </svg>
                 </button>
+                <div x-show="open" x-transition @click.outside="open=false" class="absolute top-[8.5vh] right-0 items-center justify-center mt-2 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50">
+                    <div class="py-2">
+                        <form method="POST" action="{{route('logout')}}" class="w-full">
+                            @csrf
+                            <button type="submit" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-red-50 transition-colors w-full">
+                                <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path>
+                                </svg>
+                                Logout
+                            </button>
+                        </form>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -54,5 +67,26 @@
             </div>
         </div>
     </div>
+    @yield('scripts')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            setTimeout(() => {
+                const notif = document.getElementById('notif');
+                if (notif) {
+                    notif.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                    notif.style.opacity = 0;
+                    notif.style.transform = "translateX(100%)";
+                    setTimeout(() => notif.remove(), 500);
+                }
+            }, 3000);
+        });
+
+        function closeNotification() {
+            const notif = document.getElementById('notif');
+            if (notif) {
+                notif.remove();
+            }
+        }
+    </script>
 </body>
 </html>

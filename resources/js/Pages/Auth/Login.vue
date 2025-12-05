@@ -34,8 +34,8 @@ const submit = () => {
 
     <div class="text-center my-8">
         <img src="/assets/svg/register-icon.svg" alt="register icon" class="mt-5 inline-block h-44 w-44">
-        <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign In</h1>
-        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Masukkan email/username dan password yang benar</h3>
+        <h1 class="text-4xl font-pilcrow font-pilcrow-heavy mt-4">Sign Up</h1>
+        <h3 class="text-lg font-quicksand font-quicksand-regular mt-2">Enter valid username & password to continue</h3>
     </div>
 
     
@@ -45,16 +45,15 @@ const submit = () => {
     <form @submit.prevent="submit">
     <AuthenticationCard>
             <div>
-                <InputLabel for="email" value="Email atau Username" />
+                <InputLabel for="email" value="Email" />
                 <TextInput
                     id="email"
                     v-model="form.email"
-                    type="text"
+                    type="email"
                     class="mt-1 block w-full"
                     required
                     autofocus
                     autocomplete="username"
-                    placeholder="Email atau Username"
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
@@ -68,7 +67,6 @@ const submit = () => {
                     class="mt-1 block w-full"
                     required
                     autocomplete="current-password"
-                    placeholder="Password"
                 />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>
@@ -76,7 +74,7 @@ const submit = () => {
             <div class="block mt-4">
                 <label class="flex items-center">
                     <Checkbox v-model:checked="form.remember" name="remember" />
-                    <span class="ms-2 text-sm text-white">Remember me</span>
+                    <span class="ms-2 text-sm text-gray-600">Remember me</span>
                 </label>
             </div>
 
@@ -90,22 +88,7 @@ const submit = () => {
             <PrimaryButton class="ms-4 px-[40vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                 Log in
             </PrimaryButton>
-    </form>
 
-    <div class="px-8 mt-2 mb-2">
-        <div class="relative">
-            <div class="absolute inset-0 flex items-center" aria-hidden="true">
-                <div class="w-full border-t-2 border-gray-300" />
-            </div>
-            <div class="relative flex justify-center">
-                <span class="bg-white px-4 text-xl font-quicksand font-quicksand-regular text-gray-500">
-                    Or Continue With
-                </span>
-            </div>
-        </div>
-    </div>
-
-     <PrimaryButton class="ms-4 bg-white px-[39vw]" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Google
-            </PrimaryButton>
+            
+        </form>
 </template>

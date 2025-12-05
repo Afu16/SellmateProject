@@ -49,38 +49,21 @@ defineProps({
                 <p class=" text-[10px] md:hidden sm:text-xs md:text-sm font-quicksand font-quicksand-regular text-white mb-4">Ada yang bisa kami bantu?</p>    
             </div>
             <div class="mt-0">
-                <button id="userDropdownBtn" class="flex absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
+                <button id="userDropdownBtn" class="flex justify-between absolute top-8 right-5 items-center p-2 rounded-xl shadow-secondary bg-secondary border-2 border-black w-32 h-[7vh] md:w-36 md:h-14 xl:w-44 xl:h-16 hover:bg-tertiary transition-colors">
                     <h3 class="text-xs font-pilcrow font-pilcrow-semibold text-black ml-2">
                         {{ $page.props.auth.user.name.split(' ')[0] }}
                     </h3>
             <!-- Avatar Dynamic -->
-            <div
-                class="absolute right-6 md:right-7 w-10 h-10 rounded-full border-2 border-black flex items-center justify-center bg-gray-300 text-black font-bold overflow-hidden"
-            >
-            <img
-                v-if="$page.props.auth.user.foto_link"
-                :src="`/storage/${$page.props.auth.user.foto_link}`"
-                alt="Profile Photo"
-                class=" w-[10vw] h-10 object-cover"
-            />
-            <span v-else>
-                {{ $page.props.auth.user.name.charAt(0).toUpperCase() }}
-            </span>
-            </div>
+                <img src="/assets/svg/fluentPersonCircle-icon.svg" class="" alt="Person Icon">
+           
                     <svg class="absolute md:hidden w-4 h-4 text-black right-[2vw] ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                     </svg>
                 </button>
                 
                 <!-- Dropdown Menu -->
-                <div id="userDropdown" class="absolute top-[8vh] right-5 md:right-[10vw] mt-2 -ml-4 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50 hidden">
-                    <div class="py-2">
-                        <a href="/settings" class="flex mb-2 mt-5 items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-gray-100 transition-colors">
-                            <svg class="w-4 h-4 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path>
-                            </svg>
-                            Edit Profile
-                        </a> 
+                <div id="userDropdown" class="absolute top-[11vh] right-6 items-center justify-center md:right-5 mt-2 w-32 h-14 md:w-36 xl:w-44 rounded-xl z-50 hidden">
+                    <div class="py-2"> 
                         <form method="POST" :action="route('logout')" class="w-full" @submit.prevent="$inertia.post(route('logout'))">
                             <input type="hidden" name="_token" :value="$page.props.jetstream?.csrf_token ?? $page.props.csrf_token" />
                             <button type="submit" class="flex items-center px-4 py-3 text-xs text-black border-2 border-black rounded-xl shadow-black bg-white hover:bg-red-50 transition-colors w-full">
@@ -171,76 +154,70 @@ defineProps({
             <div class="w-full p-2">
                 <h1 class="text-big font-pilcrow font-pilcrow-rounded font-bold text-black">Dashboard</h1>
 
-                <div class="flex gap-2 absolute w-[12w] h-[4.5vh] right-[1.5vh] top-[23vh]">
-                    <div class="bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black rounded-xl p-2">
-                        <span>Agustus 2025 <img src="/assets/svg/calendar-icon.svg" alt="download-icon" class="w-[2vw] h-4 inline ml-1"></span>
-                    </div>
-                    <div class="bg-white text-gray-300 text-[9px] font-pilcrow font-pilcrow-rounded border-2 border-black shadow-black rounded-xl p-2">
-                        <span>Export <img src="/assets/svg/download-icon.svg" alt="download-icon" class="w-[2vw] h-4 inline ml-1"></span>
-                    </div>
-                </div>
-
+                
                 <p class="text-xs font-quicksand font-quicksand-regular text-black">
                     Tetap monitoring progres dan update aktivitas pendapatan Tefa
                 </p>
+               
 
                 <div class="flex flex-row gap-5">
                     <div class="w-1/2 mt-5">
-                        <div class="grid-cols-3 items-center justify-center justify-self-center grid gap-4">
+                        <div class="grid-cols-3 text-white items-center justify-center justify-self-center grid gap-4">
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
-                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/totalOmzet2-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Total Omzet</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">Rp {{ new Intl.NumberFormat('id-ID').format(totalOmzet) }}</p>
+                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-rounded  text-nowrap select-none"><img src="/assets/svg/fluentMoney-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Total Omzet</span>
+                                <p class="text-[1.4vw] font-quicksand font-quicksand-regular">Rp {{ new Intl.NumberFormat('id-ID').format(totalOmzet) }}</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
-                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/productTefa-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Produk Tefa</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalProduct }} Produk</p>
+                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-rounded text-nowrap select-none"><img src="/assets/svg/fluentBox-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline"> Produk Tefa</span>
+                                <p class="text-[1.4vw] font-quicksand font-quicksand-regular">{{ totalProduct }} Produk</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
-                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/totalUser-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Total User</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalUser }} User</p>
+                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-rounded  text-nowrap select-none"><img src="/assets/svg/fluentPerson-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Total User</span>
+                                <p class="text-[1.4vw] font-quicksand font-quicksand-regular">{{ totalUser }} User</p>
                             </div>
                               <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
-                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackVideo-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Inspirasi, Tips</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalVideo }} Video</p>
+                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-rounded  text-nowrap select-none"><img src="/assets/svg/fluentVideo-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Video</span>
+                                <p class="text-[1.4vw] font-quicksand font-quicksand-regular">{{ totalVideo }} Video</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
-                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackEbook-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] text-black inline filter-black"> Edukasi</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalEbook }} Ebook</p>
+                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-rounded  text-nowrap select-none"><img src="/assets/svg/fluentBook-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw]  inline filter-black"> Ebook</span>
+                                <p class="text-[1.4vw] font-quicksand font-quicksand-regular">{{ totalEbook }} Ebook</p>
                             </div>
                             <div class="bg-secondary w-[13vw] border-2 border-black shadow-black rounded-lg p-2 shadow-sm">
-                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none"><img src="/assets/svg/blackArticle-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Artikel</span>
-                                <p class="text-[0.8vw] font-quicksand font-quicksand-bold">{{ totalArticle }} Artikel</p>
+                                <span class="text-[1.2vw] font-pilcrow font-pilcrow-rounded  text-nowrap select-none"><img src="/assets/svg/fluentDocument-icon.svg" alt="chart-icon" class="w-[2vw] h-[2vw] inline filter-black"> Artikel</span>
+                                <p class="text-[1.4vw] font-quicksand font-quicksand-regular">{{ totalArticle }} Artikel</p>
                             </div>
                         </div>
 
                         <div class="border-2 border-black shadow-black p-2 mt-5 rounded-lg">
-                            <div class="flex items-center justify-between">
+                            <div class="flex items-center justify-between mb-2">
                                 <h5 class="text-[2vw] font-pilcrow font-pilcrow-bold text-black text-nowrap select-none">Top Omzet</h5>
-                                <div class="flex items-center gap-2">
-                                    <div class="relative">
-                                        <input
-                                            type="search"
-                                            name="search"
-                                            id="search"
-                                            placeholder="Search"
-                                            class="w-[15vw] h-[3.5vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
-                                        />
-                                        <svg
-                                            xmlns="http://www.w3.org/2000/svg"
-                                            class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
-                                            fill="none"
-                                            viewBox="0 0 24 24"
-                                            stroke="currentColor"
-                                        >
-                                            <path
-                                                stroke-linecap="round"
-                                                stroke-linejoin="round"
-                                                stroke-width="2"
-                                                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                            />
-                                        </svg>
-                                    </div>
+
+                        <div class="flex gap-2">
+
+                       <button class="bg-white w-[3vw] h-[3.5vh] border-2 border-black rounded-md shadow-black py-1 text-[7px]    ">
+                            <img src="/assets/svg/newFilter-icon.svg" alt="newFilter-icon" class="justify-self-center" width="10" height="10">
+                        </button>
+
+                                <div class="relative bottom-[0.4vh] focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <!-- w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary -->
+                                       <input
+                                           type="search"
+                                           name="search"
+                                           id="search"
+                                           placeholder="Search"
+                                           class="w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
+
+                                       />
+                                       <img src="/assets/svg/fluentSearch-icon.svg" alt="Search icon" class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer">
+                                   </div>
+
+
+                         <div class="bg-white relative w-[7.5vw] h-[3.5vh] justify-between border-2 border-black rounded-md shadow-black px-2 py-1 text-[7px]">
+                                <span class="inline-flex relative top-[0.2vh] text-gray-400 gap-1 text-nowrap">Bulan ini <img src="/assets/svg/fluentCalendar-icon.svg" alt="newCalendar-icon" width="10" height="10"></span>
+                        </div>
                                 </div>
+                               
                             </div>
 
                             <!-- Table Top Omzet -->
@@ -269,42 +246,41 @@ defineProps({
                                         {{ item.score ?? '-' }}
                                     </p>    
                                 </div>
-                        </div>
-                    </div>
-                    <div class="w-1/2 mt-5 border-2 border-black shadow-black rounded-lg p-2">
-                        <div class="flex justify-between items-center">
-                            <h1 class="text-[1.5vw] font-pilcrow font-pilcrow-heavy mt-1">Histori Transaksi Omzet</h1>
-                            <div class="flex">
-                                <div class="flex items-center gap-2">
-                                           <div class="relative">
-                                               <input
-                                                   type="search"
-                                                   name="search"
-                                                   id="search"
-                                                   placeholder="Search"
-                                                   class="w-[15vw] h-[3.5vh] border-2 border-black rounded-xl px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
-                                               />
-                                               <svg
-                                                   xmlns="http://www.w3.org/2000/svg"
-                                                   class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer"
-                                                   fill="none"
-                                                   viewBox="0 0 24 24"
-                                                   stroke="currentColor"
-                                               >
-                                                   <path
-                                                       stroke-linecap="round"
-                                                       stroke-linejoin="round"
-                                                       stroke-width="2"
-                                                       d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                                                   />
-                                               </svg>
-                                           </div>
-                                       </div>
-                                       <button class="w-[3.5vh] h-[3.5vh] relative top-[0.5vh] rounded-xl">
-                                           <img src="/assets/svg/filter-icon.svg" alt="filter-icon" class="    justify-self-center">
-                                       </button>
                             </div>
                         </div>
+                        <div class="">
+                    <div class="flex mt-5 gap-2 w-[12w] h-[4.5vh]">
+
+                        <button class="bg-white w-[3vw] h-[3.5vh] border-2 border-black rounded-md shadow-black py-1 text-[7px]    ">
+                            <img src="/assets/svg/newFilter-icon.svg" alt="newFilter-icon" class="justify-self-center" width="10" height="10">
+                        </button>
+
+                                <div class="relative bottom-[0.4vh] focus:outline-none focus:ring-2 focus:ring-primary">
+                                    <!-- w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary -->
+                                       <input
+                                           type="search"
+                                           name="search"
+                                           id="search"
+                                           placeholder="Search"
+                                           class="w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
+
+                                       />
+                                       <img src="/assets/svg/fluentSearch-icon.svg" alt="Search icon" class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer">
+                                   </div>
+
+
+                         <div class="bg-white relative w-[11vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 text-[7px]">
+                                <span class="inline-flex text-gray-400 gap-1 text-nowrap"> <span class="relative top-[0.2vh]">Agustus 2025</span> <img class="relative top-[0.2vh]" src="/assets/svg/fluentCalendar-icon.svg" alt="newCalendar-icon" width="10" height="10"></span>
+                        </div>
+
+
+                        <div class="bg-secondary relative w-[8vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-2 py-1 text-[7px]">
+                                <span class="text-white gap-1 relative top-[0.2vh] inline-flex">Download <img src="/assets/svg/newWhiteArrow-icon.svg" alt="Arrow Icon" width="10" height="10"></span>
+                            </div>
+
+                        </div>
+                        <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg p-2">                            
+                            <h1 class="text-[1.5vw] font-pilcrow font-pilcrow-heavy mt-1">Histori Transaksi Omzet</h1>
 
                         <!-- Table History Omzet -->
                         <!-- Table Header History Omzet -->
@@ -321,15 +297,16 @@ defineProps({
                         <div
                             v-for="(item, idx) in history"
                             :key="item.id"
-                            class="flex justify-between items-center p-1 mb-2"
+                            class="flex justify-between items-center p-1 mb-[1.1vh]"
                         >
                             <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] text-center">{{ new Date(item.date).toLocaleDateString('id-ID') }}</p>
                             <p class="text-[0.8vw] font-pilcrow text-black w-[10vw] truncate">{{ item.user.name }}</p>
                             <p class="text-[0.8vw] font-pilcrow text-black w-[3vw] truncate">{{ item.user.major }}</p>
-                            <p class="text-[0.8vw] font-pilcrow text-black w-[4vw] text-right">
+                            <p class="text-[0.8vw] font-pilcrow text-black w-[5vw] text-nowrap pr-2">
                                 Rp {{ new Intl.NumberFormat('id-ID').format(item.total_omzets) }}
                             </p>
                         </div>
+                      </div>
                     </div>
                 </div>
             </div>
