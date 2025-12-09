@@ -45,15 +45,16 @@ const submit = () => {
     <form @submit.prevent="submit">
     <AuthenticationCard>
             <div>
-                <InputLabel for="email" value="Email" />
+                <InputLabel for="email" value="Email or Username" />
                 <TextInput
                     id="email"
                     v-model="form.email"
-                    type="email"
+                    type="text"
                     class="mt-1 block w-full"
                     required
                     autofocus
                     autocomplete="username"
+                    placeholder="Email atau Username"
                 />
                 <InputError class="mt-2" :message="form.errors.email" />
             </div>
@@ -67,6 +68,7 @@ const submit = () => {
                     class="mt-1 block w-full"
                     required
                     autocomplete="current-password"
+                    placeholder="Password"
                 />
                 <InputError class="mt-2" :message="form.errors.password" />
             </div>

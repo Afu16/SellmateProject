@@ -16,6 +16,7 @@ use App\Http\Controllers\VideoController;
 use App\Http\Controllers\Admin\UserTransactionsController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
+use App\Http\Controllers\Admin\TopOmzetController as AdminTopOmzetController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -119,10 +120,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::delete('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('products.destroy');
         
         // Omzet Management Routes
-        Route::get('/omzet', [\App\Http\Controllers\Admin\OmzetController::class, 'index'])->name('omzet');
-        Route::post('/omzet', [\App\Http\Controllers\Admin\OmzetController::class, 'store'])->name('omzet.store');
-        Route::put('/omzet/{id}', [\App\Http\Controllers\Admin\OmzetController::class, 'update'])->name('omzet.update');
-        Route::delete('/omzet/{id}', [\App\Http\Controllers\Admin\OmzetController::class, 'destroy'])->name('omzet.destroy');
+        Route::get('/omzet', [AdminTopOmzetController::class, 'index'])->name('topomzet');
         
         // Video Management Routes
         Route::get('/videos/create', [\App\Http\Controllers\Admin\VideoController::class, 'create'])->name('videos.create');
@@ -147,6 +145,7 @@ Route::prefix('admin')->name('admin.')->group(function () {
         
         // History Routes
         Route::get('/history', [\App\Http\Controllers\Admin\HistoryController::class, 'index'])->name('history');
+
     });
 });
 
