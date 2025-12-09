@@ -36,7 +36,9 @@
                          <div class="bg-white inline-flex relative w-[7.5vw] h-[3.5vh] justify-between border-2 border-black rounded-md shadow-black px-2 py-1 text-[7px]">
                                 <span class="relative top-[0.2vh] text-gray-400 gap-1 text-nowrap">Bulan ini </span><img src="/assets/svg/fluentCalendar-icon.svg" alt="newCalendar-icon" width="10" height="10">
                         </div>
-                                </div>
+                    </div>
+
+                    
                                 {{-- Table --}}
                 <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg">                            
                         <div class="flex justify-between items-center p-3">

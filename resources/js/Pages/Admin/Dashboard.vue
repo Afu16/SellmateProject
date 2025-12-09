@@ -246,6 +246,13 @@ defineProps({
                                         {{ item.score ?? '-' }}
                                     </p>    
                                 </div>
+
+                                <div class="flex gap-5 relative">
+                                    <div class="w-1/2"></div>
+                                    <a href="/admin/omzet" class="text-[0.8vw] underline font-quicksand font-quicksand-regular w-[1vw] relative left-20">
+                                        Selengkapnya
+                                    </a>
+                                </div>
                             </div>
                         </div>
                         <div class="">
@@ -306,6 +313,13 @@ defineProps({
                                 Rp {{ new Intl.NumberFormat('id-ID').format(item.total_omzets) }}
                             </p>
                         </div>
+
+                         <div class="flex gap-5 mb-[0.3vh] relative">
+                                    <div class="w-1/2"></div>
+                                    <a href="/admin/" class="text-[0.8vw] underline font-quicksand font-quicksand-regular w-[1vw] relative left-20">
+                                        Selengkapnya
+                                    </a>
+                                </div>
                       </div>
                     </div>
                 </div>

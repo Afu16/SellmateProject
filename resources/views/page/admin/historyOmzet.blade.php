@@ -1,24 +1,45 @@
 @extends('layouts.admin')
-@section('title', 'Transaksi Pengguna')
-@section('content')
-<div id="transaction-detail" class="w-full p-5">
-    <div class="flex flex-col">
-        <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Aktivitas Transaksi</h1>
-        <h1 class="text-xl font-pilcrow font-pilcrow-rounded text-black mb-2">{{ $username }}</h1>
-        <div class="flex gap-2">
-             <button  class="bg-white inline-flex relative w-[5.7vw] gap-1 h-[3.5vh] justify-between border-2 border-secondary text-black rounded-md shadow-secondary px-2 py-1 text-center text-[7px]">
-                             <span class="relative top-[0.2vh] gap-1 text-nowrap">Kembali</span>
-                         </button>
-                        <button  class="bg-white inline-flex relative w-[4.9vw] gap-1 h-[3.5vh] justify-between border-2 border-black text-black rounded-md shadow-black px-2 py-1 text-center text-[7px]">
-                             <span class="relative top-[0.2vh] gap-1 text-nowrap">Bulan</span>
-                         </button>
-                        <button  class="bg-white inline-flex relative w-[10.8vw] h-[3.5vh] justify-between border-2 border-black text-black rounded-md shadow-black px-2 py-1 text-center text-[7px]">
-                             <img src="/assets/svg/fluentCalendar-icon.svg" alt="Calender"><span class="relative top-[0.2vh] gap-1 text-nowrap">1 nov - 30 nov</span>
-                         </button>
-        </div>
-    </div>
 
-   <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg">                            
+@section('title', 'Histori Omzet')
+@section('content')
+    <div class="w-full p-5">
+        <div class="flex flex-col w-full">
+            <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Histori Omzet</h1>
+            <div class="flex gap-2 ml-auto mb-3">
+                <button class="bg-white w-[3vw] h-[3.5vh] border-2 border-black rounded-md shadow-black py-1 text-[7px]    ">
+                                <img src="/assets/svg/newFilter-icon.svg" alt="newFilter-icon" class="justify-self-center" width="10" height="10">
+                            </button>
+    
+                                    <div class="relative bottom-[0.4vh] focus:outline-none focus:ring-2 focus:ring-primary">
+                                        <!-- w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary -->
+                                           <input
+                                               type="search"
+                                               name="search"
+                                               id="search"
+                                               placeholder="Search"
+                                               class="w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary"
+    
+                                           />
+                                           <img src="/assets/svg/fluentSearch-icon.svg" alt="Search icon" class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer">
+                                       </div>
+            </div>
+            <div class="flex flex-row w-full gap-2">
+                <div class="w-full border-2 border-black shadow-black rounded-md p-2">
+                    <div class="flex items-center gap-2">
+                        <img src="/assets/svg/totalOmzet2-icon.svg" alt="Money">
+                        <p class="text-[20px] font-quicksand font-quicksand-medium text-black">Balance Omzet</p>
+                    </div>
+                    <p class="text-3xl text-center font-quicksand font-quicksand-medium text-black">Rp 1.000.000</p>
+                </div>
+                 <div class="w-full border-2 border-black shadow-black rounded-md p-2">
+                    <div class="flex items-center gap-2">
+                        <img src="/assets/svg/totalOmzet2-icon.svg" alt="Money">
+                        <p class="text-[20px] font-quicksand font-quicksand-medium text-black">Total Transaksi</p>
+                    </div>
+                    <p class="text-3xl text-center font-quicksand font-quicksand-medium text-black">10 <span class="text-xl">Transaksi</span></p>
+                </div>
+            </div>
+              <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg">                            
                         <div class="flex justify-between items-center p-3">
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center text-nowrap">Nama Siswa</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center">Kelas</p>
@@ -53,6 +74,9 @@
                         </div>
 
                       </div>
-</div>
+        </div>
+    </div>
+
+
 
 @endsection

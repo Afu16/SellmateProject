@@ -25,7 +25,7 @@
                                    </div>
 
 
-                         <a href="{{ route('admin.articles.create') }}" class="bg-secondary inline-flex relative w-[11vw] gap-1 h-[3.5vh] justify-between text-white rounded-md shadow-black px-2 py-1 text-[7px]">
+                         <a href="{{ route('admin.products.create') }}" class="bg-secondary inline-flex relative w-[11vw] gap-1 h-[3.5vh] justify-between text-white rounded-md shadow-black px-2 py-1 text-[7px]">
                                 <span class="relative top-[0.5vh] gap-1 text-nowrap">Tambah Produk </span><img src="/assets/svg/fluentPlus-icon.svg" alt="newCalendar-icon" width="10" height="10">
                         </a>
                     </div>

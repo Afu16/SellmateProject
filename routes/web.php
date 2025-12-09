@@ -110,6 +110,12 @@ Route::prefix('admin')->name('admin.')->group(function () {
 
         Route::get('/usermana/{id}', [UserTransactionsController::class, 'index'])->name('usermana');
         Route::get('/usermana/{id}/data', [UserTransactionsController::class, 'data'])->name('usermana.data');
+
+        // History Omzet Management Routes
+        Route::get('/history-omzet', function () {
+            return view('page.admin.historyOmzet');
+        })->name('historyOmzet');
+        
         
         // Product Management Routes
         Route::get('/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
