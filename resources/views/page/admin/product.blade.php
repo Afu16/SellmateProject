@@ -25,7 +25,7 @@
                                    </div>
 
 
-                         <a href="{{ route('admin.articles.create') }}" class="bg-secondary inline-flex relative w-[11vw] gap-1 h-[3.5vh] justify-between text-white rounded-md shadow-black px-2 py-1 text-[7px]">
+                         <a href="{{ route('admin.products.create') }}" class="bg-secondary inline-flex relative w-[11vw] gap-1 h-[3.5vh] justify-between text-white rounded-md shadow-black px-2 py-1 text-[7px]">
                                 <span class="relative top-[0.5vh] gap-1 text-nowrap">Tambah Produk </span><img src="/assets/svg/fluentPlus-icon.svg" alt="newCalendar-icon" width="10" height="10">
                         </a>
                     </div>
@@ -46,16 +46,23 @@
 
                         <hr class="border-t-2 border-black">
 
-                        <div class="">
+                        <div class="" x-data="{ openId: null }">
+                            @foreach ($products as $product)
                             <div class="flex justify-between border-b-2 border-b-black items-center p-3 relative" x-data="{open:false}" @keydown.escape.window="open=false">
-                                <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">1</p>
+                                <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">{{ $loop->iteration }}</p>
                                 <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">
-                                <img class="border-2 border-black rounded-md" src="/assets/img/example-img.jpg" alt="Produk" width="50" height="50">
+                                <img class="border-2 border-black rounded-md w-50 h-50 object-cover" src="{{ asset('assets/img/' . $product->product_photo) }}" alt="{{ $product->name }}">
                             </p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Owl</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">Makanan</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Rp. 10.000</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">10%</p>
+                            <p 
+                                @click="openId = openId === {{ $product->id }} ? null : {{ $product->id }}"
+                                class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] cursor-pointer"
+                                :class="{ 'truncate': openId !== {{ $product->id }} }"
+                            >
+                                {{ $product->name }}
+                            </p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">{{ $product->category }}</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">{{ $product->comission * 100 }}%</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] items-center">
                                 <button type="button" class="focus:outline-none inline-flex items-center justify-center w-6 h-6" @click.stop="open = !open">
                                     <img src="/assets/svg/other-icon.svg" alt="other icon" width="2" height="2">
@@ -73,6 +80,7 @@
                                 </a>
                             </div>
                         </div>
+                           @endforeach
                     </div>
 
 

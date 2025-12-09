@@ -4,13 +4,16 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Product;
 
 class ProductController extends Controller
 {
     //
     public function index()
     {
-        return view('page.admin.product');
+        $products = Product::latest()->get();
+
+        return view('page.admin.product',compact('products'));
     }
     public function create()
     {
