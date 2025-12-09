@@ -4,7 +4,7 @@
     
 
 <div class="w-full p-5">
-    <div class="flex flex-row">
+    <div class="flex flex-row ">
         <div class="w-full">
                         <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Top Omzet</h1>
                           <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">
@@ -51,30 +51,55 @@
                         </div>
 
                         <hr class="border-t-2 border-black">
-
-                        <div
-                            class="flex justify-between border-b-2 border-b-black items-center p-3 "
-                        >
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">1</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">Deden12312</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[10vw]">Charless</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw]">PMN</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-nowrap">Rp. 2.000.000</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-center">A</p>
+                        @foreach ($omzets as $user)
+                        <div class="flex justify-between border-b-2 border-b-black items-center p-3">
+                            <p class="text-[1.2vw] w-[3vw] text-center">{{ $loop->iteration }}</p>
+                            <p class="text-[1.2vw] w-[3vw] text-center">{{ $user->username }}</p>
+                            <p class="text-[1.2vw] w-[10vw]">{{ $user->name }}</p>
+                            <p class="text-[1.2vw] w-[3vw]">{{ $user->major }}</p>
+                            <p class="text-[1.2vw] w-[4vw] text-nowrap">
+                                Rp {{ number_format($user->omzets_sum_total_omzets ?? 0, 0, ',', '.') }}
+                            </p>
+                            <p class="text-[1.2vw] w-[4vw] text-center">{{ $user->score ?? '-' }}</p>
                         </div>
-
-                          <div
-                            class="flex justify-between border-b-2 border-b-black items-center p-3 "
-                        >
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">1</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">Deden12312</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[10vw]">Charless</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw]">PMN</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-nowrap">Rp. 2.000.000</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-center">A</p>
-                        </div>
-
+                        @endforeach
                       </div>
+                     <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-6">
+                        @php
+                            $current = $omzets->currentPage();
+                            $last = $omzets->lastPage();
+                            $start = max($current - 2, 1);
+                            $end = min($start + 4, $last);
+
+                            if ($end - $start < 4) {
+                                $start = max($end - 4, 1);
+                            }
+                        @endphp
+
+                        {{-- Previous --}}
+                        @if ($current > 1)
+                            <a href="{{ $omzets->appends(request()->query())->url($current - 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @for ($page = $start; $page <= $end; $page++)
+                            @if ($page == $current)
+                                <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
+                            @else
+                                <a href="{{ $omzets->appends(request()->query())->url($page) }}"
+                                class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
+                            @endif
+                        @endfor
+
+                        {{-- Next --}}
+                        @if ($current < $last)
+                            <a href="{{ $omzets->appends(request()->query())->url($current + 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
+                        @endif
+                    </div>
+ 
             </div>
         </div>
     </div>
