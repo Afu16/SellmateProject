@@ -1,7 +1,6 @@
 @extends('layouts.admin')
 @section('title', 'Katalog Video')
-@section('content')
-    
+@section('content') 
 <div class="w-full p-5">
     <div class="flex flex-col gap-0 mb-2">
                     <div class="w-full">
@@ -45,10 +44,10 @@
                         <div class="flex justify-between items-center p-3">
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">No</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">Foto</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Nama Produk</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">Jenis Produk</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Harga Produk</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">Komisi</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Judul</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">kreator</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Durasi</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">Kategory</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">Aksi</p>
                         </div>
 
@@ -60,10 +59,10 @@
                                 <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">
                                 <img class="border-2 border-black rounded-md" src="/assets/img/example-img.jpg" alt="Produk" width="50" height="50">
                             </p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Owl</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">Makanan</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Rp. 10.000</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">10%</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">cara </p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">Admin</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">35:20</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">inspirasi</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] items-center">
                                 <button type="button" class="focus:outline-none inline-flex items-center justify-center w-6 h-6" @click.stop="open = !open">
                                     <img src="/assets/svg/other-icon.svg" alt="other icon" width="2" height="2">
