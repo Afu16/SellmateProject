@@ -316,7 +316,7 @@ defineProps({
 
                          <div class="flex gap-5 mb-[0.3vh] relative">
                                     <div class="w-1/2"></div>
-                                    <a href="/admin/" class="text-[0.8vw] underline font-quicksand font-quicksand-regular w-[1vw] relative left-20">
+                                    <a href="/admin/history-omzet" class="text-[0.8vw] underline font-quicksand font-quicksand-regular w-[1vw] relative left-20">
                                         Selengkapnya
                                     </a>
                                 </div>

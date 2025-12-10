@@ -1,4 +1,4 @@
-@extends('layout.admin')
+@extends('layouts.admin')
 @section('title', 'Tambah Ebook')
 @section('content')
                 <!-- Content -->
@@ -14,6 +14,10 @@
                             <div>
                                 <label class="text-[10px]">Judul</label>
                                 <input type="text" name="title" placeholder="Judul ebook" class="w-full h-[4.5vh] border-2 border-black shadow-black rounded-md px-3 py-1 text-xs" required>
+                            </div>
+                             <div>
+                                <label class="text-[10px]">Penulis</label>
+                                <input type="text" name="penulis" placeholder="Nama penulis" class="w-full h-[4.5vh] border-2 border-black shadow-black rounded-md px-3 py-1 text-xs" required>
                             </div>
                             <div>
                                 <label class="text-[10px]">Slug</label>
