@@ -19,11 +19,11 @@ class TopOmzetController extends Controller
                 $total = $user->omzets_sum_total_omzets ?? 0;
 
                 // Tentukan grade
-                if ($total >= 6000000) {
+                if ($total >= 300000) {
                     $user->score = 'A';
-                } elseif ($total >= 3000000) {
+                } elseif ($total >= 200000) {
                     $user->score = 'B';
-                } elseif ($total >= 1000000) {
+                } elseif ($total >= 100000) {
                     $user->score = 'C';
                 } else {
                     $user->score = 'D';
