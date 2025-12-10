@@ -4,8 +4,8 @@ import open from 'open';
 
 console.log(chalk.green(`
 ╔════════════════════════════════════════╗
-║           ${chalk.yellow('Sellmate')} ${chalk.blue('Project')}                 ║
-║     ${chalk.white('Kerja, kerja, kerja')}                      ║
+║           ${chalk.yellow('Sellmate')} ${chalk.blue('Project')}             ║
+║          ${chalk.white('Kerja, kerja, kerja')}           ║
 ╚════════════════════════════════════════╝
 `));
 
