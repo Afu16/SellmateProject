@@ -29,14 +29,14 @@
                         <img src="/assets/svg/totalOmzet2-icon.svg" alt="Money">
                         <p class="text-[20px] font-quicksand font-quicksand-medium text-black">Balance Omzet</p>
                     </div>
-                    <p class="text-3xl text-center font-quicksand font-quicksand-medium text-black">Rp 1.000.000</p>
+                    <p class="text-3xl mt-6 text-center font-quicksand font-quicksand-medium text-black">Rp 1.000.000</p>
                 </div>
                  <div class="w-full border-2 border-black shadow-black rounded-md p-2">
                     <div class="flex items-center gap-2">
                         <img src="/assets/svg/totalOmzet2-icon.svg" alt="Money">
                         <p class="text-[20px] font-quicksand font-quicksand-medium text-black">Total Transaksi</p>
                     </div>
-                    <p class="text-3xl text-center font-quicksand font-quicksand-medium text-black">10 <span class="text-xl">Transaksi</span></p>
+                    <p class="text-3xl mt-6 text-center font-quicksand font-quicksand-medium text-black">10 <span class="text-xl">Transaksi</span></p>
                 </div>
             </div>
               <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg">                            
