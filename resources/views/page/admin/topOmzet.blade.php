@@ -53,8 +53,8 @@
                         <hr class="border-t-2 border-black">
                         @foreach ($omzets as $user)
                         <div class="flex justify-between border-b-2 border-b-black items-center p-3">
-                            <p class="text-[1.2vw] w-[3vw] text-center">{{ $loop->iteration }}</p>
-                            <p class="text-[1.2vw] w-[3vw] text-center">{{ $user->username }}</p>
+                            <p class="text-[1.2vw] w-[3vw] text-center">{{(($omzets->currentPage() - 1) * $omzets->perPage()) + $loop->iteration}}</p>
+                            <a href="{{ route('admin.usermana', ['id' => $user->id]) }}"class="text-[1.2vw] w-[3vw] text-center">{{ $user->username }}</a>
                             <p class="text-[1.2vw] w-[10vw]">{{ $user->name }}</p>
                             <p class="text-[1.2vw] w-[3vw]">{{ $user->major }}</p>
                             <p class="text-[1.2vw] w-[4vw] text-nowrap">

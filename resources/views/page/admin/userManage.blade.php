@@ -38,41 +38,74 @@
                         <div class="text-center">Dibuat pada</div>
                         <div></div>
                     </div>
-@foreach ($users as $user)
-    <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                    @foreach ($users as $user)
+                        <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
 
-        <div>
-            <input type="checkbox" class="rounded-md">
-        </div>
+                            <div>
+                                <input type="checkbox" class="rounded-md">
+                            </div>
 
-        <div class="flex items-center gap-3">
-            <img width="40" height="40"
-                 src="{{ $user->foto_link ? asset('storage/'.$user->foto_link) : '/assets/img/default-avatar.png' }}"
-                 alt="avatar"
-                 class="w-10 h-10 rounded-full border-2 border-black object-cover">
+                            <div class="flex items-center gap-3">
+                                <img width="40" height="40"
+                                    src="{{ $user->foto_link ? asset('storage/'.$user->foto_link) : '/assets/img/default-avatar.png' }}"
+                                    alt="avatar"
+                                    class="w-10 h-10 rounded-full border-2 border-black object-cover">
 
-            <a href="{{ route('admin.usermana', ['id' => $user->id]) }}" class="font-pilcrow font-pilcrow-rounded text-black hover:underline">
-                {{ $user->name }}
-            </a>
-        </div>
+                                <p  class="font-pilcrow font-pilcrow-rounded text-black ">
+                                    {{ $user->name }}
+                                </p>
+                            </div>
 
-        <div class="text-center">
-            {{ $user->status ?? 'Active' }}
-        </div>
+                            <div class="text-center">
+                                {{ $user->status ?? 'Active' }}
+                            </div>
 
-        <div class="text-center">
-{{ optional($user->last_active)->format('M d, Y') ?? '-' }}
-        </div>
+                            <div class="text-center">
+                    {{ optional($user->last_active)->format('M d, Y') ?? '-' }}
+                            </div>
 
-        <div class="text-center">
-{{ optional($user->last_active)->format('M d, Y') ?? '-' }}
-        </div>
+                            <div class="text-center">
+                    {{ optional($user->last_active)->format('M d, Y') ?? '-' }}
+                            </div>
 
-        <div class="text-right text-xl">⋮</div>
-    </div>
-@endforeach
+                            <div class="text-right text-xl">⋮</div>
+                        </div>
+                    @endforeach
+                     <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-6">
+                        @php
+                            $current = $users->currentPage();
+                            $last = $users->lastPage();
+                            $start = max($current - 2, 1);
+                            $end = min($start + 4, $last);
 
-        
+                            if ($end - $start < 4) {
+                                $start = max($end - 4, 1);
+                            }
+                        @endphp
+
+                        {{-- Previous --}}
+                        @if ($current > 1)
+                            <a href="{{ $users->appends(request()->query())->url($current - 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @for ($page = $start; $page <= $end; $page++)
+                            @if ($page == $current)
+                                <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
+                            @else
+                                <a href="{{ $users->appends(request()->query())->url($page) }}"
+                                class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
+                            @endif
+                        @endfor
+
+                        {{-- Next --}}
+                        @if ($current < $last)
+                            <a href="{{ $users->appends(request()->query())->url($current + 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>

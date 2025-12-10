@@ -9,6 +9,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
+<div id="loading-screen">
+    <span class="loader"></span>
+</div>
     <div class="bg-[#f5f7fa] min-h-screen">
         <div class="bg-primary sticky top-0 z-10 w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-5 sm:mt-3">
@@ -87,6 +90,34 @@
                 notif.remove();
             }
         }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const loader = document.getElementById("loading-screen");
+
+        function showLoader() {
+            loader.style.display = "flex";
+            setTimeout(() => loader.style.opacity = 1, 20);
+        }
+
+        // Klik link → tampilkan loading
+        document.querySelectorAll("a").forEach(link => {
+            link.addEventListener("click", function (e) {
+                const url = link.getAttribute("href");
+
+                // Hindari anchor & JS links
+                if (!url || url.startsWith("#") || url.startsWith("javascript")) return;
+
+                showLoader();
+            });
+        });
+
+        // Submit form → tampilkan loading
+        document.querySelectorAll("form").forEach(form => {
+            form.addEventListener("submit", () => {
+                showLoader();
+            });
+        });
+    });
     </script>
 </body>
 </html>

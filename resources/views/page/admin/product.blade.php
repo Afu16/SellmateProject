@@ -33,7 +33,7 @@
 
                
 
-                     <div class="w-full  border-2 border-black shadow-black rounded-lg">                            
+                    <div class="w-full  border-2 border-black shadow-black rounded-lg">                            
                         <div class="flex justify-between items-center p-3">
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">No</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">Foto</p>
@@ -49,7 +49,7 @@
                         <div class="" x-data="{ openId: null }">
                             @foreach ($products as $product)
                             <div class="flex justify-between border-b-2 border-b-black items-center p-3 relative" x-data="{open:false}" @keydown.escape.window="open=false">
-                                <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">{{ $loop->iteration }}</p>
+                                <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">{{(($products->currentPage() - 1) * $products->perPage()) + $loop->iteration}}</p>
                                 <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">
                                 <img class="border-2 border-black rounded-md w-50 h-50 object-cover" src="{{ asset('assets/img/' . $product->product_photo) }}" alt="{{ $product->name }}">
                             </p>
@@ -81,11 +81,43 @@
                             </div>
                         </div>
                            @endforeach
-                    </div>
-
-
                       </div>
+                    </div>
+                     <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-6">
+                        @php
+                            $current = $products->currentPage();
+                            $last = $products->lastPage();
+                            $start = max($current - 2, 1);
+                            $end = min($start + 4, $last);
 
+                            if ($end - $start < 4) {
+                                $start = max($end - 4, 1);
+                            }
+                        @endphp
+
+                        {{-- Previous --}}
+                        @if ($current > 1)
+                            <a href="{{ $products->appends(request()->query())->url($current - 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @for ($page = $start; $page <= $end; $page++)
+                            @if ($page == $current)
+                                <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
+                            @else
+                                <a href="{{ $products->appends(request()->query())->url($page) }}"
+                                class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
+                            @endif
+                        @endfor
+
+                        {{-- Next --}}
+                        @if ($current < $last)
+                            <a href="{{ $products->appends(request()->query())->url($current + 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
+                        @endif
+                    </div>
     
         </div>
         </div>
