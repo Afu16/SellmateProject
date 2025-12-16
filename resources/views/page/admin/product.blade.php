@@ -3,15 +3,15 @@
 @section('content')
     
 <div class="w-full p-5">
-    <div class="flex flex-row justify-between items-center">
+    <div class="flex flex-col mb-3 items-center">
         <div class="w-full">
                         <h1 class="text-2xl font-pilcrow font-pilcrow-rounded font-bold text-black">Katalog Produk</h1>
-                          <p class="text-xs font-quicksand font-quicksand-regular text-black mb-5">
+                          <p class="text-xs font-quicksand font-quicksand-regular text-black">
                               Kelola produk unggulan tefa dengan mudah
                           </p>
                         </div>
-                    <div class="flex gap-2">
-                          <div class="relative bottom-[0.4vh] focus:outline-none focus:ring-2 focus:ring-primary">
+                    <div class="flex gap-2 ml-auto ">
+                          <div class="relative focus:outline-none focus:ring-2 focus:ring-primary">
                                     <!-- w-[15vw] h-[3.5vh] border-2 border-black rounded-md shadow-black px-3 py-1 pr-8 text-[7px] focus:outline-none focus:ring-2 focus:ring-primary -->
                                        <input
                                            type="search"
@@ -25,8 +25,8 @@
                                    </div>
 
 
-                         <a href="{{ route('admin.products.create') }}" class="bg-secondary inline-flex relative w-[11vw] gap-1 h-[3.5vh] justify-between text-white rounded-md shadow-black px-2 py-1 text-[7px]">
-                                <span class="relative top-[0.5vh] gap-1 text-nowrap">Tambah Produk </span><img src="/assets/svg/fluentPlus-icon.svg" alt="newCalendar-icon" width="10" height="10">
+                         <a href="{{ route('admin.products.create') }}" class="bg-secondary inline-flex relative top-[0.4vh] w-[11vw] gap-1 h-[3.5vh] justify-between text-white rounded-md shadow-black px-2 py-1 text-[7px]">
+                                <span class="relative top-[0.4vh] md:top-[0.6vh] gap-1 text-nowrap">Tambah Produk </span><img src="/assets/svg/fluentPlus-icon.svg" alt="newCalendar-icon" width="10" height="10">
                         </a>
                     </div>
                 </div>
