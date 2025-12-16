@@ -22,7 +22,7 @@ return new class extends Migration
             // thumbnail optional (bisa manual / auto generate)
             $table->string('thumbnail')->nullable();
             // durasi video, format "MM:SS" atau "HH:MM:SS"
-            $table->string('duration', 16)->nullable();
+            $table->string('duration', 8)->default('00:00:00');
             $table->timestamp('published_at')->nullable();
             $table->timestamps();
         });
