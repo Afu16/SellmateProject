@@ -17,8 +17,4 @@ class UserController extends Controller
         return view('page.admin.userManage', compact('users'));
     }
 
-    public function create()
-    {
-        return view('page.admin.user-add');
-    }
 }

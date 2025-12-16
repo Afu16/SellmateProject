@@ -40,7 +40,7 @@
                      <div class="w-full  border-2 border-black shadow-black rounded-lg">                            
                         <div class="flex justify-between items-center p-3">
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">No</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">Foto</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">Thumbnail</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Judul</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">penulis</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Kategory</p>
@@ -50,19 +50,27 @@
                         <hr class="border-t-2 border-black">
 
                         <div class="">
+                            @foreach ($ebooks as $ebook)
                             <div class="flex justify-between border-b-2 border-b-black items-center p-3 relative" x-data="{open:false}" @keydown.escape.window="open=false">
-                                <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">1</p>
+                                <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[1vw] text-center">{{(($ebooks->currentPage() - 1) * $ebooks->perPage()) + $loop->iteration}}</p>
                                 <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-center">
-                                <img class="border-2 border-black rounded-md" src="/assets/img/example-img.jpg" alt="Produk" width="50" height="50">
+                                <img class="border-2 border-black rounded-md" src="{{ asset($ebook->thumbnail ?? 'assets/img/example-img.jpg') }}" alt="Produk" width="50" height="50">
                             </p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Owl</p>
-                              <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">Makanan</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">Rp. 10.000</p>
+                            <p 
+                            x-data="{ open: false }"
+                            @click="open = !open"
+                            :class="open ? '' : 'truncate'"
+                            class="w-1/4 cursor-pointer"
+                            >
+                            {{ $ebook->title }}</p>
+                              <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw] text-nowrap">-</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[6vw] text-nowrap">{{ $ebook->kategori }}</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] items-center">
                                 <button type="button" class="focus:outline-none inline-flex items-center justify-center w-6 h-6" @click.stop="open = !open">
                                     <img src="/assets/svg/other-icon.svg" alt="other icon" width="2" height="2">
                                 </button>
                             </p>
+
                             <div x-show="open" x-transition.opacity @click.outside="open=false" class="absolute right-7 top-8 rounded-md flex flex-row gap-1 justify-between  bg-white border-2 border-black p-2 w-[12vw] z-10">
                                 <div @click="open=false" class="absolute w-5 h-5 top-[-1vh] right-[-1vh] text-black text-xs rounded-full bg-red-600 flex items-center justify-center">X</div>
                                 <a href="#" class="text-xs w-1/2 items-center flex flex-col text-center text-black">
@@ -74,12 +82,46 @@
                                     Edit
                                 </a>
                             </div>
+                         </div>
+                            @endforeach                           
                         </div>
                     </div>
+                      <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-6">
+                        @php
+                            $current = $ebooks->currentPage();
+                            $last = $ebooks->lastPage();
+                            $start = max($current - 2, 1);
+                            $end = min($start + 4, $last);
 
+                            if ($end - $start < 4) {
+                                $start = max($end - 4, 1);
+                            }
+                        @endphp
 
-                      </div>
-                </div>
+                        {{-- Previous --}}
+                        @if ($current > 1)
+                            <a href="{{ $ebooks->appends(request()->query())->url($current - 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @for ($page = $start; $page <= $end; $page++)
+                            @if ($page == $current)
+                                <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
+                            @else
+                                <a href="{{ $ebooks->appends(request()->query())->url($page) }}"
+                                class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
+                            @endif
+                        @endfor
+
+                        {{-- Next --}}
+                        @if ($current < $last)
+                            <a href="{{ $ebooks->appends(request()->query())->url($current + 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
+                        @endif
+                    </div>                   
+            </div>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {

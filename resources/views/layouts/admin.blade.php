@@ -9,9 +9,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
-<div id="loading-screen">
-    <span class="loader"></span>
-</div>
+    {{-- <div id="loading-screen">
+        <span class="loader"></span>
+    </div> --}}
     <div class="bg-[#f5f7fa] min-h-screen">
         <div class="bg-primary sticky top-0 z-10 w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-5 sm:mt-3">
@@ -52,7 +52,7 @@
                 <a href="/admin/products" class="{{ request()->path() == 'admin/products' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
                     <img src="/assets/svg/product-icon.svg" alt="Produk" class="w-[2vw] h-[2vh] mr-1">Produk
                 </a>
-                <a href="/admin/history-omzet" class="{{ request()->path() == 'admin/history-omzet' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
+                <a href="/admin/histori-omzet" class="{{ request()->path() == 'admin/history-omzet' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
                     <img src="/assets/svg/totalOmzet2-icon.svg" alt="Total Omzet" class="w-[2vw] h-[2vh] mr-1">History Omzet
                 </a>
                 <a href="/admin/videos" class="{{ request()->path() == 'admin/videos' ? 'bg-gray-300' : '' }} flex items-center px-4 py-3 text-[1vw] text-black hover:bg-gray-100 transition-colors w-full">
@@ -91,33 +91,44 @@
             }
         }
 
-    document.addEventListener("DOMContentLoaded", function () {
-        const loader = document.getElementById("loading-screen");
+document.addEventListener("DOMContentLoaded", function () {
+    const loader = document.getElementById("loading-screen");
 
-        function showLoader() {
-            loader.style.display = "flex";
-            setTimeout(() => loader.style.opacity = 1, 20);
-        }
+    function showLoader() {
+        loader.style.display = "flex";
+        setTimeout(() => loader.style.opacity = 1, 10);
+    }
 
-        // Klik link → tampilkan loading
-        document.querySelectorAll("a").forEach(link => {
-            link.addEventListener("click", function (e) {
-                const url = link.getAttribute("href");
+    function hideLoader() {
+        setTimeout(() => {
+            loader.style.opacity = 0;
+            setTimeout(() => loader.style.display = "none", 400);
+        }, 5000); // ⬅️ delay 7 detik
+    }
 
-                // Hindari anchor & JS links
-                if (!url || url.startsWith("#") || url.startsWith("javascript")) return;
+    // TAMPILKAN LOADER SAAT KLIK LINK
+    document.querySelectorAll("a").forEach(link => {
+        link.addEventListener("click", function (e) {
+            const href = this.getAttribute("href");
 
-                showLoader();
-            });
-        });
+            if (!href || href.startsWith("#") || this.target === "_blank") return;
 
-        // Submit form → tampilkan loading
-        document.querySelectorAll("form").forEach(form => {
-            form.addEventListener("submit", () => {
-                showLoader();
-            });
+            showLoader();
         });
     });
+
+    // TAMPILKAN LOADER SAAT SUBMIT FORM
+    document.querySelectorAll("form").forEach(form => {
+        form.addEventListener("submit", () => {
+            showLoader();
+        });
+    });
+
+    // SEMUA HALAMAN, ON LOAD → TUNGGU 7 DETIK BARU HIDE
+    showLoader(); // tampilkan di awal halaman
+    hideLoader(); // hilangkan setelah 7 detik
+});
+
     </script>
 </body>
 </html>

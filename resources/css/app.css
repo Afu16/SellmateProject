@@ -209,12 +209,12 @@ input[type="search"]:focus {
     inset: 0;
     background: rgba(255, 255, 255, 0.7);
     backdrop-filter: blur(3px);
-    display: none; /* default hidden */
+    display: none;
     justify-content: center;
     align-items: center;
     z-index: 9999;
     opacity: 0;
-    transition: opacity .4s ease; /* fade-in */
+    transition: opacity .4s ease;
 }
 
 .loader {

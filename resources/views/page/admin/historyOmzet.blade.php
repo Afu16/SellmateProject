@@ -29,51 +29,95 @@
                         <img src="/assets/svg/totalOmzet2-icon.svg" alt="Money">
                         <p class="text-[20px] font-quicksand font-quicksand-medium text-black">Balance Omzet</p>
                     </div>
-                    <p class="text-3xl mt-6 text-center font-quicksand font-quicksand-medium text-black">Rp 1.000.000</p>
+                <p class="text-3xl mt-6 text-center">Rp {{ number_format($totalOmzet, 0, ',', '.') }}</p>
                 </div>
                  <div class="w-full border-2 border-black shadow-black rounded-md p-2">
                     <div class="flex items-center gap-2">
                         <img src="/assets/svg/totalOmzet2-icon.svg" alt="Money">
                         <p class="text-[20px] font-quicksand font-quicksand-medium text-black">Total Transaksi</p>
                     </div>
-                    <p class="text-3xl mt-6 text-center font-quicksand font-quicksand-medium text-black">10 <span class="text-xl">Transaksi</span></p>
+<p class="text-3xl mt-6 text-center">
+    {{ $totalTransaksi }} <span class="text-xl">Transaksi</span>
+</p>
                 </div>
             </div>
               <div class="w-full mt-2 border-2 border-black shadow-black rounded-lg">                            
                         <div class="flex justify-between items-center p-3">
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center text-nowrap">Nama Siswa</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center">Kelas</p>
+                            {{-- <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-center">Kelas</p> --}}
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[5vw]">Kejuruan</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-nowrap">Total Omzet</p>
                             <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[3vw] text-nowrap">Terakhir Transaksi</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center">Aksi</p>
+                            <p class="text-[1.2vw] font-quicksand font-quicksand-medium text-black w-[4vw] text-center mr-3">Aksi</p>
                         </div>
 
                         <hr class="border-t-2 border-black">
 
-                        <div
-                            class="flex justify-between border-b-2 border-b-black items-center p-3 "
-                        >
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">Deden</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">12</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[5vw]">PMN</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-nowrap">Rp. 2.000.000</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-nowrap">12-12-2023</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-center">Details</p>
-                        </div>
+            @forelse ($omzets as $omzet)
+            <div class="flex justify-between border-b-2 border-b-black items-center p-3">
 
-                          <div
-                            class="flex justify-between border-b-2 border-b-black items-center p-3 "
-                        >
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">Deden</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-center">12</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[5vw]">PMN</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-nowrap">Rp. 2.000.000</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[3vw] text-nowrap">12-12-2023</p>
-                            <p class="text-[1.2vw] font-quicksand font-quicksand-regular text-black w-[4vw] text-center">Details</p>
-                        </div>
+                <p class="w-[3vw] text-center">
+                    {{ $omzet->user->name ?? '-' }}
+                </p>
 
-                      </div>
+                <p class="w-[5vw]">
+                    {{ $omzet->user->major ?? '-' }}
+                </p>
+
+                <p class="w-[4vw] text-nowrap">
+                    Rp {{ number_format($omzet->total_omzet, 0, ',', '.') }}
+                </p>
+
+                <p class="w-[3vw] text-nowrap">
+                     {{ \Carbon\Carbon::parse($omzet->last_transaction)->format('d-m-Y') }}
+                </p>
+
+                <p class="w-[4vw] text-center mr-3">
+                    <a href="{{ route('admin.history.detail', $omzet->user->id) }}" class="underline">Details</a>
+                </p>
+
+            </div>
+            @empty
+            <div class="p-4 text-center text-gray-500">
+                Belum ada data omzet
+            </div>
+            @endforelse
+                </div>
+                                     <!-- Pagination -->
+                    <div class="flex justify-center items-center space-x-2 mt-6">
+                        @php
+                            $current = $omzets->currentPage();
+                            $last = $omzets->lastPage();
+                            $start = max($current - 2, 1);
+                            $end = min($start + 4, $last);
+
+                            if ($end - $start < 4) {
+                                $start = max($end - 4, 1);
+                            }
+                        @endphp
+
+                        {{-- Previous --}}
+                        @if ($current > 1)
+                            <a href="{{ $omzets->appends(request()->query())->url($current - 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&lt;</a>
+                        @endif
+
+                        {{-- Page Numbers --}}
+                        @for ($page = $start; $page <= $end; $page++)
+                            @if ($page == $current)
+                                <span class="px-3 py-2 bg-orange-500 text-white rounded-md font-bold">{{ $page }}</span>
+                            @else
+                                <a href="{{ $omzets->appends(request()->query())->url($page) }}"
+                                class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">{{ $page }}</a>
+                            @endif
+                        @endfor
+
+                        {{-- Next --}}
+                        @if ($current < $last)
+                            <a href="{{ $omzets->appends(request()->query())->url($current + 1) }}"
+                            class="px-3 py-2 bg-white border border-gray-300 text-black rounded-md hover:bg-gray-200">&gt;</a>
+                        @endif
+                    </div>
         </div>
     </div>
 

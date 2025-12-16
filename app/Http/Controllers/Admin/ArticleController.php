@@ -4,12 +4,15 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Article;
 
 class ArticleController extends Controller
 {
     public function index()
     {
-        return view('page.admin.article');
+        $articles = Article::latest()
+        ->paginate(10);
+        return view('page.admin.article',compact('articles'));
     }
     public function create()
     {

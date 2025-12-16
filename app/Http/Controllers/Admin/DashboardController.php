@@ -29,11 +29,26 @@ class DashboardController extends Controller
             ->withSum('omzets', 'total_omzets')
             ->orderByDesc('omzets_sum_total_omzets')
             ->take(10)
-            ->get();
+            ->get()
+            ->map(function ($user) {
+                $total = $user->omzets_sum_total_omzets ?? 0;
+
+                if ($total >= 300000) {
+                    $user->score = 'A';
+                } elseif ($total >= 200000) {
+                    $user->score = 'B';
+                } elseif ($total >= 100000) {
+                    $user->score = 'C';
+                } else {
+                    $user->score = 'D';
+                }
+
+                return $user;
+            });           
 
         $history = Omzet::with('user')
             ->orderBy('date', 'desc')
-            ->take(17)
+            ->take(15)
             ->get();
 
         return inertia('Admin/Dashboard', [

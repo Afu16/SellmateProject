@@ -16,6 +16,9 @@ class Omzet extends Model
         'total_omzets',
         'date',
     ];
+        protected $casts = [
+        'date' => 'date',
+    ];
 
     // Relasi ke User
     public function user()
@@ -32,5 +35,6 @@ class Omzet extends Model
     {
         return $this->hasMany(Omzet::class);
     }
+    
 
 }
