@@ -17,6 +17,7 @@ use App\Http\Controllers\Admin\UserTransactionsController;
 use App\Http\Controllers\Admin\AuthController;
 use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\TopOmzetController as AdminTopOmzetController;
+use App\Http\Controllers\Admin\HistoryController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -113,9 +114,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/usermana/{id}/data', [UserTransactionsController::class, 'data'])->name('usermana.data');
 
         // History Omzet Management Routes
-        Route::get('/history-omzet', function () {
-            return view('page.admin.historyOmzet');
-        })->name('historyOmzet');
+Route::get('/histori-omzet', [HistoryController::class, 'index'])
+    ->name('histori-omzet');
         
         
         // Product Management Routes
