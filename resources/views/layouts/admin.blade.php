@@ -9,9 +9,9 @@
     <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 <body>
-    <div id="loading-screen">
+    {{-- <div id="loading-screen">
         <span class="loader"></span>
-    </div>
+    </div> --}}
     <div class="bg-[#f5f7fa] min-h-screen">
         <div class="bg-primary sticky top-0 z-10 w-full p-5 shadow-sm flex flex-row gap-10 min-h-[15svh]">
             <div class="mt-5 sm:mt-3">

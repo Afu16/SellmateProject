@@ -105,18 +105,11 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // User Management Routes
         Route::get('/users', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('users');
         Route::post('/users', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('users.store');
-        Route::get('/users/create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('users.create');
-
-        Route::put('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('users.update');
         Route::delete('/users/{id}', [\App\Http\Controllers\Admin\UserController::class, 'destroy'])->name('users.destroy');
 
-        Route::get('/usermana/{id}', [UserTransactionsController::class, 'index'])->name('usermana');
-        Route::get('/usermana/{id}/data', [UserTransactionsController::class, 'data'])->name('usermana.data');
-
         // History Omzet Management Routes
-Route::get('/histori-omzet', [HistoryController::class, 'index'])
-    ->name('histori-omzet');
-        
+        Route::get('/histori-omzet', [HistoryController::class, 'index']) ->name('histori-omzet');
+        Route::get('/history/{user}', [\App\Http\Controllers\Admin\HistoryController::class, 'detail'])->name('history.detail');
         
         // Product Management Routes
         Route::get('/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
@@ -129,25 +122,27 @@ Route::get('/histori-omzet', [HistoryController::class, 'index'])
         Route::get('/omzet', [AdminTopOmzetController::class, 'index'])->name('topomzet');
         
         // Video Management Routes
-        Route::get('/videos/create', [\App\Http\Controllers\Admin\VideoController::class, 'create'])->name('videos.create');
         Route::get('/videos', [\App\Http\Controllers\Admin\VideoController::class, 'index'])->name('videos');
+        Route::get('/videos/create', [\App\Http\Controllers\Admin\VideoController::class, 'create'])->name('videos.create');
         Route::post('/videos', [\App\Http\Controllers\Admin\VideoController::class, 'store'])->name('videos.store');
-        Route::put('/videos/{id}', [\App\Http\Controllers\Admin\VideoController::class, 'update'])->name('videos.update');
         Route::delete('/videos/{id}', [\App\Http\Controllers\Admin\VideoController::class, 'destroy'])->name('videos.destroy');
+        Route::get('/videos/{video}/edit', [\App\Http\Controllers\Admin\VideoController::class, 'edit'])->name('videos.edit');
+        Route::put('/videos/{video}', [\App\Http\Controllers\Admin\VideoController::class, 'update'])->name('videos.update');
         
         // Ebook Management Routes
         Route::get('/ebooks/create', [\App\Http\Controllers\Admin\EbookController::class, 'create'])->name('ebooks.create');
         Route::get('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'index'])->name('ebooks');
-        Route::post('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'store'])->name('ebooks.store');
-        Route::put('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'update'])->name('ebooks.update');
-        Route::delete('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'destroy'])->name('ebooks.destroy');
+        // Route::post('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'store'])->name('ebooks.store');
+        // Route::put('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'update'])->name('ebooks.update');
+        // Route::delete('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'destroy'])->name('ebooks.destroy');
         
         // Article Management Routes
         Route::get('/articles/create', [\App\Http\Controllers\Admin\ArticleController::class, 'create'])->name('articles.create');
         Route::get('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'index'])->name('articles');
-        Route::post('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'store'])->name('articles.store');
-        Route::put('/articles/{id}', [\App\Http\Controllers\Admin\ArticleController::class, 'update'])->name('articles.update');
+        // Route::post('/articles', [\App\Http\Controllers\Admin\ArticleController::class, 'store'])->name('articles.store');
+        // Route::put('/articles/{id}', [\App\Http\Controllers\Admin\ArticleController::class, 'update'])->name('articles.update');
         Route::delete('/articles/{id}', [\App\Http\Controllers\Admin\ArticleController::class, 'destroy'])->name('articles.destroy');
+        Route::get('/articles/{article}/edit', [\App\Http\Controllers\Admin\ArticleController::class, 'edit'])->name('articles.edit');
         
         // History Routes
         Route::get('/history', [\App\Http\Controllers\Admin\HistoryController::class, 'index'])->name('history');

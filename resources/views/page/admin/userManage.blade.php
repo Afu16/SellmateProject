@@ -10,20 +10,15 @@
                     <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">Semua pengguna</h1>
                     <h1 class="text-xl font-pilcrow font-pilcrow-rounded font-bold text-black">{{ $users->total() }}</h1>
                     <div class="flex items-center gap-3 ml-auto">
+                        <button class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
+                            <img width="10" src="/assets/svg/newFilter-icon.svg" alt="filter-icon">
+                        </button>                       
                         <div class="relative">
                             <input type="search" name="search" id="search" placeholder="Search" class="w-[18vw] h-[4.2vh] border-2 border-black shadow-black rounded-md px-3 py-1 pr-8 text-[10px] focus:outline-none focus:ring-2 focus:ring-primary" />
                             <svg xmlns="http://www.w3.org/2000/svg" class="absolute right-3 top-1/2 -translate-y-1/2 h-3 w-3 text-black cursor-pointer" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                             </svg>
                         </div>
-                        <button class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
-                            <img width="10" src="/assets/svg/filter-icon.svg" alt="filter-icon">
-                            Filters
-                        </button>
-                        <a href="{{ route('admin.users.create') }}" class="flex items-center gap-2 px-4 h-[4.2vh] border-2 border-black shadow-black rounded-md text-[10px] bg-white">
-                            <img width="10" src="/assets/svg/blackPlus-icon.svg" alt="plus-icon">
-                            Tambah Pengguna
-                        </a>
                     </div>
                 </div>
 
@@ -61,11 +56,11 @@
                             </div>
 
                             <div class="text-center">
-                    {{ optional($user->last_active)->format('M d, Y') ?? '-' }}
+                    {{ optional($user->updated_at)->format('M d, Y') ?? '-' }}
                             </div>
 
                             <div class="text-center">
-                    {{ optional($user->last_active)->format('M d, Y') ?? '-' }}
+                    {{ optional($user->created_at)->format('M d, Y') ?? '-' }}
                             </div>
 
                             <div class="text-right text-xl">⋮</div>
