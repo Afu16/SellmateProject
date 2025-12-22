@@ -33,7 +33,7 @@
                 Baca Sekarang
                 </a>
                 <a href="javascript:void(0)" 
-                onclick="shareArticle({{ $article->id }})"
+                onclick="shareArticle('{{ $article->id }}')"
                 class="bg-white/20 p-2 rounded-full backdrop-blur-sm hover:bg-white/30 transition-colors">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" 
@@ -46,42 +46,100 @@
 
     @endforeach
     </div>
+    <!-- Modal Share Article -->
+    <div id="shareModal" class=" fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+        <div class="bg-white w-80 p-5 rounded-xl shadow-lg">
+            <h2 class="text-lg font-bold mb-3">Bagikan Artikel</h2>
 
-<script>
-async function shareArticle(id) {
-    try {
-        const response = await fetch(`/articles/share/${id}`);
-        const data = await response.json();
-        const shareLink = data.link;
+            <div id="shareLinkBox" 
+                class="p-2 border rounded bg-gray-100 text-xs break-all mb-3"></div>
 
+            <button id="copyBtn" 
+                class="w-full mb-2 bg-blue-600 text-white py-2 rounded">
+                Copy Link
+            </button>
+
+            <button id="waBtn" 
+                class="w-full mb-2 bg-green-600 text-white py-2 rounded">
+                Share WhatsApp
+            </button>
+
+            <button id="tgBtn" 
+                class="w-full mb-2 bg-blue-500 text-white py-2 rounded">
+                Share Telegram
+            </button>
+
+            <button id="systemShareBtn" 
+                class="w-full mb-2 bg-gray-800 text-white py-2 rounded">
+                Share ke Aplikasi Lain
+            </button>
+
+            <button onclick="closeShareModal()" 
+                class="w-full bg-gray-300 py-2 rounded">
+                Tutup
+            </button>
+        </div>
+    </div>
+
+    <script>
+    let currentShareLink = "";
+
+    async function shareArticle(id) {
+        try {
+            const res = await fetch(`/articles/share/${id}`);
+            const data = await res.json();
+            currentShareLink = data.link;
+
+            if (!currentShareLink) {
+                alert("Link tidak ditemukan");
+                return;
+            }
+
+            document.getElementById("shareLinkBox").innerText = currentShareLink;
+            openShareModal();
+
+        } catch (err) {
+            alert("Gagal mengambil link share");
+        }
+    }
+
+    function openShareModal() {
+        document.getElementById('shareModal').classList.remove('hidden');
+    }
+
+    function closeShareModal() {
+        document.getElementById('shareModal').classList.add('hidden');
+    }
+
+    // Copy link
+    document.getElementById("copyBtn").onclick = async () => {
+        await navigator.clipboard.writeText(currentShareLink);
+        alert("Link disalin!");
+    };
+
+    // WhatsApp
+    document.getElementById("waBtn").onclick = () => {
+        window.open(`https://wa.me/?text=${encodeURIComponent(currentShareLink)}`, "_blank");
+    };
+
+    // Telegram
+    document.getElementById("tgBtn").onclick = () => {
+        window.open(`https://t.me/share/url?url=${encodeURIComponent(currentShareLink)}`, "_blank");
+    };
+
+    // System Share
+    document.getElementById("systemShareBtn").onclick = async () => {
         if (navigator.share) {
-            // Bisa langsung share ke WhatsApp, Telegram, dll
             await navigator.share({
-                title: 'Cek artikel ini!',
-                text: 'Artikel menarik nih 👇',
-                url: shareLink
+                title: "Cek artikel ini!",
+                text: "Artikel menarik nih 👇",
+                url: currentShareLink,
             });
         } else {
-            // Browser belum support share, kasih opsi manual
-            const wa = `https://wa.me/?text=${encodeURIComponent('Cek artikel ini: ' + shareLink)}`;
-            const telegram = `https://t.me/share/url?url=${encodeURIComponent(shareLink)}&text=${encodeURIComponent('Artikel menarik nih!')}`;
-            const copy = async () => {
-                await navigator.clipboard.writeText(shareLink);
-                alert('Link disalin ke clipboard!');
-            };
-
-            // popup manual sederhana
-            const pilihan = prompt('Pilih cara share:\n1. WhatsApp\n2. Telegram\n3. Copy Link');
-            if (pilihan == '1') window.open(wa, '_blank');
-            else if (pilihan == '2') window.open(telegram, '_blank');
-            else if (pilihan == '3') copy();
+            alert("Device tidak support share langsung");
         }
-    } catch (error) {
-        console.error('Gagal share:', error);
-    }
-}
-</script>
-
+    };
+    </script>
 
 </body>
 </html>
