@@ -34,7 +34,8 @@
                         <div></div>
                     </div>
                     @foreach ($users as $user)
-                        <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black">
+                        <div class="mt-3 grid grid-cols-[40px,1fr,120px,140px,140px,40px] items-center bg-white rounded-xl border-2 border-black px-4 py-3 shadow-black relative"
+                            x-data="{open:false}" @keydown.escape.window="open=false">
 
                             <div>
                                 <input type="checkbox" class="rounded-md">
@@ -63,7 +64,43 @@
                     {{ optional($user->created_at)->format('M d, Y') ?? '-' }}
                             </div>
 
-                            <div class="text-right text-xl">⋮</div>
+                            <div class="text-right text-xl">
+                    <button type="button" class="focus:outline-none inline-flex items-center justify-center w-6 h-6"
+                            @click.stop="open = !open">
+                        <img src="/assets/svg/other-icon.svg" alt="other icon" width="2" height="2">
+                    </button>
+                            </div>
+                <div x-show="open" x-transition.opacity @click.outside="open=false"
+                    class="absolute right-7 top-8 rounded-md flex flex-col gap-1 justify-between bg-white border-2 border-black p-2 w-[12vw] z-10">
+                    
+                    <div @click="open=false"
+                        class="absolute w-5 h-5 top-[-1vh] right-[-1vh] text-black text-xs rounded-full bg-red-600 flex items-center justify-center">
+                        X
+                    </div>
+
+                    <a href="#"
+                    class="text-xs w-1/2 items-center flex flex-col text-center text-black">
+                        Aktif
+                    </a>
+                    <a href="#"
+                    class="text-xs w-1/2 items-center flex flex-col text-center text-black">
+                        Tidak Aktif
+                    </a>
+                <form action="#"
+                    method="POST"
+                    onsubmit="return confirm('Yakin hapus video ini?')"
+                    class="w-1/2">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit"
+                        class="text-xs w-full items-center flex flex-col text-center text-black">
+                        Hapus
+                    </button>
+                </form>
+                </div>
+
                         </div>
                     @endforeach
                      <!-- Pagination -->

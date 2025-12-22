@@ -114,9 +114,10 @@ Route::prefix('admin')->name('admin.')->group(function () {
         // Product Management Routes
         Route::get('/products/create', [\App\Http\Controllers\Admin\ProductController::class, 'create'])->name('products.create');
         Route::get('/products', [\App\Http\Controllers\Admin\ProductController::class, 'index'])->name('products');
-        Route::post('/products', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store');
-        Route::put('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update');
+        // Route::post('/products', [\App\Http\Controllers\Admin\ProductController::class, 'store'])->name('products.store');
+        // Route::put('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'update'])->name('products.update');
         Route::delete('/products/{id}', [\App\Http\Controllers\Admin\ProductController::class, 'destroy'])->name('products.destroy');
+        Route::get('/products/{product}/edit', [\App\Http\Controllers\Admin\ProductController::class, 'edit'])->name('products.edit');
         
         // Omzet Management Routes
         Route::get('/omzet', [AdminTopOmzetController::class, 'index'])->name('topomzet');
@@ -134,7 +135,8 @@ Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'index'])->name('ebooks');
         // Route::post('/ebooks', [\App\Http\Controllers\Admin\EbookController::class, 'store'])->name('ebooks.store');
         // Route::put('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'update'])->name('ebooks.update');
-        // Route::delete('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'destroy'])->name('ebooks.destroy');
+        Route::delete('/ebooks/{id}', [\App\Http\Controllers\Admin\EbookController::class, 'destroy'])->name('ebooks.destroy');
+        Route::get('/ebooks/{ebook}/edit', [\App\Http\Controllers\Admin\EbookController::class, 'edit'])->name('ebooks.edit');
         
         // Article Management Routes
         Route::get('/articles/create', [\App\Http\Controllers\Admin\ArticleController::class, 'create'])->name('articles.create');
