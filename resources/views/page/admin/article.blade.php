@@ -57,21 +57,35 @@
                                         <img src="/assets/svg/other-icon.svg" alt="other icon" width="2" height="2">
                                     </button>
                                 </p>
-                                <div x-show="open" x-transition.opacity @click.outside="open=false" class="absolute right-7 top-8 rounded-md flex flex-row gap-1 justify-between  bg-white border-2 border-black p-2 w-[12vw] z-10">
-                                    <div @click="open=false" class="absolute w-5 h-5 top-[-1vh] right-[-1vh] text-black text-xs rounded-full bg-red-600 flex items-center justify-center">X</div>
-                                    <form action="{{ route('admin.articles.destroy', $article->id) }}" method="POST" class="w-1/2">
-                                        @csrf
-                                        @method('DELETE')
-                                        <button type="submit" class="text-xs w-full items-center flex flex-col text-center text-black">
-                                            <img src="/assets/svg/fluentTrashX-icon.svg" alt="trash">
-                                            Hapus
-                                        </button>
-                                    </form>
-                                    <a href="{{ route('admin.articles.edit', $article->id) }}" class="text-xs w-1/2 items-center flex flex-col text-center text-black">
-                                        <img src="/assets/svg/fluentBoxEdit-icon.svg" alt="Edit">
-                                        Edit
-                                    </a>
-                                </div>
+                <div x-show="open" x-transition.opacity @click.outside="open=false"
+                    class="absolute right-7 top-8 rounded-md flex flex-row gap-1 justify-between bg-white border-2 border-black p-2 w-[12vw] z-10">
+                    
+                    <div @click="open=false"
+                        class="absolute w-5 h-5 top-[-1vh] right-[-1vh] text-black text-xs rounded-full bg-red-600 flex items-center justify-center">
+                        X
+                    </div>
+
+                <form action="{{ route('admin.articles.destroy', $article->id) }}"
+                    method="POST"
+                    onsubmit="return confirm('Yakin hapus article ini?')"
+                    class="w-1/2">
+
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit"
+                        class="text-xs w-full items-center flex flex-col text-center text-black">
+                        <img src="/assets/svg/fluentTrashX-icon.svg" alt="trash">
+                        Hapus
+                    </button>
+                </form>
+
+                <a href="{{ route('admin.articles.edit', $article->id) }}"
+                class="text-xs w-1/2 items-center flex flex-col text-center text-black">
+                    <img src="/assets/svg/fluentBoxEdit-icon.svg" alt="Edit">
+                    Edit
+                </a>
+                </div>
                             </div> 
                             @endforeach
                       </div>

@@ -70,17 +70,34 @@
                                     <img src="/assets/svg/other-icon.svg" alt="other icon" width="2" height="2">
                                 </button>
                             </p>
+                            <div x-show="open" x-transition.opacity @click.outside="open=false"
+                                class="absolute right-7 top-8 rounded-md flex flex-row gap-1 justify-between bg-white border-2 border-black p-2 w-[12vw] z-10">
+                                
+                                <div @click="open=false"
+                                    class="absolute w-5 h-5 top-[-1vh] right-[-1vh] text-black text-xs rounded-full bg-red-600 flex items-center justify-center">
+                                    X
+                                </div>
 
-                            <div x-show="open" x-transition.opacity @click.outside="open=false" class="absolute right-7 top-8 rounded-md flex flex-row gap-1 justify-between  bg-white border-2 border-black p-2 w-[12vw] z-10">
-                                <div @click="open=false" class="absolute w-5 h-5 top-[-1vh] right-[-1vh] text-black text-xs rounded-full bg-red-600 flex items-center justify-center">X</div>
-                                <a href="#" class="text-xs w-1/2 items-center flex flex-col text-center text-black">
+                            <form action="{{ route('admin.ebooks.destroy', $ebook->id) }}"
+                                method="POST"
+                                onsubmit="return confirm('Yakin hapus ebook ini?')"
+                                class="w-1/2">
+
+                                @csrf
+                                @method('DELETE')
+
+                                <button type="submit"
+                                    class="text-xs w-full items-center flex flex-col text-center text-black">
                                     <img src="/assets/svg/fluentTrashX-icon.svg" alt="trash">
                                     Hapus
-                                </a>
-                                <a href="#" class="text-xs w-1/2 items-center flex flex-col text-center text-black">
-                                    <img src="/assets/svg/fluentBoxEdit-icon.svg" alt="Edit">
-                                    Edit
-                                </a>
+                                </button>
+                            </form>
+
+                            <a href="{{ route('admin.ebooks.edit', $ebook->id) }}"
+                            class="text-xs w-1/2 items-center flex flex-col text-center text-black">
+                                <img src="/assets/svg/fluentBoxEdit-icon.svg" alt="Edit">
+                                Edit
+                            </a>
                             </div>
                          </div>
                             @endforeach                           

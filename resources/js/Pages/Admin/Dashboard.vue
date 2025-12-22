@@ -14,7 +14,7 @@ defineProps({
 </script>
 
 <template>
-    <Head title="Dashboard Siswa" />
+    <Head title="Dashboard Admin" />
     
     <div class="hidden md:block">
         <!-- Success Notification -->

@@ -46,7 +46,7 @@ class OmzetController extends Controller
             $monthlyQuery->where('product_id', $selectedProductId);
         }
 
-        $omzetBulanIni = $monthlyQuery->orderBy('date', 'asc')->get();
+        $omzetBulanIni = $monthlyQuery->orderBy('date', 'desc')->get();
         $totalBulanIni = $omzetBulanIni->sum('total_omzets');
 
     // Jika tidak ada transaksi bulan ini
@@ -135,7 +135,7 @@ class OmzetController extends Controller
             $query->where('product_id', $selectedProductId);
         }
 
-        $omzetBulanIni = $query->orderBy('date','asc')->get();
+        $omzetBulanIni = $query->orderBy('date','desc')->get();
 
     // Hitung total komisi bulan ini
     $totalKomisiBulanIni = $omzetBulanIni->sum(function ($o) {

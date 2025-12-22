@@ -34,7 +34,7 @@
                         </div>
 
                         <div class="col-span-2 gap-2 flex justify-end">
-                            <a href="/admin/articles" type="submit" class="bg-white px-5 py-2 text-nowrap text-xs rounded-xl border-2 border-secondary shadow-secondary">Kembali</button>
+                            <a href="/admin/articles" type="submit" class="bg-white px-5 py-2 text-nowrap text-xs rounded-xl border-2 border-secondary shadow-secondary">Kembali</a>
                             <button type="submit" class="bg-secondary px-5 py-2 text-nowrap text-xs rounded-xl border-2 border-black shadow-black">Simpan</button>
                         </div>
                     </form>
