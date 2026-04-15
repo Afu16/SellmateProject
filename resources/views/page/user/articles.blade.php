@@ -47,7 +47,7 @@
     @endforeach
     </div>
     <!-- Modal Share Article -->
-    <div id="shareModal" class=" fixed inset-0 bg-black/50 flex justify-center items-center z-50">
+        <div id="shareModal" class="hidden fixed inset-0 bg-black/50 flex justify-center items-center z-50">
         <div class="bg-white w-80 p-5 rounded-xl shadow-lg">
             <h2 class="text-lg font-bold mb-3">Bagikan Artikel</h2>
 
